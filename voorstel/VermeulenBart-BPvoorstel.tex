@@ -1,0 +1,77 @@
+%==============================================================================
+% Sjabloon onderzoeksvoorstel bachproef
+%==============================================================================
+% Gebaseerd op document class `hogent-article'
+% zie <https://github.com/HoGentTIN/latex-hogent-article>
+
+% Voor een voorstel in het Engels: voeg de documentclass-optie [english] toe.
+% Let op: kan enkel na toestemming van de bachelorproefcoördinator!
+\documentclass{hogent-article}
+
+% Invoegen bibliografiebestand
+\addbibresource{voorstel.bib}
+
+% Informatie over de opleiding, het vak en soort opdracht
+\studyprogramme{Professionele bachelor toegepaste informatica}
+\course{Bachelorproef}
+\assignmenttype{Onderzoeksvoorstel}
+% Voor een voorstel in het Engels, haal de volgende 3 regels uit commentaar
+% \studyprogramme{Bachelor of applied information technology}
+% \course{Bachelor thesis}
+% \assignmenttype{Research proposal}
+
+\academicyear{2025-2026}
+
+\title{Onderzoek naar betere onboarding en in-app user guidance op het salesforce 24flow platform}
+
+\author{Bart Vermeulen}
+\email{bart.vermeulen@student.hogent.be}
+
+% TODO: Geef de co-promotor op
+\supervisor[Co-promotor]{Piet Vandaele}
+
+% Binnen welke specialisatierichting uit 3TI situeert dit onderzoek zich?
+% Kies uit deze lijst:
+%
+% - Mobile \& Enterprise development
+% - AI \& Data Engineering
+% - Functional \& Business Analysis
+% - System \& Network Administrator
+% - Mainframe Expert
+% - Als het onderzoek niet past binnen een van deze domeinen specifieer je deze
+%   zelf
+%
+\specialisation{Mobile \& Enterprise development}
+
+\keywords{Salesforce, Apex, Onboarding, In-app user guidance}
+
+\begin{document}
+
+\begin{abstract}
+ 
+Het 24flow platform is een modulair platform voor werkvloerbeheer en productieplanning bij make-to-order fabrikanten. Het is bedoeld om 
+doorlooptijden te verminderen, traceerbaarheid te verbeteren en zichtbaarheid te verhogen. Dit platform draait op de salesforce software en maakt gebruik van zijn codetaal apex.
+Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken/begrijpen. Er moet vaak manueel uitgelegd/getoond worden hoe alles in elkaar steekt en dit is bij elke vernieuwing ook nog eens extra het geval. Al deze zaken kosten veel tijd en geld en kunnen ook voor frustraties zorgen.
+\\
+
+Hoe kan het onboardingproces en de in-app guidance van (nieuwe)gebruikers op het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?
+\\
+
+Dit onderzoek zal aan de hand van een uitgebreide literatuurstudie de context van onboarding en in-app guidance verkennen. Aan de hand hiervan en een requirementsanalyse komen we tot een ontwerp en implementatie voor een mogelijk proof of concept dat aan de onderzoeksvraag beantwoordt.
+\\
+
+Verwacht wordt dat er aan het einde van dit onderzoek een werkend prototype zal zijn binnen het 24flow platform dat zorgt voor een betere user onboarding en in-app user guidance en dat beantwoordt aan de vooraf opgestelde requirements.
+\\
+
+Als deze resultaten worden gehaald kunnen we concluderen dat het onboardingproces en de in-app guidance op het 24flow platform verbeterd zijn en dat dit prototype kan gebruikt worden als basis om over het hele platform betere gebruikershulp te voorzien.
+\end{abstract}
+
+\tableofcontents
+
+% De hoofdtekst van het voorstel zit in een apart bestand, zodat het makkelijk
+% kan opgenomen worden in de bijlagen van de bachelorproef zelf.
+\input{voorstel-inhoud}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

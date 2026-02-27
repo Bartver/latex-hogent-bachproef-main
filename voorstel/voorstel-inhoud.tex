@@ -1,51 +1,60 @@
 %---------- Inleiding ---------------------------------------------------------
 
-% TODO: Is dit voorstel gebaseerd op een paper van Research Methods die je
-% vorig jaar hebt ingediend? Heb je daarbij eventueel samengewerkt met een
-% andere student?
-% Zo ja, haal dan de tekst hieronder uit commentaar en pas aan.
-
-%\paragraph{Opmerking}
-
-% Dit voorstel is gebaseerd op het onderzoeksvoorstel dat werd geschreven in het
-% kader van het vak Research Methods dat ik (vorig/dit) academiejaar heb
-% uitgewerkt (met medesturent VOORNAAM NAAM als mede-auteur).
-% 
-
 \section{Inleiding}%
 \label{sec:inleiding}
+24flow is een bedrijf dat een modulair platform maakt voor werkvloerbeheer en productieplanning om onder andere traceerbaarheid en zichtbaarheid te verbeteren bij make-to-order fabrikanten. 
+\\
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken/begrijpen. Er moet vaak manueel uitgelegd/getoond worden hoe alles werkt en dit is bij elke vernieuwing ook nog eens extra het geval. Al deze zaken kosten veel tijd en geld en kunnen ook voor frustraties zorgen.
+\\
 
-\begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
-\end{itemize}
+Hoe kan het onboardingproces en de in-app guidance van (nieuwe)gebruikers op het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?
+\\
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
+Om het probleem beter te begrijpen, moeten we ons afvragen hoe het huidige onboardingproces in elkaar zit en op welke manieren gebruikers begeleid worden binnen het platform, welke bestaande frustraties/gebreken huidige klanten, gebruikers en ontwikkelaars ondervinden en hoe andere vergelijkbare systemen omgaan met onboarding en in-app guidance.
+\\
 
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
-
+Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een eindresultaat te komen dat als proof of concept een in-app guidance systeem met walkthroughs ontwikkelt binnen het 24flow platform. Om hiertoe te komen kijken we welke salesforce(apex) mogelijkheden er bestaan voor onboarding/guidance, welke componenten het meeste nood hebben aan user guidance, hoe andere vergelijkbare systemen omgaan met onboarding.
+ 
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
+\subsection{Context}
+Het 24flow platform is gemaakt in het salesforce ecosysteem voor make-to-order bedrijven (\autocite{Nelfiyanti2025}), waar workflows vaak complex zijn en variëren per order. Hierbij is er een noodzaak voor digitale oplossingen die heel specifiek voor verschillende processen kunnen worden gebruikt. 
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+Het platform is gebouwd binnen het salesforce ecosysteem met behulp van apex, de programmeertaal van salesforce. Salesforce is een algemeen erkend  customer relationship management system(CRM)-oplossing (\autocite{Pookandy2024}). Salesforce voorziet allerlei tools om data, workflows, gebruikers... te beheren en allerlei opties te geven aan bedrijven om heel contextspecifieke oplossingen te kunnen implementeren.
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+\subsection{Onboarding}
+Onboarding is het proces waarbij een nieuwe gebruiker voor het eerst in contact komt met een applicatie, of andere toepassing en de manier waarop die gebruiker hierbij wordt begeleid. Die begeleiding of sturing kan verschillende vormen aannemen, het kan gebeuren aan de hand van een menselijke uitleg, walkthroughs, handleidingen... \autocite{Madhwacharyula2023}
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+Onboarding speelt een grote rol bij de first time user experience(FTUE), de eerste interactie die een gebruiker heeft met een bepaalde applicatie, en waar de mening van die gebruiker over de applicatie fundamenteel gevormd wordt. 
+\autocite{CascaesCardoso2017}
+Effectieve onboarding betekent beter begrip, minder frustraties en een goede gebruikerservaring van de applicatie op de lange termijn.
+Onderzoek van \textcite{ChukwunonsoNweke2025} over verschillende onboarding technieken toont dat walkthroughs die een gebruiker stap per stap begeleiden ervoor zorgen dat die gebruiker de nieuwe kennis beter begrijpt en onthoudt dan een eenmalige statische uitleg.
+
+Onderzoek toont het belang van die eerste interactie aan en het belang hiervan voor de lange termijn.
+
+Goede onboarding zorgt ervoor dat alle onderdelen van een applicatie stapsgewijs geïntroduceerd worden, en telkens met de nodige context getoond worden. Hierbij kunnen tutorials en walkthroughs een grote hulp zijn om gebruikers gemakkelijk wegwijs te maken met een bepaalde interface en door het tonen van walkthroughs
+\autocite{Kedzielska2023}
+\autocite{Melenciano2025}
+
+In tegenstelling hiertoe kan slechte onboarding  leiden tot frustratie, verwarring en zelfs het verlaten van een platform, dus het verlies van een klant.
+\autocite{CascaesCardoso2017}
+
+Moderne onboarding gebeurt tegenwoordig vaak via in-app systemen, contextgevoelige prompts, interactieve tutorials en walkthroughs. Deze aanpak zorgt ervoor dat de gebruiker op het juiste moment de juiste informatie of hulp krijgt. \autocite{Acar2020, Akiki2019}
+
+\subsection{In-App User Guidance}
+Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan vinden binnen de applicatie. Volgens \textcite{Acar2020} is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de juiste oplossing. Ze duiden erop dat gebruikers hulp zouden moeten krijgen op het exacte moment dat ze die nodig hebben en dat deze hulp dus context specifiek moet aangeboden worden in plaats van te verwachten dat gebruikers zelf op zoek gaan naar de juiste info.
+
+\textcite{Akiki2019} dan heeft het over de praktische implementatie van zo'n user guidance, de studie toont aan dat hulp voor gebruikers direct kan ingebouwd worden in de gebruikersinterface via context gebonden prompts en interactieve elementen. Dit onderzoek laat eveneens zien dat gebruikers die op deze manier geholpen worden, efficiënter kunnen werken en minder vastlopen dan wanneer ze zelf op zoek moeten naar alle juiste oplossingen.
+
+Daarbovenop toont onderzoek over digital adoption platforms(DAP) dat het integreren van contextspecifieke en interactieve ondersteuning binnen enterprise applicaties het aanleren van zo'n complexe systemen verbetert.\autocite{Handrich2024}
+
+Salesforce' bestaande tools, walkthroughs, interactieve prompts... voor in-app guidance kunnen gezien worden als zo een platform dat gebruikers in staat stelt om begeleid te worden terwijl ze in de applicatie werken.
+
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -54,31 +63,66 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\paragraph{Fase 0: Onderzoeksvoorstel(12/12-23-01)}
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+Dit is de voorbereidende fase waar het onderwerp wordt afgebakend, de methodologie wordt uitgewerkt, een kleine literatuurstudie wordt uitgevoerd en de scope van het onderzoek wordt bepaald.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\paragraph{Fase 1: Literatuurstudie(23/01-15/02)}     
+De literatuurstudie uit het onderzoeksvoorstel wordt waar nodig verder uitgebreid om de beste oplossingen, problemen... die helpen de onderzoeksvraag beantwoorden uit de bestaande wetenschappelijke lectuur te halen. Dit vormt de basis voor een mogelijk proof of concept, een mogelijke oplossing die een antwoord biedt op de hoofdonderzoeksvraag. 
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\paragraph{Fase 2: Requirements verzamelen(15/02-01/03)}
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+Hier ga ik op zoek naar de verschillende criteria/requirements waar een goede oplossing aan moet voldoen.
+\\
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+Dit gebeurt eerst door interviews te voeren met verschillende stakeholders, de copromotor, developers... om de belangrijkste requirements en flows te identificeren aan de hand van de moscow methode. 
+\\
+
+Uiteindelijk komt hier een naar belangrijkheid geordende lijst van pijnpunten en requirements voor een mogelijke oplossing uit.
+\\
+
+Verder ga ik in deze fase eveneens op verkenning door de verschillende salesforce functionaliteiten die toepasbaar zouden kunnen zijn voor een mogelijk proof of concept. 
+\\
+Daaruit komt dan een shortlist van de verschillende functionaliteiten die het meest geschikt zijn om gebruikt te worden.
+
+\paragraph{Fase3: Ontwerp prototype(01/03-15/03)}
+Aan de hand van de opgestelde requirements en de salesforce analyse wordt een ontwerp opgesteld voor het onboarding prototype.
+\\
+
+Dit is een lijst met verschillende use cases, wireframes die samen een ontwerp vormen voor de mogelijke onboarding optie. 
+\\
+
+Dit ontwerp wordt vervolgens besproken met de copromotor en vervolgens bijgewerkt naargelang de gekregen feedback, om zo tot een afgewerkt ontwerp te komen voor een mogelijke implementatie.
+
+\paragraph{Fase 4: Implementatie prototype(15/03-15/05)}
+Hier wordt het gemaakte ontwerp geïmplementeerd binnen het 24flow platform op een developer omgeving. De belangrijkste requirements worden gebouwd met behulp van de salesforce functionaliteiten.
+\\
+
+Deze fase leidt dan tot een werkend proof of concept dat een prototype van een onboarding en guidance systeem op het 24flow platform voorziet.
+\paragraph{Fase 5: Evaluatie (15/05-29/05)}
+Het prototype is geïmplementeerd en nu kijken we in hoeverre het beantwoordt aan de vooraf opgestelde requirements, in welke mate het afwijkt en in hoeverre het verder uitgebouwd zou kunnen worden naar een echte klantomgeving.
+\\
+
+Om dit te beoordelen wordt het prototype getest door één of meerdere "nieuwe" personen die nauwelijks ervaring hebben met het platform. Dit kan een nieuwe klant zijn of een andere medewerker.
+\\
+
+De testpersonen krijgen een aantal vooraf gedefinieerde taken die typisch zijn voor een eerste gebruik van het platform. Tijdens het uitvoeren van deze taken wordt gekeken in welke mate de tester wegwijs geraakt met behulp van de nieuwe in-app guidance. Daarbij wordt vooral gekeken waar er eventueel verwarring is of een gebrek aan informatie.
+\\
+
+Hierbij kijken we naar de tijd die nodig is om taken uit te voeren, welke momenten de gebruiker vastloopt en de mate waarin taken zelfstandig kunnen worden voltooid. Op basis van deze criteria kan dan gekeken worden in welke mate het prototype een oplossing biedt voor de hoofdonderzoeksvraag.
+\\
+
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
+De verwachting is dat het onderzoek zal leiden tot een werkend prototype dat beantwoordt aan de onderzoeksvraag. Een prototype dat leidt tot een betere onboarding en user guidance binnen het 24flow platform. Dat vooral de gebruiker een betere ervaring kan geven op het platform, maar er ook voor kan zorgen dat developers minder manuele demo's moeten doen, en dat het platform meer zelfsturend kan zijn.
+\\
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Dit prototype, en het gemaakte ontwerp zal hopelijk leiden tot een aantal best practices en requirements nodig om in-app guidance en onboarding over het hele platform uit te rollen.
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
-
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
