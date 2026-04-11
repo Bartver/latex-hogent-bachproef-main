@@ -7,45 +7,153 @@
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+\section{Literatuurstudie}%
+\label{sec:literatuurstudie}
+\subsection{Context}
+Het 24flow platform is gemaakt in het salesforce ecosysteem voor make-to-order bedrijven (\autocite{Nelfiyanti2025}), waar workflows vaak complex zijn en variëren per order. Dit betekent dat een fabriek niet precies weet welk product hij zal maken, tot een gebruiker effectief iets koopt of een order plaatst. Een gewone fabriek maakt bijvoorbeeld 1000 dezelfde stoelen, een make-to-order bedrijf zou dan tien gewone stoelen kunnen maken, één groene, één met extra poten enz. Er is met andere woorden geen standaard pad dat de productie neemt. Hierdoor is er dan ook een noodzaak voor digitale oplossingen die heel specifiek voor verschillende productieprocessen kunnen worden gebruikt en het mogelijk maken om elk uniek order efficiënt te beheren. 
+\\
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+24flow is zo een oplossing, het maakt gebruik van de flexibiliteit van salesforce om voor elk individueel order een dynamisch productiepad te berekenen. Het verbindt engineering, planning en de werkvloer in één visuele en traceerbare workflow. Het zorgt ervoor dat operatoren en teamleden over de juiste informatie en tools beschikken om efficiënter te werken. Hierdoor krijgt elk uniek order, ondanks de mogelijke variatie aan productiestappen telkens de juiste informatie en de meest efficiënte route doorheen de fabriek.
+\\
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+Het platform is gebouwd binnen het salesforce ecosysteem met behulp van apex, de programmeertaal van salesforce zelf. Salesforce is een algemeen erkend customer relationship management system(CRM)-oplossing (\autocite{Pookandy2024}). Een CRM-systeem functioneert als een centraal platform voor het beheren van alle data tussen een bedrijf en zijn klanten. Salesforce voorziet daarnaast allerlei tools om op een flexibele manier data, workflows, gebruikers... te beheren en allerlei opties te geven aan bedrijven om heel specifieke oplossingen te kunnen implementeren die verder gaan dan enkel klantbeheer. 24flow benut deze flexibiliteit om complexe productiegegevens om te zetten in bruikbare informatie voor de werkvloer. Dit betekent bijvoorbeeld dat een operator of werknemer op de werkvloer enkel de instructies en data ziet die relevant zijn voor het specifieke product dat op dat moment bewerkt wordt, volledig afgestemd op de huidige status van het productieproces.
 
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{grail.jpg}
-  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
-\end{figure}
+\subsection{Onboarding}
+Onboarding is het proces waarbij een nieuwe gebruiker voor het eerst in contact komt met een applicatie, of andere toepassing en de manier waarop die gebruiker hierbij wordt begeleid. Die begeleiding of sturing kan verschillende vormen aannemen, het kan gebeuren aan de hand van een menselijke uitleg, walkthroughs of handleidingen. \autocite{Madhwacharyula2023} 
+\\
 
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
+Hierbij zijn er telkens verschillende voor- en nadelen te vinden. Een menselijke uitleg is zeer interactief en zorgt voor de meeste flexibiliteit, er kunnen complexe vragen gesteld worden en er kan heel diepgaand begeleid worden. Wel is het heel tijdsintensief en niet schaalbaar voor grotere groepen. Walkthroughs zijn stappenplannen die gebruikers stapsgewijs door een applicatie of interface leiden. Deze hulp is direct aanwezig in de applicatie zelf, dit kan bijvoorbeeld gebruikt worden voor het opzetten van een nieuwe configuratie of applicatie. Als de gebruiker daarentegen vastloopt of vragen heeft, is hier weinig ruimte toe, het is veelal een zelfsturend proces. 
+\\
 
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
+Een handleiding is het meest statische hier, het is bedoeld als zelfsturend werk, als document om zonder enige vorm van interactie een gebruiker te helpen met een taak. Vaak is dit ook de manier om een uitleg nog eens te kunnen raadplegen, een naslagwerk dat altijd beschikbaar is om terug iets in op te zoeken. Een handleiding kan echter ook de vorm van een video aannemen, een video tutorial. Hier heb je een soort combinatie van walkthrough, menselijke uitleg en handleiding. Stapsgewijs wordt er iets uitgelegd en de gebruiker kan op zijn eigen tempo werken, hij kan immers pauzeren wanneer nodig. Wel is hier geen interactie en ziet een tutorial meestal de specifieke situatie van de gebruiker niet.
+\\
 
-\lipsum[7-20]
+Onboarding speelt een grote rol bij de first time user experience(FTUE), de eerste interactie die een gebruiker heeft met een bepaalde applicatie, en waar de mening van die gebruiker over de applicatie fundamenteel gevormd wordt. 
+\autocite{CascaesCardoso2017} Een goed ontworpen onboardingproces helpt gebruikers niet enkel om de basisfunctionaliteiten te begrijpen, maar verhoogt de kans dat zij de applicatie blijven gebruiken.
+Effectieve onboarding betekent immers beter begrip, minder frustraties en een goede gebruikerservaring van de applicatie op de lange termijn.
+Onderzoek van \textcite{ChukwunonsoNweke2025} over verschillende onboarding technieken toont dat walkthroughs die een gebruiker stap per stap begeleiden ervoor zorgen dat die gebruiker de nieuwe kennis beter begrijpt en onthoudt dan bij een eenmalige menselijke uitleg.
+\\
 
-\begin{table}
-  \centering
-  \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
+Goede onboarding zorgt ervoor dat alle onderdelen van een applicatie stapsgewijs geïntroduceerd worden, en telkens met de nodige context getoond worden. Dit betekent dat een gebruiker de juiste functies en informatie krijgt die op dat moment relevant zijn voor hem, bijvoorbeeld gekoppeld aan de taak die hij op dat moment aan het uitvoeren is. Verder kunnen tutorials en walkthroughs hierbij een grote hulp zijn om gebruikers gemakkelijk wegwijs te maken met een bepaalde interface of applicatie.
+\autocite{Kedzielska2023}
+\autocite{Melenciano2025}
+\\
+
+In tegenstelling hiertoe kan slechte onboarding  leiden tot frustratie, verwarring en zelfs het verlaten van een platform, dus het verlies van een klant.
+\autocite{CascaesCardoso2017}
+\\
+
+Moderne onboarding gebeurt tegenwoordig vaak via in-app systemen, contextgevoelige prompts, interactieve tutorials en walkthroughs. Deze aanpak zorgt ervoor dat de gebruiker op het juiste moment de juiste informatie of hulp krijgt. \autocite{Acar2020, Akiki2019}
+\\
+
+Deze methoden zijn effectief omdat ze een gebruiker minder overweldigen met alle informatie op hetzelfde moment. Het gebruik van in-app systemen voor onboarding betekent dat de nodige hulp direct in de interface is geïntegreerd. Hierbij spelen contextgevoelige prompts dan in op de specifieke acties die een gebruiker uitvoert, dit kan bijvoorbeeld als een pop-up zijn wanneer een gebruiker een ingewikkelde functie opent. Interactieve tutorials en walkthroughs combineren deze systemen: zij laten de gebruiker stapsgewijs handelingen uitvoeren en geven directe feedback binnen de applicatie met behulp van onder andere zo'n prompts. Ze zijn in staat om de uitgevoerde handelingen van de gebruiker te controleren en direct bij te sturen waar nodig.
+\\
+
+\subsection{In-App User Guidance}
+Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan vinden binnen de applicatie. Volgens \textcite{Acar2020} is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de juiste oplossing. Ze duiden erop dat gebruikers hulp zouden moeten krijgen op het exacte moment dat ze die nodig hebben en dat deze hulp dus context specifiek moet aangeboden worden. Bijvoorbeeld wanneer een gebruiker voor het eerst een nieuw onderdeel van de applicatie gebruikt, krijgt hij een korte tip of aanwijzing over dat specifieke onderdeel. Hierdoor krijgt de gebruiker dus relevante informatie precies op het juiste moment, zonder dat hij zelf overdreven ver moet zoeken.
+\\
+
+\textcite{Akiki2019} dan heeft het over de praktische implementatie van zo'n user guidance, de studie toont aan dat hulp voor gebruikers direct kan ingebouwd worden in de gebruikersinterface via context gebonden prompts en interactieve elementen. Dit onderzoek laat eveneens zien dat gebruikers die op deze manier geholpen worden, efficiënter kunnen werken en minder vastlopen dan wanneer ze zelf op zoek moeten naar alle juiste oplossingen.
+\\
+
+Daarbovenop toont onderzoek over digital adoption platforms(DAP) dat het integreren van contextspecifieke en interactieve ondersteuning binnen enterprise applicaties het aanleren van zo'n complexe systemen verbetert.\autocite{Handrich2024}
+\\
+
+Een DAP is een softwarelaag bovenop een applicatie die de gebruiker actief stuurt binnen deze applicatie. Het begeleidt een gebruiker bijvoorbeeld door de juiste knoppen te laten oplichten, of door pop-ups te tonen op het juiste moment. Het maakt dus gebruik van allerlei in-app guidance functies, walkthroughs en dergelijke meer om een gebruiker wegwijs te maken in vaak complexe systemen. Hoewel een DAP vaak een externe tool is heeft salesforce deze functionaliteit rechtstreeks in zijn systeem geïntegreerd.
+\\
+
+Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walkthroughs, interactieve prompts enz. gezien worden als een dergelijke DAP laag die gebruikers in staat stelt om actief begeleid te worden terwijl ze in de applicatie werken.
+
+\section{Requirementsanalyse}%
+\label{sec:Requirements analyse}
+\subsection{Interviews resultaten}
+\subsection{MOSCOW}
+
+\section{Salesforce analyse}%
+\label{sec:Salesforce analyse}
+\subsection{Types in-app guidance tools}
+x
+
+Volgens de officiële specificaties van Salesforce is deze functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden.
+
+\subsubsection*{1. Prompts}
+Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de gebruiker te vestigen op specifieke elementen, acties of updates binnen het systeem. Salesforce onderscheidt drie specifieke prompts, elk met een eigen functioneel doel:
+
+\begin{itemize}
+	\item \textbf{Targeted Prompts:} Dit zijn vensters die visueel verankerd zijn aan een specifiek UI-element, zoals een invulveld, knop of tabblad. De prompt wijst met een pijl direct naar het bijpassende element en maakt de rest van de pagina grijs, hierbij zijn er twaalf verschillende posities die de prompt kan innemen ten opzichte van het element. 
+	\\
+	
+	\textit{Toepassing:} Dit is uiterst effectief om een gebruiker heel gericht te sturen naar bepaalde knoppen of velden die op dat moment essentieel zijn. (bijv. een prompt die naar een nieuw toegevoegde knop wijst, waardoor de gebruiker direct op de hoogte is van de nieuwe functionaliteit.  )
+	
+	\item \textbf{Floating Prompts:} Dit zijn pop-upvensters die niet aan een specifieke knop zijn gekoppeld, maar los over de interface zweven. Deze prompt kan op negen verschillende voorgedefinieerde locaties op een pagina worden weergegeven. Dit soort venster neemt weinig ruimte in en verdwijnt onmiddellijk wanneer een gebruiker naar een andere pagina navigeert of de prompt weg klikt.
+	\\
+	
+	\textit{Toepassing:} Deze worden doorgaans ingezet als kleinere tooltips of informatie over bepaalde functionaliteiten.(bijv. een werknemer opent een lange lijst met orders en een floating prompt verschijnt met een korte uitleg over de mogelijkheid om filters toe te passen op lijsten.)
+	
+	\item \textbf{Docked Prompts:} Een docked prompt verschijnt standaard geminimaliseerd of geopend in de rechterbenedenhoek van het scherm. Het unieke aan dit type is dat het op het scherm blijft staan terwijl de gebruiker de rest van de applicatie bedient. De gebruiker kan het venster openklappen of sluiten naar behoefte.
+	\\
+	
+	\textit{Toepassing:} Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of het insluiten van videotutorials die een operator open kan houden terwijl hij een handeling in 24flow uitvoert.
+\end{itemize}
+\begin{table}[h!]
+	\centering
+	\caption{Functionele vergelijking van Salesforce In-App Guidance prompt-types}
+	\label{tab:prompt_vergelijking}
+	\small
+	\begin{tabular}{@{}lccc@{}}
+		\toprule
+		\textbf{Kenmerk } & \textbf{Floating Prompt} & \textbf{Targeted Prompt} & \textbf{Docked Prompt} \\ \midrule
+		Rich Text Support            & Basis     & Basis     & Uitgebreid* \\
+		Afbeeldingen ondersteund     & Ja        & Ja        & Ja           \\
+		Embedded Video               & Nee       & Nee       & Ja           \\
+		Action / Dismiss Button      & Ja        & Ja        & Ja           \\
+		Snooze-icoon                 & Ja        & Ja        & Ja           \\ 
+		Gedrag bij navigatie 		 & Verdwijnt & Verdwijnt & Blijft staan \\
+		Grootte op pagina   		 & Klein     & Klein     & Groot        \\
+		Focus-effect        		 & Geen      & Scherm dimt & Geen        \\ \midrule
+	\end{tabular}
+	\begin{flushleft}
+		\footnotesize *Ondersteunt extra opties zoals tekstkleur, hyperlinks en lijst-opmaak.
+	\end{flushleft}
 \end{table}
+
+\subsubsection*{2. Walkthroughs (Stapsgewijze trajecten)}
+Waar een prompt beperkt is tot één enkele interactie op één scherm, biedt een walkthrough de functionaliteit om een complex, meerstapsproces te begeleiden.
+
+\begin{itemize}
+	\item \textbf{Geketende prompts:} Een walkthrough is in essentie een aaneenschakeling van maximaal tien afzonderlijke prompts (targeted, floating of docked) die een logische volgorde vormen.
+	\item \textbf{Cross-page navigatie:} Walkthroughs zijn in staat om gebruikers over verschillende webpagina's, tabbladen en zelfs verschillende sub-applicaties binnen Salesforce heen te leiden.
+	\item \textbf{Adoptie en Training:} Voor een platform als 24flow, waar workflows geen standaardpad volgen, is de walkthrough de ideale tool voor de onboarding van nieuwe medewerkers, omdat het hen proactief en veilig door een end-to-end productiepad loodst.
+\end{itemize}
+
+\subsubsection*{3. Targeting en Configuratie (De sturende logica)}
+Om te voorkomen dat de in-app guidance leidt tot 'information overload', voorziet Salesforce de tools van geavanceerde configuratiemogelijkheden om te bepalen \textit{wie} \textit{wat} ziet en \textit{wanneer}:
+
+\begin{itemize}
+	\item \textbf{Profiel- en permissiegerichte weergave:} Prompts kunnen exclusief worden toegewezen aan specifieke gebruikersprofielen (bijv. enkel 'Operatoren' of enkel 'Planners'). Hierdoor krijgt niemand irrelevante informatie te zien.
+	\item \textbf{Plannings- en weergavefrequentie (Schedules):} Beheerders kunnen configureren hoe vaak een prompt verschijnt. Dit kan eenmalig zijn (bij de eerste keer inloggen), periodiek (bijv. één keer per week), of blijvend verschijnen totdat de gebruiker de actie expliciet markeert met een "Begrepen"-knop.
+	\item \textbf{Action Buttons en links:} Elke prompt kan worden uitgerust met primaire en secundaire actieknoppen. Deze knoppen kunnen de gebruiker met één klik naar een specifiek record in de database sturen, of doorverwijzen naar externe documentatie.
+	\item \textbf{Rich Media:} De inhoud van met name docked prompts is niet beperkt tot tekst; afbeeldingen, waarschuwingsiconen en ingesloten iFrames (zoals videospelers) kunnen worden geïntegreerd om de leermaterie visueel te ondersteunen.
+\end{itemize}
+
+
+\subsection{Restricties en limitaties}
+
+\section{Ontwerp proof of concept}
+\subsection{Use cases}
+\subsection{Wireframes}
+%\begin{listing}
+%  \begin{minted}{python}
+%    import pandas as pd
+%    import seaborn as sns
+%
+%    penguins = sns.load_dataset('penguins')
+%    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
+%  \end{minted}
+%  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
+%\end{listing}
+
+
+
 
