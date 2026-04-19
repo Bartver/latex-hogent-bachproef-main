@@ -64,16 +64,11 @@ Een DAP is een softwarelaag bovenop een applicatie die de gebruiker actief stuur
 \\
 
 Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walkthroughs, interactieve prompts enz. gezien worden als een dergelijke DAP laag die gebruikers in staat stelt om actief begeleid te worden terwijl ze in de applicatie werken.
-
-\section{Requirementsanalyse}%
-\label{sec:Requirements analyse}
-\subsection{Interviews resultaten}
-\subsection{MOSCOW}
+\clearpage
 
 \section{Salesforce analyse}%
 \label{sec:Salesforce analyse}
 \subsection{Types in-app guidance tools}
-x
 
 Volgens de officiële specificaties van Salesforce is deze functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden.
 
@@ -94,7 +89,7 @@ Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de g
 	\item \textbf{Docked Prompts:} Een docked prompt verschijnt standaard geminimaliseerd of geopend in de rechterbenedenhoek van het scherm. Het unieke aan dit type is dat het op het scherm blijft staan terwijl de gebruiker de rest van de applicatie bedient. De gebruiker kan het venster openklappen of sluiten naar behoefte.
 	\\
 	
-	\textit{Toepassing:} Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of het insluiten van videotutorials die een operator open kan houden terwijl hij een handeling in 24flow uitvoert.
+	\textit{Toepassing:} Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of zelf het gebruiken van video-tutorials. (bijv. een video met de voornaamste laatste nieuwe features van de voorbije release die beschikbaar zijn.)
 \end{itemize}
 \begin{table}[h!]
 	\centering
@@ -118,31 +113,230 @@ Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de g
 	\end{flushleft}
 \end{table}
 
-\subsubsection*{2. Walkthroughs (Stapsgewijze trajecten)}
-Waar een prompt beperkt is tot één enkele interactie op één scherm, biedt een walkthrough de functionaliteit om een complex, meerstapsproces te begeleiden.
+\subsubsection*{2. Walkthroughs}
+Waar een prompt beperkt is tot één enkele interactie op één scherm, biedt een walkthrough de functionaliteit om een complexer proces te begeleiden, waar meerdere stappen na elkaar gekoppeld zijn.
 
 \begin{itemize}
-	\item \textbf{Geketende prompts:} Een walkthrough is in essentie een aaneenschakeling van maximaal tien afzonderlijke prompts (targeted, floating of docked) die een logische volgorde vormen.
-	\item \textbf{Cross-page navigatie:} Walkthroughs zijn in staat om gebruikers over verschillende webpagina's, tabbladen en zelfs verschillende sub-applicaties binnen Salesforce heen te leiden.
-	\item \textbf{Adoptie en Training:} Voor een platform als 24flow, waar workflows geen standaardpad volgen, is de walkthrough de ideale tool voor de onboarding van nieuwe medewerkers, omdat het hen proactief en veilig door een end-to-end productiepad loodst.
+	\item \textbf{Prompts:} Een walkthrough is in essentie een aaneenschakeling van maximaal tien afzonderlijke prompts (targeted, floating of docked) die een logische volgorde vormen.
+	\item \textbf{Navigatie:} Walkthroughs zijn in staat om gebruikers over verschillende webpagina's, tabbladen en zelfs verschillende sub-applicaties binnen Salesforce heen te leiden.
+	\item \textbf{Contextueel:} De kracht van een walkthrough ligt in de timing. De informatie is direct gekoppeld aan de handeling van de gebruiker op het scherm. Dit voorkomt dat een gebruiker vastloopt of fouten maakt, omdat de juiste instructies precies op het moment en de plaats komen waar deze gebruiker er nood aan heeft.
 \end{itemize}
 
-\subsubsection*{3. Targeting en Configuratie (De sturende logica)}
-Om te voorkomen dat de in-app guidance leidt tot 'information overload', voorziet Salesforce de tools van geavanceerde configuratiemogelijkheden om te bepalen \textit{wie} \textit{wat} ziet en \textit{wanneer}:
+\subsubsection*{3. Configuratie en Gedrag}
+De effectiviteit van in-app guidance wordt bepaald door de instellingen in de builder, die controleren waar, wanneer en voor wie de guidance verschijnt:
 
 \begin{itemize}
-	\item \textbf{Profiel- en permissiegerichte weergave:} Prompts kunnen exclusief worden toegewezen aan specifieke gebruikersprofielen (bijv. enkel 'Operatoren' of enkel 'Planners'). Hierdoor krijgt niemand irrelevante informatie te zien.
-	\item \textbf{Plannings- en weergavefrequentie (Schedules):} Beheerders kunnen configureren hoe vaak een prompt verschijnt. Dit kan eenmalig zijn (bij de eerste keer inloggen), periodiek (bijv. één keer per week), of blijvend verschijnen totdat de gebruiker de actie expliciet markeert met een "Begrepen"-knop.
-	\item \textbf{Action Buttons en links:} Elke prompt kan worden uitgerust met primaire en secundaire actieknoppen. Deze knoppen kunnen de gebruiker met één klik naar een specifiek record in de database sturen, of doorverwijzen naar externe documentatie.
-	\item \textbf{Rich Media:} De inhoud van met name docked prompts is niet beperkt tot tekst; afbeeldingen, waarschuwingsiconen en ingesloten iFrames (zoals videospelers) kunnen worden geïntegreerd om de leermaterie visueel te ondersteunen.
+	\item \textbf{Locatie en Context:} Per prompt wordt de reikwijdte bepaald. Dit varieert van een specifieke pagina binnen één applicatie tot een globale weergave die overal in Salesforce verschijnt (Any Page, Any App). Dit maakt het mogelijk om de guidance precies af te stemmen op de specifieke omgeving waarin de gebruiker op dat moment werkt.
+	
+	\item \textbf{Permissies:} De zichtbaarheid van de in-app guidance kan worden gefilterd op basis van profielen en permissies. Hierdoor is het mogelijk om in-app guidance enkel te tonen aan gebruikers die over de juiste rechten beschikken om de betreffende acties uit te voeren.
+	
+	\item \textbf{Activatie en Herhaling:} Voor zowel losse prompts als volledige walkthroughs kan worden bepaald wanneer ze voor het eerst verschijnen. Dit kan op twee manieren gebeuren, namelijk op basis van een vooraf ingesteld schema, of door een actie van de gebruiker. Het kan bijvoorbeeld dagelijks verschijnen op een specifieke pagina, of de gebruiker klikt op een knop die de guidance start. Hierbij kan de frequentie van herhaling vooraf ingesteld worden, en de gebruiker kan deze ook altijd aanpassen.
+	
+	\item \textbf{Interactie en Media:} Een prompt kan worden uitgebreid met actieknoppen die verwijzen naar een (interne) URL of flow. Daarnaast kan de tekst visueel worden ondersteund met afbeeldingen of, in het geval van docked prompts, met video's die direct in de interface kunnen worden afgespeeld.
 \end{itemize}
 
+\subsubsection*{4. Monitoring en Toegankelijkheid}
+Naast de creatie en configuratie biedt Salesforce tools om de effectiviteit van de hulp te meten en de ondersteuning voor de gebruiker centraal vindbaar te maken:
 
+\begin{itemize}
+	\item \textbf{Analytics en Rapportage:} Het systeem verzamelt data over de interactie met de guidance, zoals het aantal weergaven, het gebruik van actieknoppen (\textit{Click-through Rate}) en het aantal keer dat een instructie voortijdig wordt gesloten. Deze inzichten stellen beheerders in staat om te beoordelen of de informatie relevant is en waar instructies eventueel geoptimaliseerd moeten worden.
+	
+	\item \textbf{Guidance Center:} Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen. Dit stelt de gebruiker in staat om op eigen initiatief een training te herhalen of informatie op te zoeken zonder te hoeven wachten op een automatische trigger.
+	
+	\item \textbf{Functionele Beperkingen:} In-App Guidance is exclusief ontworpen voor de desktopversie van Lightning Experience; de functionaliteit wordt momenteel niet ondersteund in de mobiele Salesforce-applicatie. Daarnaast kunnen prompts niet worden geplaatst op systeeminstellingen (Setup-pagina's) of op specifieke onderdelen van de interface die buiten het standaard Lightning-framework vallen.
+\end{itemize}
 \subsection{Restricties en limitaties}
+TODO
+\subsection{Learning Paths}
+TODO
+
+\section{Requirements Analyse}%
+\label{sec:Requirements analyse}
+
+Voor de technische uitwerking, is het cruciaal om de vereisten van het systeem helder in kaart te brengen. In deze sectie worden de doelgroep, de niet-functionele requirements en de functionele requirements gedefinieerd en geprioritiseerd.
+
+\subsection{Doelgroep}
+Het onboarding-systeem is specifiek ontworpen met één primaire doelgroep in gedachten: de \textbf{Systeembeheerder (Admin)} van het bedrijf dat het 24flow pakket wil installeren en configureren.
+\\
+
+Wanneer deze persoon de 24flow-applicatie installeert in een nieuwe Salesforce-omgeving, is het doel om de applicatie zo snel en foutloos mogelijk operationeel te krijgen, zonder hiervoor externe hulp nodig te hebben. Hoewel deze persoon normaal al over algemene Salesforce kennis beschikt, ontbreekt de specifieke kennis over de unieke architectuur en vereiste configuraties van 24flow nog. Het onboarding systeem moet deze dan ook in staat stellen om de volledige initiële setup zelfstandig uit te voeren, zonder dat directe ondersteuning van een 24flow-expert noodzakelijk is.
+
+\subsection{Niet-Functionele Requirements}
+De oplossing moet voldoen aan de volgende technische randvoorwaarden binnen het Salesforce-platform:
+
+\begin{itemize}
+	\item \textbf{Interface:} De gebruikersinterface moet gebouwd worden conform het Salesforce Lightning Design System (SLDS).
+	\item \textbf{Performantie:} Alle backend-processen (zoals Apex data-generatie) moeten binnen de vastgestelde \textit{governor limits} van Salesforce opereren.
+	\item \textbf{Beheer:} De configuratie van de in-app guidance (prompts en walkthroughs) moet aanpasbaar zijn via de standaard Salesforce set-up, zonder dat er codewijzigingen nodig zijn.
+\end{itemize}
+
+\subsection{Prioritering van de requirements}
+Om de scope van het proof of concept onder controle te houden en te garanderen dat de meest kritische onderdelen als eerste worden gebouwd, zijn de verzamelde requirements geprioriteerd volgens de MoSCoW-methode.
+
+\subsubsection*{Must haves}
+De "Must haves" vormen de minimale set aan functionaliteiten die aanwezig moeten zijn om een werkbare oplossing te bieden die beantwoordt aan de onderzoeksvraag:
+
+\begin{itemize}
+	\item \textbf{Zelfstandige Systeemconfiguratie:} Een volledige interactieve onboarding die de gebruiker stap-voor-stap door de initiële opzet van 24flow loodst voor zijn belangrijkste componenten. Dit stelt de gebruiker in staat om de applicatie volledig operationeel te krijgen zonder externe hulp.
+	
+	\item \textbf{Centraal Dashboard:} Een overzichtelijk startpunt waar de gebruiker de voortgang van zijn configuratie kan monitoren via een visuele voortgangsbalk en status-indicatoren. Dit is eveneens de landingspagina van elke 24flow applicatie.
+
+	\item \textbf{Directe Navigatie en Activatie:} Een koppeling waarbij de gebruiker met één druk op de knop direct naar de juiste pagina wordt gestuurd en de bijbehorende  walkthrough automatisch wordt gestart.
+	
+	\item \textbf{Automatische Voortgangsdetectie:} Het systeem moet zelfstandig herkennen wanneer een taak succesvol is afgerond en dit direct verwerken in het dashboard. Het moet per onderdeel bijhouden of en in hoeverre de configuratie is voltooid.
+	
+	\item \textbf{Demo Data Generator:} De mogelijkheid om de omgeving te vullen met actuele testdata. Dit is essentieel voor een realistisch gebruik van de applicatie, zodat de gebruiker de onboarding doorloopt in een "gevulde" interface.
+	
+	\item \textbf{Hiërarchische Taakstructuur:} De mogelijkheid om grote, complexe processen op te delen in kleinere subtaken, zodat de gebruiker stap-voor-stap door de configuratie wordt geleid zonder het overzicht te verliezen.
+	
+	\item \textbf{Navigatie tussen objecten:} De mogelijkheid voor walkthroughs om de gebruiker naadloos over verschillende tabbladen en records heen te leiden, aangezien deze zelden beperkt blijven tot één enkel scherm.
+	
+	\item \textbf{Documentatie:} Een directe en permanente link naar de officiële documentatie op het dashboard. Dit dient als hulpmiddel en naslagwerk voor gebruikers die specifieke, of meer diepgaande informatie zoeken over bepaalde componenten.
+
+
+\end{itemize}
+\subsubsection*{Should haves}
+	De "Should haves" zijn belangrijke functionele aanvullingen die de kwaliteit van de onboarding verhogen en essentieel zijn voor een volledige en professionele gebruikerservaring:
+
+\begin{itemize}
+	\item \textbf{Video-integratie:} Het toevoegen van korte video-tutorials in docked prompts voor de meest complexe processen. Dit verhoogt de effectiviteit van de onboarding, maar kan in eerste instantie worden vervangen door tekst en afbeeldingen.
+	
+	\item \textbf{Data Reset-functie:} Een veilige methode om testdata te wissen, zodat een gebruiker altijd met een propere omgeving kan werken.
+	
+	\item \textbf{Opladen Eigen Data:} Een methode om eigen data te uploaden die gebruikt kan worden voor de onboarding. Dit kan in eerste instantie een placeholder zijn die later kan worden geïmplementeerd.
+	
+	\item \textbf{Taakbevestiging:} Voor stappen die niet automatisch door het systeem gemeten kunnen worden, moet de gebruiker zelf een taak als voltooid kunnen markeren.
+
+	\item \textbf{Custom Branding:} Het aanpassen van de kleuren van de prompts aan de huisstijl van 24flow. Dit draagt bij aan de uniformiteit en herkenbaarheid binnen het platform.
+	
+\end{itemize}
+
+\subsubsection*{Could haves}
+Deze elementen worden als "extra" beschouwd en worden enkel geïmplementeerd als er na de kritieke onderdelen nog tijd over is:
+
+\begin{itemize}
+	\item \textbf{Herstart:} De optie voor gebruikers om een reeds voltooide walkthrough op elk moment opnieuw te starten.
+	
+	\item \textbf{Gebruikersstatistieken (Analytics):} Het opzetten van rapportage om te meten hoe vaak walkthroughs worden voltooid en waar gebruikers vastlopen. Dit is nodig voor de evaluatie op lange termijn, maar niet voor de technische werking.
+	
+	\item \textbf{Gebruikersfeedback:} De mogelijkheid voor gebruikers om direct binnen een prompt aan te geven of de instructie nuttig was via een simpele duimpje-omhoog/omlaag interactie.
+	
+	\item \textbf{Gamificatie-elementen:} Het toevoegen van visuele elementen, zoals een vuurwerk animatie of een digitale "badge" bij het voltooien van een bepaalde configuratie, om de gebruikerservaring te verbeteren
+	
+	\item \textbf{Zoekfunctionaliteit:} Een zoekbalk op het dashboard waarmee gebruikers direct naar specifieke instellingen of documentatie-onderwerpen kunnen springen.
+	
+	\item \textbf{Directe Support-link:} Een knop op het dashboard die direct een support-ticket opent bij een 24flow-expert voor vragen die niet door de onboarding worden beantwoord.
+\end{itemize}
+
+\subsubsection*{Won't haves}
+Deze onderdelen zijn expliciet buiten de scope van dit project gelaten, vaak vanwege technische beperkingen van het Salesforce-platform:
+
+\begin{itemize}
+	\item \textbf{Mobiele Ondersteuning:} Ondersteuning voor de Salesforce Mobile App, aangezien in-app guidance momenteel technisch enkel beschikbaar is voor de desktopomgeving.
+
+	\item \textbf{Chatbot:} AI Chatbots: Een interactieve bot die vragen beantwoordt; we focussen op gestuurde navigatie, de gebruiker moet in staat zijn om zelf wegwijs te worden op het platform.
+\end{itemize}
 
 \section{Ontwerp proof of concept}
+
 \subsection{Use cases}
+
+\subsubsection{Use Case: Initiële configuratie van de Order Pool}
+
+Deze use case beschrijft hoe een nieuwe gebruiker zelfstandig een essentieel onderdeel van de applicatie inricht via de onboarding oplossing.
+\\
+
+Actor: Nieuwe 24flow-gebruiker (Systeembeheerder/Admin).
+\\
+
+Doel: Het succesvol en zelfstandig configureren van de Order Pool-instellingen.
+
+\begin{enumerate}
+	\item \textbf{Startpunt:} De gebruiker landt op de centrale landingspagina van de applicatie. Het \textbf{Onboarding Dashboard} verschijnt direct in beeld.
+	
+	\item \textbf{Status:} De gebruiker ziet in de voortgangsbalk dat de setup op 0 procent staat. In de hiërarchische takenlijst wordt de taak "Order Pool instellen" als openstaand gemarkeerd.
+	
+	\item \textbf{Activatie:} De gebruiker klikt op de actieknop naast de taak. Het systeem navigeert de gebruiker direct naar de juiste instellingenpagina van de Order Pool.
+
+	\item \textbf{Begeleiding:} Bij het laden van de pagina start automatisch de Salesforce \textbf{Walkthrough}. Een targeted prompt wijst naar het eerste configuratieveld en legt uit welke informatie hier benodigd is.
+
+	\item \textbf{Interactie:} De gebruiker volgt de stappen van de walkthrough, waarbij hij door verschillende tabbladen wordt geleid om filters en kolommen te definiëren.
+
+	\item \textbf{Detectie:} Nadat de gebruiker op 'Opslaan' heeft geklikt, herkent de \textbf{Automatische Voortgangsdetectie} op de achtergrond dat de configuratie-records zijn aangemaakt.
+
+	\item \textbf{Voltooiing:} De gebruiker keert terug naar het dashboard. De taak "Order Pool instellen" is nu voorzien van een groen vinkje en de algehele voortgangsbalk is bijgewerkt naar een hoger percentage.
+\end{enumerate}
+
+\subsubsection{Use Case: Beheer van testdata via het dashboard}
+Deze use case illustreert hoe de functionaliteiten in de zijbalk van het dashboard worden ingezet om de applicatie klaar te maken voor gebruik door testdata te genereren.
+\\
+
+Actor: Nieuwe 24flow-gebruiker (Systeembeheerder/Admin).
+\\
+
+Doel: Het succesvol vullen van de applicatie met realistische testdata, zodat de functionaliteiten optimaal kunnen worden geconfigureerd en gebruikt.
+
+\begin{enumerate}
+	\item \textbf{Startpunt:} De gebruiker bevindt zich op het Onboarding Dashboard en merkt op dat de applicatie nog leeg is en geen data bevat.
+	\item \textbf{Actie:} In het "Tools" paneel aan de rechterkant klikt de gebruiker op de knop "Generate Demo Data".
+	\item \textbf{Verwerking:} Het systeem toont tijdelijk een laad-indicator. Op de achtergrond wordt een Apex-proces aangeroepen dat automatisch een set gestandaardiseerde testrecords aanmaakt.
+	\item \textbf{Bevestiging:} Zodra het proces is afgerond, toont het dashboard een succesmelding (toast notificatie) aan de gebruiker.
+	\item \textbf{Resultaat:} De applicatie is nu gevuld met data, waardoor de gebruiker bij walkthroughs direct deze data kan gebruiken om de nodige configuraties te doen.
+\end{enumerate}
+
+\subsubsection{Use Case: Een configuratietaak hervatten na onderbreking}
+Deze use case toont de veerkracht van de "Automatische Voortgangsdetectie" wanneer een gebruiker een proces voortijdig afbreekt.
+\\
+
+Actor: Nieuwe 24flow-gebruiker (Systeembeheerder/Admin).
+\\
+
+Doel: Het succesvol terug starten van een gedeeltelijk voltooide configuratie zonder verlies van overzicht of eerdere progressie.
+
+\begin{enumerate}
+	\item \textbf{Startpunt:} De gebruiker volgt een walkthrough voor het instellen van de "Team Cockpit"  component, maar sluit halverwege de sessie af (bijvoorbeeld wegens tijdgebrek).
+	\item \textbf{Terugkeer:} De gebruiker navigeert op een later moment terug naar het Onboarding Dashboard.
+	\item \textbf{Detectie:} Tijdens het laden van het dashboard evalueert de logica op de achtergrond welke gerelateerde instellingen al zijn opgeslagen. Het systeem stelt vast dat de configuratie nog niet volledig aan de requirements voldoet.
+	\item \textbf{Weergave:} In de takenlijst wordt de "Team Cockpit" taak niet voorzien van een groen vinkje. In plaats daarvan toont de knop de tekst "Restart" om aan te geven dat er nog actie vereist is om deze af te ronden.
+	\item \textbf{Hervatting:} De gebruiker klikt op de knop, wordt direct teruggeleid naar de relevante instellingenpagina, en kan de resterende stappen van de configuratie voltooien om de taak definitief af te ronden.
+\end{enumerate}
+
+\clearpage
 \subsection{Wireframes}
+
+Om de requirements visueel te vertalen, zijn er enkele wireframes uitgewerkt. Dit ontwerp dient als blauwdruk voor de uiteindelijke Lightning Web Component en de onboarding implementatie.
+
+
+\subsubsection{Wire Frame: Onboarding Dashboard}
+
+
+Zoals te zien is in Figuur \ref{fig:wireframe_dashboard}, fungeert het dashboard als de landingspagina en het vertrekpunt voor een nieuwe gebruiker. Aan de linkerkant bevindt zich de hiërarchische taakstructuur met dynamische status-indicatoren en een voortgangsbalk. Aan de rechterkant zijn enkele tools om bijvoorbeeld data te genereren en wissen en documentatie te raadplegen.
+\begin{figure}[htbp]
+	\centering
+	% Gebruik het relatieve pad en zorg dat de backslashes ( \ ) vervangen zijn door forward slashes ( / )
+	\includegraphics[width=0.95\textwidth]{WireframeDashboardOnboarding}
+	\caption{Wireframe van het Onboarding Dashboard inclusief voortgangsbalk en zijbalk met extra tools.}
+	\label{fig:wireframe_dashboard}
+\end{figure}
+
+
+
+\clearpage
+\subsubsection{Wire Frame: Walkthrough Stap}
+Wanneer de gebruiker in het dashboard een taak start, navigeert het systeem direct naar de desbetreffende configuratiepagina. Figuur \ref{fig:wireframe_walkthrough} toont deze stap. Hier neemt de in-app guidance het proces over in de vorm van een walkthrough. Een \textit{Targeted Prompt} wijst de gebruiker expliciet op het in te vullen veld en biedt direct een aanbeveling ("Action Link") voor meer info.
+\\
+
+ Tegelijkertijd biedt een \textit{Docked Prompt}, onderaan het scherm, extra ondersteuning via een instructievideo en documentatie links. Dit ontwerp zorgt ervoor dat de gebruiker complexe acties stapsgewijs zelfstandig kan uitvoeren en ook steeds een directe link heeft naar extra documentatie indien nodig.
+
+\begin{figure}[htbp]
+	\centering
+	% Gebruik het relatieve pad en zorg dat de backslashes ( \ ) vervangen zijn door forward slashes ( / )
+	\includegraphics[width=0.95\textwidth]{WalkthroughStep}
+	\caption{Wireframe van een walkthrough stap voor het configureren van de order pool.}
+	\label{fig:wireframe_walkthrough}
+\end{figure}
+
+
 %\begin{listing}
 %  \begin{minted}{python}
 %    import pandas as pd

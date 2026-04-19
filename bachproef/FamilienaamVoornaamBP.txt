@@ -1,0 +1,784 @@
+Onderzoek naar betere onboarding en
+in-app user guidance op het salesforce
+24flow platform.
+Bart Vermeulen.
+
+Scriptie voorgedragen tot het bekomen van de graad van
+Professionele bachelor in de toegepaste informatica
+
+Promotor: Liesbeth Lewyllie
+Co-promotor: Piet Vandaele
+Academiejaar: 2025–2026
+Eerste examenperiode
+
+Departement IT en Digitale Innovatie .
+
+Woord vooraf
+
+iii
+
+Samenvatting
+
+iv
+
+Inhoudsopgave
+Lĳst van figuren
+
+vii
+
+Lĳst van tabellen
+
+viii
+
+Lijst van codefragmenten
+
+ix
+
+1
+
+Inleiding
+1.1 Probleemstelling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.2 Onderzoeksvraag . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.3 Onderzoeksdoelstelling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.4 Opzet van deze bachelorproef . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+1
+1
+1
+2
+2
+
+2 Stand van zaken
+2.1 Literatuurstudie . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.1 Context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.2 Onboarding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.3 In-App User Guidance. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2 Salesforce analyse. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2.1 Types in-app guidance tools . . . . . . . . . . . . . . . . . . . . . . . .
+2.2.2 Restricties en limitaties . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2.3 Learning Paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.3 Requirements Analyse. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.3.1 Prioritering van de requirements . . . . . . . . . . . . . . . . . . . . .
+2.4 Ontwerp proof of concept . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.1 Use cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.2 Wireframes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+3
+3
+3
+4
+5
+6
+6
+9
+9
+9
+9
+12
+12
+12
+
+3 Methodologie
+
+13
+
+4 Conclusie
+
+16
+
+A Onderzoeksvoorstel
+A.1 Inleiding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2 Literatuurstudie . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2.1 Context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2.2 Onboarding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2.3 In-App User Guidance. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+17
+17
+18
+18
+18
+19
+
+v
+
+vi
+
+Inhoudsopgave
+A.3 Methodologie . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.4 Verwacht resultaat, conclusie . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+Bibliografie
+
+19
+21
+22
+
+Lĳst van figuren
+
+vii
+
+Lĳst van tabellen
+2.1
+
+Functionele vergelijking van Salesforce In-App Guidance prompt-types
+
+viii
+
+8
+
+Lijst van codefragmenten
+
+ix
+
+1
+Inleiding
+24flow is een bedrijf dat een modulair platform maakt voor werkvloerbeheer en productieplanning om onder andere traceerbaarheid en zichtbaarheid te verbeteren
+bij make-to-order fabrikanten. Bedrijven die focussen op maatwerk en lage volumes zijn hierbij de focus, het 24flow platform zorgt voor beter begrip en overzicht
+van de productieprocessen en biedt hiermee oplossingen aan om de doorlooptijd
+van deze processen te verminderen en de kosten te drukken.
+Dit platform is gebouwd binnen salesforce, een customer relationship management platform(CRM) gebruikt om bedrijven hun klantgegevens, operaties verkoop
+en andere processen te beheren.
+
+1.1. Probleemstelling
+Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken/begrijpen. Er moet vaak manueel uitgelegd/getoond
+worden hoe alles werkt en dit is bij elke vernieuwing ook nog eens extra het geval.
+Er zijn tooltips en tutorials beschikbaar binnen het platform, maar deze zijn beperkt
+of onduidelijk. Al deze zaken kosten veel tijd en geld en kunnen ook voor frustraties
+zorgen bij de klanten.
+
+1.2. Onderzoeksvraag
+Hoe kan het onboardingproces en de in-app guidance van (nieuwe)gebruikers op
+het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?
+
+1
+
+2
+
+1. Inleiding
+
+1.3. Onderzoeksdoelstelling
+Om het probleem beter te begrijpen, moeten we ons afvragen hoe het huidige
+onboardingproces in elkaar zit en op welke manieren gebruikers begeleid worden binnen het platform, welke bestaande frustraties/gebreken huidige klanten,
+gebruikers en ontwikkelaars ondervinden en hoe andere vergelijkbare systemen
+omgaan met onboarding en in-app guidance.
+Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een
+eindresultaat te komen dat als proof of concept een in-app guidance systeem met
+walkthroughs ontwikkelt binnen het 24flow platform. Om hiertoe te komen kijken
+we welke salesforce(apex) mogelijkheden er bestaan voor onboarding/guidance,
+welke componenten en processen het meeste nood hebben aan user guidance,
+hoe andere vergelijkbare systemen omgaan met onboarding.
+
+1.4. Opzet van deze bachelorproef
+De rest van deze bachelorproef is als volgt opgebouwd:
+In Hoofdstuk 2 wordt een overzicht gegeven van de stand van zaken binnen het
+onderzoeksdomein, op basis van een literatuurstudie.
+In Hoofdstuk 3 wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
+In Hoofdstuk 4, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+
+2
+Stand van zaken
+2.1. Literatuurstudie
+2.1.1. Context
+Het 24flow platform is gemaakt in het salesforce ecosysteem voor make-to-order
+bedrijven ((Nelfiyanti e.a., 2025)), waar workflows vaak complex zijn en variëren per
+order. Dit betekent dat een fabriek niet precies weet welk product hij zal maken, tot
+een gebruiker effectief iets koopt of een order plaatst. Een gewone fabriek maakt
+bijvoorbeeld 1000 dezelfde stoelen, een make-to-order bedrijf zou dan tien gewone
+stoelen kunnen maken, één groene, één met extra poten enz. Er is met andere
+woorden geen standaard pad dat de productie neemt. Hierdoor is er dan ook een
+noodzaak voor digitale oplossingen die heel specifiek voor verschillende productieprocessen kunnen worden gebruikt en het mogelijk maken om elk uniek order
+efficiënt te beheren.
+24flow is zo een oplossing, het maakt gebruik van de flexibiliteit van salesforce om
+voor elk individueel order een dynamisch productiepad te berekenen. Het verbindt
+engineering, planning en de werkvloer in één visuele en traceerbare workflow. Het
+zorgt ervoor dat operatoren en teamleden over de juiste informatie en tools beschikken om efficiënter te werken. Hierdoor krijgt elk uniek order, ondanks de mogelijke variatie aan productiestappen telkens de juiste informatie en de meest efficiënte route doorheen de fabriek.
+Het platform is gebouwd binnen het salesforce ecosysteem met behulp van apex,
+de programmeertaal van salesforce zelf. Salesforce is een algemeen erkend customer relationship management system(CRM)-oplossing ((Pookandy, 2024)). Een
+CRM-systeem functioneert als een centraal platform voor het beheren van alle data
+tussen een bedrijf en zijn klanten. Salesforce voorziet daarnaast allerlei tools om
+3
+
+4
+
+2. Stand van zaken
+
+op een flexibele manier data, workflows, gebruikers... te beheren en allerlei opties
+te geven aan bedrijven om heel specifieke oplossingen te kunnen implementeren
+die verder gaan dan enkel klantbeheer. 24flow benut deze flexibiliteit om complexe productiegegevens om te zetten in bruikbare informatie voor de werkvloer.
+Dit betekent bijvoorbeeld dat een operator of werknemer op de werkvloer enkel
+de instructies en data ziet die relevant zijn voor het specifieke product dat op dat
+moment bewerkt wordt, volledig afgestemd op de huidige status van het productieproces.
+
+2.1.2. Onboarding
+Onboarding is het proces waarbij een nieuwe gebruiker voor het eerst in contact
+komt met een applicatie, of andere toepassing en de manier waarop die gebruiker
+hierbij wordt begeleid. Die begeleiding of sturing kan verschillende vormen aannemen, het kan gebeuren aan de hand van een menselijke uitleg, walkthroughs of
+handleidingen. (Madhwacharyula & Ramdas, 2023)
+Hierbij zijn er telkens verschillende voor- en nadelen te vinden. Een menselijke uitleg is zeer interactief en zorgt voor de meeste flexibiliteit, er kunnen complexe vragen gesteld worden en er kan heel diepgaand begeleid worden. Wel is het heel
+tijdsintensief en niet schaalbaar voor grotere groepen. Walkthroughs zijn stappenplannen die gebruikers stapsgewijs door een applicatie of interface leiden. Deze
+hulp is direct aanwezig in de applicatie zelf, dit kan bijvoorbeeld gebruikt worden
+voor het opzetten van een nieuwe configuratie of applicatie. Als de gebruiker daarentegen vastloopt of vragen heeft, is hier weinig ruimte toe, het is veelal een zelfsturend proces.
+Een handleiding is het meest statische hier, het is bedoeld als zelfsturend werk, als
+document om zonder enige vorm van interactie een gebruiker te helpen met een
+taak. Vaak is dit ook de manier om een uitleg nog eens te kunnen raadplegen, een
+naslagwerk dat altijd beschikbaar is om terug iets in op te zoeken. Een handleiding
+kan echter ook de vorm van een video aannemen, een video tutorial. Hier heb je
+een soort combinatie van walkthrough, menselijke uitleg en handleiding. Stapsgewijs wordt er iets uitgelegd en de gebruiker kan op zijn eigen tempo werken, hij
+kan immers pauzeren wanneer nodig. Wel is hier geen interactie en ziet een tutorial meestal de specifieke situatie van de gebruiker niet.
+Onboarding speelt een grote rol bij de first time user experience(FTUE), de eerste
+interactie die een gebruiker heeft met een bepaalde applicatie, en waar de mening
+van die gebruiker over de applicatie fundamenteel gevormd wordt. (Cascaes Cardoso, 2017) Een goed ontworpen onboardingproces helpt gebruikers niet enkel om
+de basisfunctionaliteiten te begrijpen, maar verhoogt de kans dat zij de applicatie
+
+2.1. Literatuurstudie
+
+5
+
+blijven gebruiken. Effectieve onboarding betekent immers beter begrip, minder
+frustraties en een goede gebruikerservaring van de applicatie op de lange termijn.
+Onderzoek van Chukwunonso Nweke (2025) over verschillende onboarding technieken toont dat walkthroughs die een gebruiker stap per stap begeleiden ervoor
+zorgen dat die gebruiker de nieuwe kennis beter begrijpt en onthoudt dan bij een
+eenmalige menselijke uitleg.
+Goede onboarding zorgt ervoor dat alle onderdelen van een applicatie stapsgewijs
+geïntroduceerd worden, en telkens met de nodige context getoond worden. Dit
+betekent dat een gebruiker de juiste functies en informatie krijgt die op dat moment relevant zijn voor hem, bijvoorbeeld gekoppeld aan de taak die hij op dat
+moment aan het uitvoeren is. Verder kunnen tutorials en walkthroughs hierbij een
+grote hulp zijn om gebruikers gemakkelijk wegwijs te maken met een bepaalde
+interface of applicatie. (Kedzielska, 2023) (Melenciano, 2025)
+In tegenstelling hiertoe kan slechte onboarding leiden tot frustratie, verwarring en
+zelfs het verlaten van een platform, dus het verlies van een klant. (Cascaes Cardoso,
+2017)
+Moderne onboarding gebeurt tegenwoordig vaak via in-app systemen, contextgevoelige prompts, interactieve tutorials en walkthroughs. Deze aanpak zorgt ervoor
+dat de gebruiker op het juiste moment de juiste informatie of hulp krijgt. (Acar &
+Tekinerdogan, 2020; Akiki, 2019)
+Deze methoden zijn effectief omdat ze een gebruiker minder overweldigen met
+alle informatie op hetzelfde moment. Het gebruik van in-app systemen voor onboarding betekent dat de nodige hulp direct in de interface is geïntegreerd. Hierbij
+spelen contextgevoelige prompts dan in op de specifieke acties die een gebruiker
+uitvoert, dit kan bijvoorbeeld als een pop-up zijn wanneer een gebruiker een ingewikkelde functie opent. Interactieve tutorials en walkthroughs combineren deze
+systemen: zij laten de gebruiker stapsgewijs handelingen uitvoeren en geven directe feedback binnen de applicatie met behulp van onder andere zo’n prompts.
+Ze zijn in staat om de uitgevoerde handelingen van de gebruiker te controleren en
+direct bij te sturen waar nodig.
+
+2.1.3. In-App User Guidance
+Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het
+gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan
+vinden binnen de applicatie. Volgens Acar en Tekinerdogan (2020) is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld
+
+6
+
+2. Stand van zaken
+
+handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de
+juiste oplossing. Ze duiden erop dat gebruikers hulp zouden moeten krijgen op
+het exacte moment dat ze die nodig hebben en dat deze hulp dus context specifiek moet aangeboden worden. Bijvoorbeeld wanneer een gebruiker voor het
+eerst een nieuw onderdeel van de applicatie gebruikt, krijgt hij een korte tip of aanwijzing over dat specifieke onderdeel. Hierdoor krijgt de gebruiker dus relevante
+informatie precies op het juiste moment, zonder dat hij zelf overdreven ver moet
+zoeken.
+Akiki (2019) dan heeft het over de praktische implementatie van zo’n user guidance,
+de studie toont aan dat hulp voor gebruikers direct kan ingebouwd worden in de
+gebruikersinterface via context gebonden prompts en interactieve elementen. Dit
+onderzoek laat eveneens zien dat gebruikers die op deze manier geholpen worden,
+efficiënter kunnen werken en minder vastlopen dan wanneer ze zelf op zoek moeten naar alle juiste oplossingen.
+Daarbovenop toont onderzoek over digital adoption platforms(DAP) dat het integreren van contextspecifieke en interactieve ondersteuning binnen enterprise applicaties het aanleren van zo’n complexe systemen verbetert.(Handrich & Otterbach, 2024)
+Een DAP is een softwarelaag bovenop een applicatie die de gebruiker actief stuurt
+binnen deze applicatie. Het begeleidt een gebruiker bijvoorbeeld door de juiste
+knoppen te laten oplichten, of door pop-ups te tonen op het juiste moment. Het
+maakt dus gebruik van allerlei in-app guidance functies, walkthroughs en dergelijke meer om een gebruiker wegwijs te maken in vaak complexe systemen. Hoewel
+een DAP vaak een externe tool is heeft salesforce deze functionaliteit rechtstreeks
+in zijn systeem geïntegreerd.
+Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walkthroughs, interactieve prompts enz. gezien worden als een dergelijke DAP laag die
+gebruikers in staat stelt om actief begeleid te worden terwijl ze in de applicatie
+werken.
+
+2.2. Salesforce analyse
+2.2.1. Types in-app guidance tools
+Volgens de officiële specificaties van Salesforce is deze functionaliteit opgebouwd
+uit twee fundamentele hoofdelementen: Prompts en Walkthroughs, die ondersteund worden door uitgebreide configuratiemogelijkheden.
+
+2.2. Salesforce analyse
+
+7
+
+1. Prompts
+Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van
+de gebruiker te vestigen op specifieke elementen, acties of updates binnen het
+systeem. Salesforce onderscheidt drie specifieke prompts, elk met een eigen functioneel doel:
+• Targeted Prompts: Dit zijn vensters die visueel verankerd zijn aan een specifiek UI-element, zoals een invulveld, knop of tabblad. De prompt wijst met
+een pijl direct naar het bijpassende element en maakt de rest van de pagina
+grijs, hierbij zijn er twaalf verschillende posities die de prompt kan innemen
+ten opzichte van het element.
+Toepassing: Dit is uiterst effectief om een gebruiker heel gericht te sturen naar
+bepaalde knoppen of velden die op dat moment essentieel zijn. (bijv. een
+prompt die naar een nieuw toegevoegde knop wijst, waardoor de gebruiker
+direct op de hoogte is van de nieuwe functionaliteit. )
+• Floating Prompts: Dit zijn pop-upvensters die niet aan een specifieke knop
+zijn gekoppeld, maar los over de interface zweven. Deze prompt kan op negen
+verschillende voorgedefinieerde locaties op een pagina worden weergegeven.
+Dit soort venster neemt weinig ruimte in en verdwijnt onmiddellijk wanneer
+een gebruiker naar een andere pagina navigeert of de prompt weg klikt.
+Toepassing: Deze worden doorgaans ingezet als kleinere tooltips of informatie over bepaalde functionaliteiten.(bijv. een werknemer opent een lange lijst
+met orders en een floating prompt verschijnt met een korte uitleg over de
+mogelijkheid om filters toe te passen op lijsten.)
+• Docked Prompts: Een docked prompt verschijnt standaard geminimaliseerd
+of geopend in de rechterbenedenhoek van het scherm. Het unieke aan dit
+type is dat het op het scherm blijft staan terwijl de gebruiker de rest van de
+applicatie bedient. De gebruiker kan het venster openklappen of sluiten naar
+behoefte.
+Toepassing: Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of zelf het gebruiken van videotutorials. (bijv. een video met de voornaamste laatste nieuwe features van de
+voorbije release die beschikbaar zijn.)
+2. Walkthroughs
+Waar een prompt beperkt is tot één enkele interactie op één scherm, biedt een
+walkthrough de functionaliteit om een complexer proces te begeleiden, waar meer-
+
+8
+
+2. Stand van zaken
+
+Tabel 2.1: Functionele vergelijking van Salesforce In-App Guidance prompt-types
+
+Kenmerk
+
+Floating Prompt
+
+Targeted Prompt
+
+Docked Prompt
+
+Basis
+
+Basis
+
+Uitgebreid*
+
+Afbeeldingen ondersteund
+
+Ja
+
+Ja
+
+Ja
+
+Embedded Video
+
+Nee
+
+Nee
+
+Ja
+
+Action / Dismiss Button
+
+Ja
+
+Ja
+
+Ja
+
+Snooze-icoon
+
+Ja
+
+Ja
+
+Ja
+
+Gedrag bij navigatie
+
+Verdwijnt
+
+Verdwijnt
+
+Blijft staan
+
+Grootte op pagina
+
+Klein
+
+Klein
+
+Groot
+
+Focus-effect
+
+Geen
+
+Scherm dimt
+
+Geen
+
+Rich Text Support
+
+*Ondersteunt extra opties zoals tekstkleur, hyperlinks en lijst-opmaak.
+
+dere stappen na elkaar gekoppeld zijn.
+• Prompts: Een walkthrough is in essentie een aaneenschakeling van maximaal tien afzonderlijke prompts (targeted, floating of docked) die een logische
+volgorde vormen.
+• Navigatie: Walkthroughs zijn in staat om gebruikers over verschillende webpagina’s, tabbladen en zelfs verschillende sub-applicaties binnen Salesforce
+heen te leiden.
+• Contextueel: De kracht van een walkthrough ligt in de timing. De informatie is direct gekoppeld aan de handeling van de gebruiker op het scherm. Dit
+voorkomt dat een gebruiker vastloopt of fouten maakt, omdat de juiste instructies precies op het moment en de plaats komen waar deze gebruiker er
+nood aan heeft.
+3. Configuratie en Gedrag
+De effectiviteit van in-app guidance wordt bepaald door de instellingen in de builder, die controleren waar, wanneer en voor wie de guidance verschijnt:
+• Locatie en Context: Per prompt wordt de reikwijdte bepaald. Dit varieert
+van een specifieke pagina binnen één applicatie tot een globale weergave die
+overal in Salesforce verschijnt (Any Page, Any App). Dit maakt het mogelijk
+om de guidance precies af te stemmen op de specifieke omgeving waarin de
+gebruiker op dat moment werkt.
+• Permissies: De zichtbaarheid van de in-app guidance kan worden gefilterd
+op basis van profielen en permissies. Hierdoor is het mogelijk om in-app guidance enkel te tonen aan gebruikers die over de juiste rechten beschikken om
+de betreffende acties uit te voeren.
+
+2.3. Requirements Analyse
+
+9
+
+• Activatie en Herhaling: Voor zowel losse prompts als volledige walkthroughs
+kan worden bepaald wanneer ze voor het eerst verschijnen. Dit kan op twee
+manieren gebeuren, namelijk op basis van een vooraf ingesteld schema, of
+door een actie van de gebruiker. Het kan bijvoorbeeld dagelijks verschijnen
+op een specifieke pagina, of de gebruiker klikt op een knop die de guidance
+start. Hierbij kan de frequentie van herhaling vooraf ingesteld worden, en de
+gebruiker kan deze ook altijd aanpassen.
+• Interactie en Media: Een prompt kan worden uitgebreid met actieknoppen
+die verwijzen naar een (interne) URL of flow. Daarnaast kan de tekst visueel
+worden ondersteund met afbeeldingen of, in het geval van docked prompts,
+met video’s die direct in de interface kunnen worden afgespeeld.
+4. Monitoring en Toegankelijkheid
+Naast de creatie en configuratie biedt Salesforce tools om de effectiviteit van de
+hulp te meten en de ondersteuning voor de gebruiker centraal vindbaar te maken:
+• Analytics en Rapportage: Het systeem verzamelt data over de interactie met
+de guidance, zoals het aantal weergaven, het gebruik van actieknoppen (Clickthrough Rate) en het aantal keer dat een instructie voortijdig wordt gesloten.
+Deze inzichten stellen beheerders in staat om te beoordelen of de informatie
+relevant is en waar instructies eventueel geoptimaliseerd moeten worden.
+• Guidance Center: Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen.
+Dit stelt de gebruiker in staat om op eigen initiatief een training te herhalen
+of informatie op te zoeken zonder te hoeven wachten op een automatische
+trigger.
+• Functionele Beperkingen: In-App Guidance is exclusief ontworpen voor de
+desktopversie van Lightning Experience; de functionaliteit wordt momenteel
+niet ondersteund in de mobiele Salesforce-applicatie. Daarnaast kunnen prompts
+niet worden geplaatst op systeeminstellingen (Setup-pagina’s) of op specifieke onderdelen van de interface die buiten het standaard Lightning-framework
+vallen.
+
+2.2.2. Restricties en limitaties
+2.2.3. Learning Paths
+
+2.3. Requirements Analyse
+2.3.1. Prioritering van de requirements
+
+10
+
+2. Stand van zaken
+
+Must haves
+De ”Must haves”vormen de minimale set aan functionaliteiten die aanwezig moeten zijn om een werkbare oplossing te bieden die beantwoordt aan de onderzoeksvraag:
+• Zelfstandige Systeemconfiguratie: Een volledige interactieve onboarding
+die de gebruiker stap-voor-stap door de initiële opzet van 24flow loodst voor
+zijn belangrijkste componenten. Dit stelt de gebruiker in staat om de applicatie volledig operationeel te krijgen zonder externe hulp.
+• Centraal Dashboard:Een overzichtelijk startpunt waar de gebruiker de voortgang van zijn configuratie kan monitoren via een visuele voortgangsbalk en
+status-indicatoren. Dit is eveneens de landingspagina van elke 24flow applicatie.
+• Directe Navigatie en Activatie: Een koppeling waarbij de gebruiker met één
+druk op de knop direct naar de juiste pagina wordt gestuurd en de bijbehorende walkthrough automatisch wordt gestart.
+• Automatische Voortgangsdetectie: Het systeem moet zelfstandig herkennen wanneer een taak succesvol is afgerond en dit direct verwerken in het
+dashboard. Het moet per onderdeel bijhouden of en in hoeverre de configuratie is voltooid.
+• Demo Data Generator: De mogelijkheid om de omgeving te vullen met actuele testdata. Dit is essentieel voor een realistisch gebruik van de applicatie,
+zodat de gebruiker de onboarding doorloopt in een ”gevuldeïnterface.
+• Hiërarchische Taakstructuur: De mogelijkheid om grote, complexe processen op te delen in kleinere subtaken, zodat de gebruiker stap-voor-stap door
+de configuratie wordt geleid zonder het overzicht te verliezen.
+• Navigatie tussen objecten: De mogelijkheid voor walkthroughs om de gebruiker naadloos over verschillende tabbladen en records heen te leiden, aangezien deze zelden beperkt blijven tot één enkel scherm.
+• Documentatie: Een directe en permanente link naar de officiële documentatie op het dashboard. Dit dient als hulpmiddel en naslagwerk voor gebruikers
+die specifieke, of meer diepgaande informatie zoeken over bepaalde componenten.
+Should haves
+De ”Should haves”zijn belangrijke functionele aanvullingen die de kwaliteit van de
+onboarding verhogen en essentieel zijn voor een volledige en professionele gebruikerservaring:
+
+2.3. Requirements Analyse
+
+11
+
+• Video-integratie: Het toevoegen van korte video-tutorials in docked prompts
+voor de meest complexe processen. Dit verhoogt de effectiviteit van de onboarding, maar kan in eerste instantie worden vervangen door tekst en afbeeldingen.
+• Data Reset-functie: Een veilige methode om testdata te wissen, zodat een
+gebruiker altijd met een propere omgeving kan werken.
+• Opladen Eigen Data: Een methode om eigen data te uploaden die gebruikt
+kan worden voor de onboarding. Dit kan in eerste instantie een placeholder
+zijn die later kan worden geïmplementeerd.
+• Handmatige Taakbevestiging: Voor stappen die niet automatisch door het
+systeem gemeten kunnen worden, moet de gebruiker zelf een taak als voltooid kunnen markeren.
+• Custom Branding: Het aanpassen van de kleuren van de prompts aan de
+huisstijl van 24flow. Dit draagt bij aan de uniformiteit en herkenbaarheid binnen het platform.
+Could haves
+Deze elementen worden als ëxtra”beschouwd en worden enkel geïmplementeerd
+als er na de kritieke onderdelen nog tijd over is:
+• Externe Documentatie-links: Het koppelen van de actieknoppen aan externe handleidingen in SharePoint of Google Drive voor diepgaande achtergrondinformatie.
+• Dynamische Herstart: De optie voor ervaren gebruikers om een reeds voltooide rondleiding op elk moment opnieuw te starten als opfriscursus.
+• Meertaligheid: Het vertalen van de guidance naar andere talen (bijv. Engels
+en Frans) indien de werkvloer uit een internationaal team bestaat.
+• Snooze-configuratie: Het finetunen van de intervallen waarop prompts opnieuw verschijnen voor gebruikers die de instructie tijdelijk parkeren.
+• Gebruikersstatistieken (Analytics): Het inrichten van rapportages om te meten hoe vaak walkthroughs worden voltooid. Dit is nodig voor de evaluatie op
+lange termijn, maar niet voor de technische werking.
+• Gebruikersfeedback: De mogelijkheid voor gebruikers om direct binnen een
+prompt aan te geven of de instructie nuttig was via een simpele duimpjeomhoog/omlaag interactie.
+
+12
+
+2. Stand van zaken
+
+Won’t haves
+Deze onderdelen zijn expliciet buiten de scope van dit project gelaten, vaak vanwege technische beperkingen van het Salesforce-platform:
+• Mobiele Ondersteuning: Ondersteuning voor de Salesforce Mobile App, aangezien in-app guidance momenteel technisch enkel beschikbaar is voor de
+desktopomgeving (Lightning Experience).
+• Guidance op systeem-pagina’s: Instructies binnen de Setup-omgeving van
+Salesforce; de tool is uiterst gericht op de eindgebruiker en niet op de systeembeheerder.
+• Chatbot: AI Chatbots: Een interactieve bot die vragen beantwoordt; we focussen op gestuurde navigatie.
+
+2.4. Ontwerp proof of concept
+2.4.1. Use cases
+2.4.2. Wireframes
+
+3
+Methodologie
+Fase 0: Onderzoeksvoorstel(12/12-23-01)
+Dit is de voorbereidende fase waar het onderwerp wordt afgebakend, de methodologie wordt uitgewerkt, een kleine literatuurstudie wordt uitgevoerd en de scope
+van het onderzoek wordt bepaald.
+Fase 1: Literatuurstudie(23/01-15/02)
+De literatuurstudie uit het onderzoeksvoorstel wordt waar nodig verder uitgebreid
+om de beste oplossingen, problemen... die helpen de onderzoeksvraag beantwoorden uit de bestaande wetenschappelijke lectuur te halen. Dit vormt de basis voor
+een mogelijk proof of concept, een mogelijke oplossing die een antwoord biedt op
+de hoofdonderzoeksvraag.
+Fase 2: Requirements verzamelen(15/02-01/03)
+Hier ga ik op zoek naar de verschillende criteria/requirements waar een goede oplossing aan moet voldoen.
+Dit gebeurt eerst door interviews te voeren met verschillende stakeholders, de copromotor, developers... om de belangrijkste requirements en flows te identificeren
+aan de hand van de moscow methode.
+Uiteindelijk komt hier een naar belangrijkheid geordende lijst van pijnpunten en
+requirements voor een mogelijke oplossing uit.
+Verder ga ik in deze fase eveneens op verkenning door de verschillende salesforce
+functionaliteiten die toepasbaar zouden kunnen zijn voor een mogelijk proof of concept.
+13
+
+14
+
+3. Methodologie
+
+Daaruit komt dan een shortlist van de verschillende functionaliteiten die het meest
+geschikt zijn om gebruikt te worden.
+Fase 3: Ontwerp prototype(01/03-15/03)
+Aan de hand van de opgestelde requirements en de salesforce analyse wordt een
+ontwerp opgesteld voor het onboarding prototype.
+Dit is een lijst met verschillende use cases, wireframes die samen een ontwerp vormen voor de mogelijke onboarding optie.
+Dit ontwerp wordt vervolgens besproken met de copromotor en vervolgens bijgewerkt naargelang de gekregen feedback, om zo tot een afgewerkt ontwerp te komen voor een mogelijke implementatie.
+Fase 4: Implementatie prototype(15/03-15/05)
+Hier wordt het gemaakte ontwerp geïmplementeerd binnen het 24flow platform
+op een developer omgeving. De belangrijkste requirements worden gebouwd met
+behulp van de salesforce functionaliteiten.
+Deze fase leidt dan tot een werkend proof of concept dat een prototype van een
+onboarding en guidance systeem op het 24flow platform voorziet.
+Fase 5: Evaluatie (15/05-29/05)
+Het prototype is geïmplementeerd en nu kijken we in hoeverre het beantwoordt
+aan de vooraf opgestelde requirements, in welke mate het afwijkt en in hoeverre
+het verder uitgebouwd zou kunnen worden naar een echte klantomgeving.
+Om dit te beoordelen wordt het prototype getest door één of meerdere ”nieuwe”personen
+die nauwelijks ervaring hebben met het platform. Dit kan een nieuwe klant zijn of
+een andere medewerker.
+De testpersonen krijgen een aantal vooraf gedefinieerde taken die typisch zijn voor
+een eerste gebruik van het platform. Tijdens het uitvoeren van deze taken wordt
+gekeken in welke mate de tester wegwijs geraakt met behulp van de nieuwe in-app
+guidance. Daarbij wordt vooral gekeken waar er eventueel verwarring is of een gebrek aan informatie.
+Hierbij kijken we naar de tijd die nodig is om taken uit te voeren, welke momenten de gebruiker vastloopt en de mate waarin taken zelfstandig kunnen worden
+voltooid. Op basis van deze criteria kan dan gekeken worden in welke mate het
+prototype een oplossing biedt voor de hoofdonderzoeksvraag.
+
+15
+
+4
+Conclusie
+
+16
+
+A
+Onderzoeksvoorstel
+Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel
+dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze
+bijlage.
+
+A.1. Inleiding
+24flow is een bedrijf dat een modulair platform maakt voor werkvloerbeheer en
+productieplanning om onder andere traceerbaarheid en zichtbaarheid te verbeteren bij make-to-order fabrikanten.
+Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken/begrijpen. Er moet vaak manueel uitgelegd/getoond
+worden hoe alles werkt en dit is bij elke vernieuwing ook nog eens extra het geval.
+Al deze zaken kosten veel tijd en geld en kunnen ook voor frustraties zorgen.
+Hoe kan het onboardingproces en de in-app guidance van (nieuwe)gebruikers op
+het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?
+Om het probleem beter te begrijpen, moeten we ons afvragen hoe het huidige
+onboardingproces in elkaar zit en op welke manieren gebruikers begeleid worden binnen het platform, welke bestaande frustraties/gebreken huidige klanten,
+gebruikers en ontwikkelaars ondervinden en hoe andere vergelijkbare systemen
+omgaan met onboarding en in-app guidance.
+Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een
+eindresultaat te komen dat als proof of concept een in-app guidance systeem met
+17
+
+18
+
+A. Onderzoeksvoorstel
+
+walkthroughs ontwikkelt binnen het 24flow platform. Om hiertoe te komen kijken
+we welke salesforce(apex) mogelijkheden er bestaan voor onboarding/guidance,
+welke componenten het meeste nood hebben aan user guidance, hoe andere vergelijkbare systemen omgaan met onboarding.
+
+A.2. Literatuurstudie
+A.2.1. Context
+Het 24flow platform is gemaakt in het salesforce ecosysteem voor make-to-order
+bedrijven ((Nelfiyanti e.a., 2025)), waar workflows vaak complex zijn en variëren per
+order. Hierbij is er een noodzaak voor digitale oplossingen die heel specifiek voor
+verschillende processen kunnen worden gebruikt.
+Het platform is gebouwd binnen het salesforce ecosysteem met behulp van apex,
+de programmeertaal van salesforce. Salesforce is een algemeen erkend customer
+relationship management system(CRM)-oplossing ((Pookandy, 2024)). Salesforce
+voorziet allerlei tools om data, workflows, gebruikers... te beheren en allerlei opties
+te geven aan bedrijven om heel contextspecifieke oplossingen te kunnen implementeren.
+
+A.2.2. Onboarding
+Onboarding is het proces waarbij een nieuwe gebruiker voor het eerst in contact
+komt met een applicatie, of andere toepassing en de manier waarop die gebruiker
+hierbij wordt begeleid. Die begeleiding of sturing kan verschillende vormen aannemen, het kan gebeuren aan de hand van een menselijke uitleg, walkthroughs,
+handleidingen... (Madhwacharyula & Ramdas, 2023)
+Onboarding speelt een grote rol bij de first time user experience(FTUE), de eerste
+interactie die een gebruiker heeft met een bepaalde applicatie, en waar de mening
+van die gebruiker over de applicatie fundamenteel gevormd wordt. (Cascaes Cardoso, 2017) Effectieve onboarding betekent beter begrip, minder frustraties en een
+goede gebruikerservaring van de applicatie op de lange termijn. Onderzoek van
+Chukwunonso Nweke (2025) over verschillende onboarding technieken toont dat
+walkthroughs die een gebruiker stap per stap begeleiden ervoor zorgen dat die gebruiker de nieuwe kennis beter begrijpt en onthoudt dan een eenmalige statische
+uitleg.
+Onderzoek toont het belang van die eerste interactie aan en het belang hiervan
+voor de lange termijn.
+Goede onboarding zorgt ervoor dat alle onderdelen van een applicatie stapsgewijs
+geïntroduceerd worden, en telkens met de nodige context getoond worden. Hierbij kunnen tutorials en walkthroughs een grote hulp zijn om gebruikers gemakkelijk wegwijs te maken met een bepaalde interface en door het tonen van walkthroughs (Kedzielska, 2023) (Melenciano, 2025)
+
+A.3. Methodologie
+
+19
+
+In tegenstelling hiertoe kan slechte onboarding leiden tot frustratie, verwarring en
+zelfs het verlaten van een platform, dus het verlies van een klant. (Cascaes Cardoso,
+2017)
+Moderne onboarding gebeurt tegenwoordig vaak via in-app systemen, contextgevoelige prompts, interactieve tutorials en walkthroughs. Deze aanpak zorgt ervoor
+dat de gebruiker op het juiste moment de juiste informatie of hulp krijgt. (Acar &
+Tekinerdogan, 2020; Akiki, 2019)
+
+A.2.3. In-App User Guidance
+Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het
+gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan
+vinden binnen de applicatie. Volgens Acar en Tekinerdogan (2020) is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld
+handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de
+juiste oplossing. Ze duiden erop dat gebruikers hulp zouden moeten krijgen op
+het exacte moment dat ze die nodig hebben en dat deze hulp dus context specifiek moet aangeboden worden in plaats van te verwachten dat gebruikers zelf op
+zoek gaan naar de juiste info.
+Akiki (2019) dan heeft het over de praktische implementatie van zo’n user guidance,
+de studie toont aan dat hulp voor gebruikers direct kan ingebouwd worden in de
+gebruikersinterface via context gebonden prompts en interactieve elementen. Dit
+onderzoek laat eveneens zien dat gebruikers die op deze manier geholpen worden, efficiënter kunnen werken en minder vastlopen dan wanneer ze zelf op zoek
+moeten naar alle juiste oplossingen.
+Daarbovenop toont onderzoek over digital adoption platforms(DAP) dat het integreren van contextspecifieke en interactieve ondersteuning binnen enterprise applicaties het aanleren van zo’n complexe systemen verbetert.(Handrich & Otterbach, 2024)
+Salesforce’ bestaande tools, walkthroughs, interactieve prompts... voor in-app guidance kunnen gezien worden als zo een platform dat gebruikers in staat stelt om
+begeleid te worden terwijl ze in de applicatie werken.
+
+A.3. Methodologie
+Fase 0: Onderzoeksvoorstel(12/12-23-01)
+Dit is de voorbereidende fase waar het onderwerp wordt afgebakend, de methodologie wordt uitgewerkt, een kleine literatuurstudie wordt uitgevoerd en de scope
+van het onderzoek wordt bepaald.
+
+20
+
+A. Onderzoeksvoorstel
+
+Fase 1: Literatuurstudie(23/01-15/02)
+De literatuurstudie uit het onderzoeksvoorstel wordt waar nodig verder uitgebreid
+om de beste oplossingen, problemen... die helpen de onderzoeksvraag beantwoorden uit de bestaande wetenschappelijke lectuur te halen. Dit vormt de basis voor
+een mogelijk proof of concept, een mogelijke oplossing die een antwoord biedt op
+de hoofdonderzoeksvraag.
+Fase 2: Requirements verzamelen(15/02-01/03)
+Hier ga ik op zoek naar de verschillende criteria/requirements waar een goede oplossing aan moet voldoen.
+Dit gebeurt eerst door interviews te voeren met verschillende stakeholders, de copromotor, developers... om de belangrijkste requirements en flows te identificeren
+aan de hand van de moscow methode.
+Uiteindelijk komt hier een naar belangrijkheid geordende lijst van pijnpunten en
+requirements voor een mogelijke oplossing uit.
+Verder ga ik in deze fase eveneens op verkenning door de verschillende salesforce
+functionaliteiten die toepasbaar zouden kunnen zijn voor een mogelijk proof of concept.
+Daaruit komt dan een shortlist van de verschillende functionaliteiten die het meest
+geschikt zijn om gebruikt te worden.
+Fase3: Ontwerp prototype(01/03-15/03)
+Aan de hand van de opgestelde requirements en de salesforce analyse wordt een
+ontwerp opgesteld voor het onboarding prototype.
+Dit is een lijst met verschillende use cases, wireframes die samen een ontwerp vormen voor de mogelijke onboarding optie.
+Dit ontwerp wordt vervolgens besproken met de copromotor en vervolgens bijgewerkt naargelang de gekregen feedback, om zo tot een afgewerkt ontwerp te komen voor een mogelijke implementatie.
+Fase 4: Implementatie prototype(15/03-15/05)
+Hier wordt het gemaakte ontwerp geïmplementeerd binnen het 24flow platform
+op een developer omgeving. De belangrijkste requirements worden gebouwd met
+behulp van de salesforce functionaliteiten.
+Deze fase leidt dan tot een werkend proof of concept dat een prototype van een
+
+A.4. Verwacht resultaat, conclusie
+
+21
+
+onboarding en guidance systeem op het 24flow platform voorziet.
+Fase 5: Evaluatie (15/05-29/05)
+Het prototype is geïmplementeerd en nu kijken we in hoeverre het beantwoordt
+aan de vooraf opgestelde requirements, in welke mate het afwijkt en in hoeverre
+het verder uitgebouwd zou kunnen worden naar een echte klantomgeving.
+Om dit te beoordelen wordt het prototype getest door één of meerdere ”nieuwe”personen
+die nauwelijks ervaring hebben met het platform. Dit kan een nieuwe klant zijn of
+een andere medewerker.
+De testpersonen krijgen een aantal vooraf gedefinieerde taken die typisch zijn voor
+een eerste gebruik van het platform. Tijdens het uitvoeren van deze taken wordt
+gekeken in welke mate de tester wegwijs geraakt met behulp van de nieuwe in-app
+guidance. Daarbij wordt vooral gekeken waar er eventueel verwarring is of een gebrek aan informatie.
+Hierbij kijken we naar de tijd die nodig is om taken uit te voeren, welke momenten de gebruiker vastloopt en de mate waarin taken zelfstandig kunnen worden
+voltooid. Op basis van deze criteria kan dan gekeken worden in welke mate het
+prototype een oplossing biedt voor de hoofdonderzoeksvraag.
+
+A.4. Verwacht resultaat, conclusie
+De verwachting is dat het onderzoek zal leiden tot een werkend prototype dat beantwoordt aan de onderzoeksvraag. Een prototype dat leidt tot een betere onboarding en user guidance binnen het 24flow platform. Dat vooral de gebruiker een
+betere ervaring kan geven op het platform, maar er ook voor kan zorgen dat developers minder manuele demo’s moeten doen, en dat het platform meer zelfsturend
+kan zijn.
+Dit prototype, en het gemaakte ontwerp zal hopelijk leiden tot een aantal best practices en requirements nodig om in-app guidance en onboarding over het hele platform uit te rollen.
+
+Bibliografie
+Acar, M., & Tekinerdogan, B. (2020). Analyzing the Impact of Automated User Assistance Systems: A Systematic Review [Preprint]. arXiv preprint, abs/2003.05782.
+https://arxiv.org/pdf/2003.05782.pdf
+Akiki, P. A. (2019). Generating contextual help for user interfaces from software requirements. IET Software, 13(1), 75–85. https://doi.org/10.1049/iet-sen.2018.5163
+Cascaes Cardoso, M. (2017). The Onboarding Effect: Leveraging User Engagement
+and Retention in Crowdsourcing Platforms. Proceedings of the 2017 CHI Conference Extended Abstracts on Human Factors in Computing Systems, 263–
+267. https://doi.org/10.1145/3027063.3027128
+Chukwunonso Nweke. (2025). Effective Onboarding Processes for Mobile Apps: A
+Comparative Study of Product Tours vs. Progressive Walkthroughs. https://
+doi.org/10.13140/RG.2.2.34277.72167
+Creeger, M. (2009). CTO Roundtable: Cloud Computing. Communications of the
+ACM, 52(8), 50–56.
+Handrich, M., & Otterbach, M. (2024). Digital Employee Training With Digital Adoption Platforms Boost Learning and Knowledge Management of Corporate IT
+Systems. International Journal of Knowledge Management, 20(1), 1–19. https:
+//doi.org/10.4018/ijkm.358005
+Kedzielska, K. (2023). Enhancing customer onboarding in complex web applications [masterscriptie, Universidad Politécnica de Madrid]. https://oa.upm.es/
+75987/1/TFM_KATARZYNA_KEDZIELSKA.pdf
+Knuth, D. E. (1998). The art of computer programming, volume 3: (2nd ed.) sorting
+and searching. Addison Wesley Longman Publishing Co., Inc.
+Madhwacharyula, C., & Ramdas, S. (2023). Customer Onboarding – A Methodology.
+In Scaling Customer Success (pp. 75–85). Apress. https://doi.org/10.1007/9781-4842-9192-4_4
+Melenciano, X. V. (2025). Evaluating strategies for user onboarding in web applications [masterscriptie, Halmstad University]. https://www.diva-portal.org/
+smash/get/diva2:1987932/FULLTEXT01.pdf
+Nelfiyanti, N., Md Yasir, A. S. H., Mohamed, N., & Ahmad, M. F. A. (2025). Adoption and
+Impact of Quick Response Manufacturing Across Industry Sector. Operations Research Forum, 6(2). https://doi.org/10.1007/s43069-025-00463-8
+Pollefliet, L. (2011). Schrijven van verslag tot eindwerk: do’s en don’ts. Academia
+Press.
+22
+
+Bibliografie
+
+23
+
+Pookandy, J. (2024). Enhancing Customer Relationship Management with Salesforce: A Comprehensive Review. International Journal of Computer Engineering and Technology, 15(4), 64–84. https://iaeme.com/MasterAdmin/Journal_
+uploads/IJCET/VOLUME_15_ISSUE_4/IJCET_15_04_006.pdf
+
+
