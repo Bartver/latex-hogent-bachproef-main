@@ -66,9 +66,9 @@ Een DAP is een softwarelaag bovenop een applicatie die de gebruiker actief stuur
 Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walkthroughs, interactieve prompts enz. gezien worden als een dergelijke DAP laag die gebruikers in staat stelt om actief begeleid te worden terwijl ze in de applicatie werken.
 \clearpage
 
-\section{Salesforce analyse}%
+\section{Salesforce Analyse}%
 \label{sec:Salesforce analyse}
-\subsection{Types in-app guidance tools}
+\subsection{In-App Guidance Tools}
 
 Volgens de officiële specificaties van Salesforce is deze functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden.
 
@@ -89,7 +89,7 @@ Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de g
 	\item \textbf{Docked Prompts:} Een docked prompt verschijnt standaard geminimaliseerd of geopend in de rechterbenedenhoek van het scherm. Het unieke aan dit type is dat het op het scherm blijft staan terwijl de gebruiker de rest van de applicatie bedient. De gebruiker kan het venster openklappen of sluiten naar behoefte.
 	\\
 	
-	\textit{Toepassing:} Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of zelf het gebruiken van video-tutorials. (bijv. een video met de voornaamste laatste nieuwe features van de voorbije release die beschikbaar zijn.)
+	\textit{Toepassing:} Omdat dit type meer tekst en zelfs media ondersteunt, is het ideaal voor uitgebreide handleidingen, checklists of zelfs het gebruiken van video-tutorials. (bijv. een video met de voornaamste laatste nieuwe features van de voorbije release die beschikbaar zijn.)
 \end{itemize}
 \begin{table}[h!]
 	\centering
@@ -135,18 +135,24 @@ De effectiviteit van in-app guidance wordt bepaald door de instellingen in de bu
 	\item \textbf{Interactie en Media:} Een prompt kan worden uitgebreid met actieknoppen die verwijzen naar een (interne) URL of flow. Daarnaast kan de tekst visueel worden ondersteund met afbeeldingen of, in het geval van docked prompts, met video's die direct in de interface kunnen worden afgespeeld.
 \end{itemize}
 
-\subsubsection*{4. Monitoring en Toegankelijkheid}
-Naast de creatie en configuratie biedt Salesforce tools om de effectiviteit van de hulp te meten en de ondersteuning voor de gebruiker centraal vindbaar te maken:
+\subsection{Evaluatie}
+Naast de creatie en configuratie van in-app guidance biedt Salesforce de middelen om het gebruik ervan te analyseren en is er een overzichtscentrum van alle bestaande guidance voor de gebruiker:
 
 \begin{itemize}
-	\item \textbf{Analytics en Rapportage:} Het systeem verzamelt data over de interactie met de guidance, zoals het aantal weergaven, het gebruik van actieknoppen (\textit{Click-through Rate}) en het aantal keer dat een instructie voortijdig wordt gesloten. Deze inzichten stellen beheerders in staat om te beoordelen of de informatie relevant is en waar instructies eventueel geoptimaliseerd moeten worden.
+	\item \textbf{Gebruikersinzichten (Analytics):} Het systeem verzamelt automatisch data over de interactie met de guidance, zoals het aantal weergaven, het gebruik van actieknoppen (\textit{Click-through Rate}) en het aantal keer dat een prompt of stap voortijdig wordt gesloten. Deze inzichten stellen admins in staat om te beoordelen of de getoonde informatie relevant is en waar instructies eventueel geoptimaliseerd moeten worden.
 	
-	\item \textbf{Guidance Center:} Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen. Dit stelt de gebruiker in staat om op eigen initiatief een training te herhalen of informatie op te zoeken zonder te hoeven wachten op een automatische trigger.
-	
-	\item \textbf{Functionele Beperkingen:} In-App Guidance is exclusief ontworpen voor de desktopversie van Lightning Experience; de functionaliteit wordt momenteel niet ondersteund in de mobiele Salesforce-applicatie. Daarnaast kunnen prompts niet worden geplaatst op systeeminstellingen (Setup-pagina's) of op specifieke onderdelen van de interface die buiten het standaard Lightning-framework vallen.
+	\item \textbf{Guidance Center:} Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen. Van hieruit kunnen ook learning paths gebruikt worden.
 \end{itemize}
-\subsection{Restricties en limitaties}
-TODO
+
+\subsection{Restricties en Limitaties}
+Hoewel in-app guidance een krachtige tool is, kent het enkele strikte limieten waarmee tijdens de implementatie rekening gehouden moet worden:
+
+\begin{itemize}
+	\item \textbf{Desktop Exclusief:} In-App Guidance is exclusief ontworpen voor de desktopversie van Lightning Experience; de functionaliteit wordt momenteel niet ondersteund in de mobiele Salesforce-applicatie.
+	\item \textbf{Systeeminstellingen en Custom Schermen:} Prompts kunnen niet worden geplaatst op systeeminstellingen (Setup-pagina's) of op specifieke onderdelen van de interface die buiten het standaard Lightning-framework vallen.
+	\item \textbf{Stappenlimiet:} Een enkele walkthrough is technisch gelimiteerd tot maximaal tien opeenvolgende stappen (prompts).
+\end{itemize}
+
 \subsection{Learning Paths}
 TODO
 
@@ -209,13 +215,15 @@ De "Must haves" vormen de minimale set aan functionaliteiten die aanwezig moeten
 
 	\item \textbf{Custom Branding:} Het aanpassen van de kleuren van de prompts aan de huisstijl van 24flow. Dit draagt bij aan de uniformiteit en herkenbaarheid binnen het platform.
 	
+	\item \textbf{Documentatie Linken} Getoonde documentatie moet specifiek gekoppeld zijn aan de respectievelijke component. Een gebruiker mag niet op zoek moeten gaan in alle documentatie voor een specifiek onderdeel.
+	
 \end{itemize}
 
 \subsubsection*{Could haves}
 Deze elementen worden als "extra" beschouwd en worden enkel geïmplementeerd als er na de kritieke onderdelen nog tijd over is:
 
 \begin{itemize}
-	\item \textbf{Herstart:} De optie voor gebruikers om een reeds voltooide walkthrough op elk moment opnieuw te starten.
+	\item \textbf{Hervatten:} De optie voor gebruikers om een reeds voltooide walkthrough op elk moment opnieuw te starten en verder te gaan op het punt waar ze gebleven zijn.
 	
 	\item \textbf{Gebruikersstatistieken (Analytics):} Het opzetten van rapportage om te meten hoe vaak walkthroughs worden voltooid en waar gebruikers vastlopen. Dit is nodig voor de evaluatie op lange termijn, maar niet voor de technische werking.
 	
@@ -285,13 +293,13 @@ Doel: Het succesvol vullen van de applicatie met realistische testdata, zodat de
 \end{enumerate}
 
 \subsubsection{Use Case: Een configuratietaak hervatten na onderbreking}
-Deze use case toont de veerkracht van de "Automatische Voortgangsdetectie" wanneer een gebruiker een proces voortijdig afbreekt.
+Deze use case toont de sterkte van de "Automatische Voortgangsdetectie" wanneer een gebruiker een walkthrough/configuratie voortijdig afbreekt.
 \\
 
 Actor: Nieuwe 24flow-gebruiker (Systeembeheerder/Admin).
 \\
 
-Doel: Het succesvol terug starten van een gedeeltelijk voltooide configuratie zonder verlies van overzicht of eerdere progressie.
+Doel: Het succesvol terug starten van een gedeeltelijk voltooide configuratie zonder verlies van overzicht of van eerdere progressie.
 
 \begin{enumerate}
 	\item \textbf{Startpunt:} De gebruiker volgt een walkthrough voor het instellen van de "Team Cockpit"  component, maar sluit halverwege de sessie af (bijvoorbeeld wegens tijdgebrek).
@@ -307,7 +315,7 @@ Doel: Het succesvol terug starten van een gedeeltelijk voltooide configuratie zo
 Om de requirements visueel te vertalen, zijn er enkele wireframes uitgewerkt. Dit ontwerp dient als blauwdruk voor de uiteindelijke Lightning Web Component en de onboarding implementatie.
 
 
-\subsubsection{Wire Frame: Onboarding Dashboard}
+\subsubsection{Wireframe: Onboarding Dashboard}
 
 
 Zoals te zien is in Figuur \ref{fig:wireframe_dashboard}, fungeert het dashboard als de landingspagina en het vertrekpunt voor een nieuwe gebruiker. Aan de linkerkant bevindt zich de hiërarchische taakstructuur met dynamische status-indicatoren en een voortgangsbalk. Aan de rechterkant zijn enkele tools om bijvoorbeeld data te genereren en wissen en documentatie te raadplegen.
@@ -322,17 +330,17 @@ Zoals te zien is in Figuur \ref{fig:wireframe_dashboard}, fungeert het dashboard
 
 
 \clearpage
-\subsubsection{Wire Frame: Walkthrough Stap}
+\subsubsection{Wireframe: Walkthrough Stap}
 Wanneer de gebruiker in het dashboard een taak start, navigeert het systeem direct naar de desbetreffende configuratiepagina. Figuur \ref{fig:wireframe_walkthrough} toont deze stap. Hier neemt de in-app guidance het proces over in de vorm van een walkthrough. Een \textit{Targeted Prompt} wijst de gebruiker expliciet op het in te vullen veld en biedt direct een aanbeveling ("Action Link") voor meer info.
 \\
 
- Tegelijkertijd biedt een \textit{Docked Prompt}, onderaan het scherm, extra ondersteuning via een instructievideo en documentatie links. Dit ontwerp zorgt ervoor dat de gebruiker complexe acties stapsgewijs zelfstandig kan uitvoeren en ook steeds een directe link heeft naar extra documentatie indien nodig.
+ Tegelijkertijd biedt een \textit{Docked Prompt}, onderaan het scherm, extra ondersteuning via een instructievideo en een documentatie link. Dit ontwerp zorgt ervoor dat de gebruiker complexe acties stapsgewijs en zelfstandig kan uitvoeren en ook steeds een directe link heeft naar extra documentatie indien nodig.
 
 \begin{figure}[htbp]
 	\centering
 	% Gebruik het relatieve pad en zorg dat de backslashes ( \ ) vervangen zijn door forward slashes ( / )
 	\includegraphics[width=0.95\textwidth]{WalkthroughStep}
-	\caption{Wireframe van een walkthrough stap voor het configureren van de order pool.}
+	\caption{Wireframe van een walkthrough stap voor het configureren van de Order Pool.}
 	\label{fig:wireframe_walkthrough}
 \end{figure}
 
