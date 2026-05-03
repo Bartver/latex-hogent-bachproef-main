@@ -4,6 +4,16 @@
 
 \chapter{Conclusie}%
 \label{ch:conclusie}
+\section{Algemene Conclusie}%
+\label{sec:Conclusie}
+
+Het initiële configuratieproces van een veelzijdige bedrijfsapplicatie zoals 24flow binnen een Salesforce-omgeving is een complexe taak. Voorheen vereiste dit proces vaak intensieve ondersteuning of liep een systeembeheerder het risico te verdwalen in de vele instellingen en afhankelijkheden. Het hoofddoel van dit onderzoek was om een oplossing te ontwerpen en te ontwikkelen die de zelfredzaamheid van nieuwe gebruikers maximaliseert en het onboarding-proces stroomlijnt.
+
+Uit de analyse bleek dat de native Salesforce In-App Guidance krachtige functionaliteiten biedt voor actieve schermbegeleiding, maar tekortschiet in het bieden van een helikopterview en geautomatiseerde voortgangsdetectie. Om dit hiaat te overbruggen, is er succesvol een hybride proof of concept ontwikkeld. Deze oplossing combineert de interactieve walkthroughs van Salesforce met een op maat gemaakt 'Onboarding Dashboard', gebouwd als een moderne Lightning Web Component (LWC). 
+
+Dit dashboard fungeert als een intelligent controlecentrum. De modulaire, datagedreven architectuur op basis van \textit{Custom Metadata} (JSON) garandeert dat 24flow de onboarding in de toekomst eenvoudig kan schalen of aanpassen. Daarnaast is de grootste technische uitdaging—het garanderen van data-integriteit—succesvol opgelost door de implementatie van \textit{field-level validation} in de backend (Apex). Hierdoor valideert het systeem accuraat of een gebruiker de vereiste acties daadwerkelijk heeft voltooid, waardoor 'valse voltooiing' door systeemstandaarden wordt geëlimineerd. 
+
+Concluderend kan gesteld worden dat deze hybride oplossing het onboarding-proces aanzienlijk verbetert. Door het bieden van gestructureerd overzicht, contextuele documentatie en gerichte navigatie naar de juiste instellingen, worden nieuwe beheerders in staat gesteld om 24flow sneller en met meer vertrouwen in te richten. Dit verlaagt niet alleen de drempel voor adoptie en de \textit{Time-to-Value} voor de klant, maar verlicht op de lange termijn ook de druk op de supportafdeling. Het ontwikkelde proof of concept toont daarmee succesvol aan dat zelfs de meest complexe applicatie-configuraties toegankelijk gemaakt kunnen worden, mits de juiste balans wordt gevonden tussen overzicht, sturing en geautomatiseerde validatie.
 
 % TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de   test
 % onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en

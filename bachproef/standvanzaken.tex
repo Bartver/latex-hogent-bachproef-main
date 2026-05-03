@@ -483,7 +483,14 @@ Aan de linkerkant bevindt zich de interactieve onboarding component (\textit{24f
 \noindent\textbf{B. Documentatie-viewer}\\
 Aan de rechterkant van het scherm bevindt zich de documentatie-viewer. Door deze direct naast de setup-kolom te plaatsen, kan de gebruiker de uitleg uit de 24flow documentatie raadplegen en tegelijkertijd links in het scherm de configuratie-knoppen bedienen. Technisch communiceren de twee kolommen via de \textit{Lightning Message Service} (LMS); zodra er links een help-actie plaatsvindt, ontvangt de viewer een bericht en laadt direct de juiste URL in het \texttt{iframe} Hiermee kan de gebruiker per configuratie stap direct de gelinkte documentatie openen in hetzelfde scherm. Dit elimineert de noodzaak om constant tussen verschillende browsertabbladen te wisselen en zelf op zoek te gaan naar de locatie van bepaalde documentatie, wat het vinden van de nodige info aanzienlijk versnelt.
 
-
+\vspace{0.3cm}
+\noindent\textbf{C. Interactieve Schermbegeleiding (Walkthroughs)}\\
+De visuele ondersteuning wordt gecompleteerd door de integratie van Salesforce In-App Guidance. Waar het dashboard en de viewer de kaders scheppen, vindt de feitelijke sturing plaats op de applicatiepagina's zelf:
+\begin{itemize}
+	\item \textbf{Targeted Prompts:} Zodra de gebruiker een taak start vanuit het dashboard, verschijnen op de doelpagina vensters die met een pijl direct naar de relevante knoppen of velden wijzen. Dit elimineert zoekwerk binnen de uitgebreide Salesforce-interface en begeleidt de gebruiker visueel bij de configuratie.
+	\item \textbf{Docked Prompts:} Voor complexere uitleg wordt een vastgezet paneel gebruikt dat media (zoals video-tutorials) en uitgebreide instructies kan bevatten. Dit paneel blijft zichtbaar terwijl de gebruiker de handelingen uitvoert, wat zorgt voor een continue instructiestroom.
+	\item \textbf{Gecoördineerde Flow:} De walkthroughs zijn opgebouwd als een ketting van interacties die over meerdere schermen en tabbladen heen kunnen lopen. Het dashboard zorgt ervoor dat de juiste walkthrough op het exacte moment van aankomst op de pagina wordt geactiveerd, waardoor instructie en uitvoering naadloos in elkaar overvloeien.
+\end{itemize}
 \subsection{Architectuur van de backend}
 
 De backend van het onboarding-systeem is opgedeeld in twee duidelijke verantwoordelijkheden: de opslag van de configuratiedata (de datastructuur) en de actieve uitvoeringslogica (de Apex controller).
@@ -512,70 +519,83 @@ De actieve server-side logica wordt afgehandeld door één centrale Apex-klasse 
 \section{Evaluatie}%
 \label{sec:Evaluatie}
 
-In dit hoofdstuk wordt het ontwikkelde proof of concept kritisch geëvalueerd. Het doel van deze evaluatie is om vast te stellen in hoeverre de hybride onboarding-oplossing beantwoordt aan de vooraf gestelde requirements, hoe het systeem presteert onder praktische scenario's (use cases), en waar zich nog technische of functionele beperkingen bevinden.
+In dit hoofdstuk wordt het ontwikkelde proof of concept kritisch geëvalueerd. Het doel van deze evaluatie is om vast te stellen in hoeverre de hybride onboarding-oplossing beantwoordt aan de vooraf gestelde requirements, hoe het systeem presteert onder praktische scenario's, en waar zich de grenzen van de huidige implementatie bevinden.
 
-\subsection{Toetsing aan de Requirements}
-Tijdens de requirements-analyse (zie Sectie \ref{sec:Requirements analyse}) zijn diverse eisen geprioriteerd via de MoSCoW-methode. De belangrijkste 'Must Haves' zijn succesvol gerealiseerd in het eindproduct:
+\subsection{Toetsing aan de Requirements (MoSCoW)}
+De rode draad van deze evaluatie is de toetsing aan de requirements-analyse. Onderstaande tabel geeft een volledig overzicht van alle geprioriteerde vereisten en hun status in het uiteindelijke PoC.
+
+\begin{table}[h!]
+	\centering
+	\caption{Volledig statusoverzicht van de MoSCoW-requirements}
+	\label{tab:moscow_volledig}
+	\small
+	\begin{tabular}{@{}llc@{}}
+		\toprule
+		\textbf{Prioriteit} & \textbf{Requirement} & \textbf{Status} \\ \midrule
+		\textbf{Must Have} & Zelfstandige Systeemconfiguratie (Onboarding flow) & Voltooid \\
+		& Centraal Dashboard (LWC Hub) & Voltooid \\
+		& Directe Navigatie en Walkthrough Activatie & Voltooid \\
+		& Automatische Voortgangsdetectie (Apex validation) & Voltooid \\
+		& Demo Data Generator (Apex) & Voltooid \\
+		& Hiërarchische Taakstructuur (Geneste JSON) & Voltooid \\
+		& Navigatie tussen objecten (Cross-tab/App) & Voltooid \\
+		& Documentatie Link op Dashboard & Voltooid \\ \midrule
+		\textbf{Should Have} & Video-integratie (Docked Prompts) & Voltooid \\
+		& Data Reset-functie (Clear all data) & Voltooid \\
+		& Opladen Eigen Data (CSV Upload) & Placeholder \\
+		& Taakbevestiging (Manueel markeren via LocalStorage) & Voltooid \\
+		& Custom Branding (SLDS \& Huisstijl) & Voltooid \\
+		& Documentatie Contextueel Linken (LMS per component) & Voltooid \\ \midrule
+		\textbf{Could Have} & Hervatten (Restart-logica \& Statusbehoud) & Voltooid \\
+		& Gebruikersstatistieken (Telemetrie via \texttt{logAction}) & Voltooid \\
+		& Gebruikersfeedback (Duimpjes) & Niet uitgevoerd \\
+		& Gamificatie (Animaties/Badges) & Niet uitgevoerd \\
+		& Zoekfunctionaliteit / Directe Support-link & Niet uitgevoerd \\ \midrule
+		\textbf{Won't Have} & Mobiele Ondersteuning \& Chatbot & Buiten scope \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+
+\subsubsection*{Analyse van de 'Must Haves'}
+Alle kritieke vereisten zijn succesvol geïmplementeerd en vormen de fundering van het systeem. De belangrijkste realisaties zijn:
 
 \begin{itemize}
-	\item \textbf{Centraal Dashboard \& Navigatie:} Het LWC-dashboard fungeert effectief als startpunt. Via de \textit{NavigationMixin} en de dynamische URL-parameter (\texttt{0.promptId}) wordt de gebruiker foutloos naar de juiste interface genavigeerd en start de bijbehorende In-App Guidance direct op.
-	\item \textbf{Geautomatiseerde Voortgangsdetectie:} De overstap van een basis record-check naar \textit{field-level validation} (waarde-status validatie) in de Apex-backend heeft het ontdekte probleem van 'valse voltooiing' verholpen. Het systeem detecteert nu accuraat of een configuratie daadwerkelijk door de gebruiker is uitgevoerd.
-	\item \textbf{Beheer van Testdata:} De integratie van de \textit{Generate} en \textit{Remove Demo Data} functionaliteiten stelt beheerders in staat om in een realistische omgeving de onboarding te doorlopen zonder de Salesforce-omgeving permanent te vervuilen.
+	\item \textbf{Centraal Dashboard en Slimme Navigatie:} De LWC-hub fungeert als de centrale 'controlekamer' van waaruit alle acties vertrekken. De navigatie-logica gaat verder dan simpele links door het injecteren van een \textit{promptId} in de URL-parameters. Hierdoor start de juiste Salesforce Walkthrough automatisch op bij aankomst op het doelscherm, wat de drempel voor de gebruiker aanzienlijk verlaagt.
+	\item \textbf{Hiërarchische Taakstructuur via JSON:} Door de complexe onboarding via de metadata-structuur op te delen in hoofdtaken en substappen, blijft het proces overzichtelijk. Dit voorkomt dat de beheerder overweldigd raakt door de hoeveelheid configuraties en bevordert een stapsgewijze, foutloze inrichting van de applicatie.
+	\item \textbf{Automatische Voortgangsdetectie:} In plaats van een oppervlakkige check op het bestaan van records, voert de Apex-backend \textit{field-level validation} uit. Het dashboard toont pas een succes-status wanneer de vereiste velden daadwerkelijk inhoudelijk correct zijn ingevuld, wat de betrouwbaarheid van de voortgangsrapportage garandeert.
+	\item \textbf{Demo Data Generator:} Deze functionaliteit lost het 'empty state'-probleem op. Door de omgeving direct te vullen met coherente testdata via asynchrone Apex-processen, ervaart de gebruiker onmiddellijk de visuele waarde van componenten zoals de Team Cockpit (\textit{time-to-value}).
+	\item \textbf{Cross-object Navigatie:} De implementatie ondersteunt processen die zich over meerdere Salesforce-apps en tabbladen uitspreiden. De walkthroughs blijven actief tijdens deze transities, waardoor de gebruiker nooit de draad van het proces verliest, ongeacht de locatie in het systeem.
 \end{itemize}
-Daarnaast zijn de voornaamste 'Should Haves', zoals het direct linken van context-specifieke documentatie via het \textit{Lightning Message Service} (LMS), eveneens operationeel in het proof of concept.
+
+\subsubsection*{Analyse van de 'Should Haves'}
+De 'Should Haves' zijn grotendeels operationeel en richten zich specifiek op het verhogen van de gebruiksvriendelijkheid:
+
+\begin{itemize}
+	\item \textbf{Contextueel Linken van Documentatie:} Dankzij de koppeling via de \textit{Lightning Message Service} (LMS) fungeert de documentatie-viewer als een proactieve assistent. Het elimineert 'context switching'; de juiste handleiding volgt de acties op het dashboard synchroon, zonder dat de gebruiker de applicatie hoeft te verlaten.
+	\item \textbf{Taakbevestiging (Manual Marking):} Voor stappen die buiten het bereik van automatische database-controles vallen—zoals specifieke instellingen in de Salesforce Setup-omgeving—biedt de handmatige taakbevestiging uitkomst. Door de status in de \textit{localStorage} te bewaren, behoudt de gebruiker de controle over het proces.
+	\item \textbf{Data Reset-functie:} De mogelijkheid om de omgeving volledig op te schonen (\textit{Clear All Data}) creëert een veilige 'zandbak'-ervaring. Gebruikers kunnen vrij experimenteren met configuraties en testdata, wetende dat zij met één actie kunnen terugkeren naar een schone lei.
+	\item \textbf{Custom Branding en Media:} Door strikt gebruik te maken van SLDS is de oplossing visueel consistent met de 24flow-huisstijl. De integratie van video-tutorials in de \textit{docked prompts} biedt bovendien een extra laag van ondersteuning voor de meest complexe configuratieonderdelen.
+	\item \textbf{CSV-Upload (Placeholder):} De interface voor het opladen van eigen data is als functionele placeholder aanwezig. De UI-component (modal) is operationeel, maar de feitelijke data-mapping is wegens de scope van dit project gereserveerd voor toekomstige ontwikkeling.
+\end{itemize}
+
+\subsubsection*{Evaluatie van de 'Could Haves'}
+Hoewel lager geprioriteerd, zijn \textbf{hervatten} en \textbf{telemetrie} volledig geïmplementeerd. De 'hervat'-logica zorgt ervoor dat een gebruiker nooit opnieuw hoeft te beginnen na een onderbreking. De telemetrie-logica (\texttt{logAction}) legt een fundament voor toekomstige analyses van het gebruikersgedrag, wat essentieel is voor de doorontwikkeling van het product.
 
 \subsection{Validatie van de Use Cases}
-Om de praktische inzetbaarheid te toetsen, is de oplossing geëvalueerd aan de hand van de drie eerder gedefinieerde use cases:
+De oplossing is getoetst aan de drie praktijkscenario's:
 \begin{enumerate}
-	\item \textbf{Initiële configuratie (Order Pool):} Het systeem begeleidde de testgebruiker succesvol van het dashboard naar de instellingen. De \textit{targeted prompts} bleken effectief in het aanwijzen van de verplichte velden zonder dat er voorkennis vereist was.
-	\item \textbf{Data Management:} Het genereren van testdata verliep asynchroon en zonder foutmeldingen, waarna de gebruikersinterface automatisch herlaadde en direct de correcte voortgangsstatus weergaf.
-	\item \textbf{Hervatten na onderbreking:} Wanneer een walkthrough voortijdig werd afgebroken en de gebruiker terugkeerde naar het dashboard, identificeerde het systeem correct dat de taak onvolledig was. De actieknop wijzigde dynamisch naar 'Restart', waardoor de gebruiker het proces naadloos kon vervolgen zonder overzicht te verliezen.
+	\item \textbf{Initiële configuratie:} De testgebruiker doorliep de volledige setup van de Order Pool. De \textit{targeted prompts} zorgden ervoor dat de aandacht direct op de juiste configuratievelden lag.
+	\item \textbf{Data Management:} Het genereren en wissen van data verliep vlekkeloos. De asynchrone afhandeling zorgde ervoor dat de gebruiker de interface kon blijven gebruiken terwijl de database-acties liepen.
+	\item \textbf{Hervatten:} De status-logica identificeerde correct een afgebroken walkthrough en bood direct de 'Restart'-optie aan, wat de continuïteit van de onboarding waarborgde.
 \end{enumerate}
 
-\subsection{Technische Evaluatie en Performantie}
-Evaluatie van de Requirements (MoSCoW)
-Om de effectiviteit van het ontwikkelde proof of concept te valideren, worden de resultaten direct getoetst aan de vooraf opgestelde vereisten.
+\subsection{Technische Performantie en Beperkingen}
+Het systeem opereert ruim binnen de Salesforce \textit{governor limits}. De JSON-gebaseerde architectuur garandeert dat de metadata-belasting minimaal blijft. 
+\\
+De voornaamste \textbf{beperking} blijft van technische aard: Salesforce staat niet toe dat In-App Guidance wordt weergegeven op administratieve 'Setup'-pagina's. Hoewel de documentatie-viewer en de directe navigatie dit deels opvangen, blijft dit een fundamentele platformrestrictie die een 100\% volledige in-app begeleiding verhindert.
 
-1. Must Haves (Kritieke vereisten)
-Alle als kritiek gemarkeerde vereisten zijn succesvol geïmplementeerd in het PoC:
-
-Centraal Dashboard & Directe Navigatie: De gebruiker heeft één duidelijk startpunt (de LWC). Vanaf hier zorgt de navigatielogica voor een naadloze overgang naar de juiste instellingenpagina, inclusief de automatische activatie van de bijbehorende Salesforce walkthrough.
-
-Geautomatiseerde Voortgangsdetectie: Door middel van Apex-validatie op veldniveau (in plaats van louter op recordniveau) is de valse voltooiing geëlimineerd. Het systeem registreert pas vooruitgang wanneer een gebruiker daadwerkelijk configuraties heeft opgeslagen.
-
-Demo Data Generator: De asynchrone Apex-generator functioneert correct, waardoor gebruikers de omgeving met één druk op de knop kunnen vullen met data om een realistische werkcontext te creëren.
-
-2. Should Haves (Belangrijke aanvullingen)
-Verschillende belangrijke aanvullingen die de gebruikerservaring aanzienlijk verbeteren, zijn eveneens gerealiseerd:
-
-Documentatie Linken: Via de geïntegreerde documentatie-viewer in de Utility Bar krijgt de gebruiker bij elke stap de exact juiste handleiding te zien, wat het zoekwerk (context switching) minimaliseert.
-
-Data Reset-functie: De gebruiker kan de gegenereerde demodata veilig wissen om terug te keren naar een schone omgeving.
-
-3. Could Haves & Won't Haves (Toekomstig werk en Beperkingen)
-Tijdens de evaluatie en implementatie kwamen de architecturale grenzen van het Salesforce-platform aan het licht, wat resulteerde in enkele expliciete beperkingen:
-
-Beperking in Setup & App Builder: Zoals aangegeven in de analyse, wordt native In-App Guidance niet ondersteund in administratieve interfaces zoals de Setup of de Lightning App Builder. Voor stappen die hier plaatsvinden, valt de actieve schermbegeleiding weg. Het PoC vangt dit deels op door de gebruiker sterk te laten leunen op de documentatie-viewer, maar het blijft een significante technische limitatie.
-
-Eigen Data Upload (Could Have): Deze feature is in het huidige PoC niet uitgewerkt. Het dashboard werkt momenteel uitsluitend met gestandaardiseerde demodata, wat als aanbeveling voor een volgende iteratie dient.
-Het systeem is ontworpen met strikt respect voor de technische limieten van het Salesforce-platform (governor limits). Omdat het dashboard regelmatig de backend raadpleegt (via \texttt{refreshApex}), zijn de SOQL-queries in de Apex-controller streng geoptimaliseerd. Door efficiënt gebruik te maken van \texttt{LIMIT 1} queries en uitsluitend specifieke veld-selecties op te halen, blijft de belasting op de database minimaal. Dit garandeert dat de laadtijd van het dashboard nagenoeg onmerkbaar blijft, wat resulteert in een vloeiende gebruikerservaring. Bovendien waarborgt de JSON-architectuur via \textit{Custom Metadata} dat de oplossing in de toekomst schaalbaar en onderhoudbaar blijft zonder benodigde code-aanpassingen.
-
-\subsection{Beperkingen en Toekomstige Ontwikkelingen}
-Hoewel het proof of concept de primaire doelstellingen ruimschoots behaalt, zijn er enkele academische en functionele beperkingen te benoemen die ruimte bieden voor toekomstige ontwikkeling:
-\begin{itemize}
-	\item \textbf{Diepgang van Validatie:} De huidige \textit{field-level validation} controleert succesvol óf vereiste velden zijn ingevuld (bijv. middels een null-check), maar het valideert op dit moment niet of de ingevoerde data bedrijfsmatig en logisch 100\% correct is.
-	\item \textbf{Analytische Inzichten:} Het systeem biedt de individuele gebruiker helder inzicht in de eigen voortgang, maar verzamelt momenteel geen overkoepelende telemetrie-data op een centraal niveau. Een analytische laag om te meten op welke stappen gebruikers het vaakst vastlopen of afhaken, zou zeer waardevol zijn voor de continue optimalisatie van het proces.
-\end{itemize}	
-\section{Algemene Conclusie}%
-\label{sec:Conclusie}
-
-Het initiële configuratieproces van een veelzijdige bedrijfsapplicatie zoals 24flow binnen een Salesforce-omgeving is een complexe taak. Voorheen vereiste dit proces vaak intensieve ondersteuning of liep een systeembeheerder het risico te verdwalen in de vele instellingen en afhankelijkheden. Het hoofddoel van dit onderzoek was om een oplossing te ontwerpen en te ontwikkelen die de zelfredzaamheid van nieuwe gebruikers maximaliseert en het onboarding-proces stroomlijnt.
-
-Uit de analyse bleek dat de native Salesforce In-App Guidance krachtige functionaliteiten biedt voor actieve schermbegeleiding, maar tekortschiet in het bieden van een helikopterview en geautomatiseerde voortgangsdetectie. Om dit hiaat te overbruggen, is er succesvol een hybride proof of concept ontwikkeld. Deze oplossing combineert de interactieve walkthroughs van Salesforce met een op maat gemaakt 'Onboarding Dashboard', gebouwd als een moderne Lightning Web Component (LWC). 
-
-Dit dashboard fungeert als een intelligent controlecentrum. De modulaire, datagedreven architectuur op basis van \textit{Custom Metadata} (JSON) garandeert dat 24flow de onboarding in de toekomst eenvoudig kan schalen of aanpassen. Daarnaast is de grootste technische uitdaging—het garanderen van data-integriteit—succesvol opgelost door de implementatie van \textit{field-level validation} in de backend (Apex). Hierdoor valideert het systeem accuraat of een gebruiker de vereiste acties daadwerkelijk heeft voltooid, waardoor 'valse voltooiing' door systeemstandaarden wordt geëlimineerd. 
-
-Concluderend kan gesteld worden dat deze hybride oplossing het onboarding-proces aanzienlijk verbetert. Door het bieden van gestructureerd overzicht, contextuele documentatie en gerichte navigatie naar de juiste instellingen, worden nieuwe beheerders in staat gesteld om 24flow sneller en met meer vertrouwen in te richten. Dit verlaagt niet alleen de drempel voor adoptie en de \textit{Time-to-Value} voor de klant, maar verlicht op de lange termijn ook de druk op de supportafdeling. Het ontwikkelde proof of concept toont daarmee succesvol aan dat zelfs de meest complexe applicatie-configuraties toegankelijk gemaakt kunnen worden, mits de juiste balans wordt gevonden tussen overzicht, sturing en geautomatiseerde validatie.
+\subsection{Conclusie en Toekomstvisie}
+Het proof of concept bewijst dat een hybride aanpak — waarbij een centraal dashboard de regie voert over native guidance tools — een effectieve oplossing biedt voor complexe enterprise-onboarding. Toekomstige iteraties zouden kunnen focussen op het uitbreiden van de \textbf{validatie-logica} (niet alleen controleren \textit{of} er data is, maar ook of deze logisch klopt) en het visueel rapporteren van de verzamelde \textbf{telemetrie-data} voor consultants.
 %\begin{listing}
 %  \begin{minted}{python}
 %    import pandas as pd
