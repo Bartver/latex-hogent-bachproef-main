@@ -44,5 +44,14 @@
 % De samenvatting in de hoofdtaal van het document
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
+Het modulair platform dat 24flow aanbiedt aan maatwerkbedrijven zorgt voor uitgebreide mogelijkheden om hun complexe productieproces te controleren en verbeteren. Echter is het moeilijk voor nieuwe gebruikers om zelfstandig alle nodige configuraties op te zetten en vlot van start te gaan met het uitgebreide pakket. Er moet manueel uitgelegd worden hoe alles werkt en tutorials en tooltips binnen het platform zijn eerder beperkt.
+Daarom gaat dit onderzoek op zoek naar een antwoord op de vraag hoe de onboarding van nieuwe gebruikers op het 24flow platform, gebouwd binnen het salesforce ecosysteem, verbeterd kan worden en welke salesforce functionaliteiten hierbij kunnen helpen.
+\\
 
+Om te beantwoorden aan dit probleem werd er een proof of concept ontwikkeld waarbij een gebruiker op een onboarding pagina landt bij het eerste gebruik van de applicatie. Van hieruit kan er demodata gegenereerd worden en werd hij stapsgewijs gestuurd, configuratie per configuratie, met behulp van de in-app guidance functionaliteiten van salesforce. Hierbij is er steeds een link met de bestaande documentatie van 24flow en komt de gebruiker zelfstandig tot een werkende applicatie.
+\\
 
+Uit de evaluatie van dit proof of concept blijkt dat deze aanpak grotendeels effectief is. Het centrale dashboard met stapsgewijze opbouw, zorgt voor een duidelijk overzicht en aan de hand van walkthroughs kan de gebruiker per stap de nodige configuraties instellen. Hierbij is er de mogelijkheid om demodata te genereren om een realistische omgeving te creëren. Daarnaast detecteert het systeem accuraat de voortgang van de gebruiker bij het doorlopen van de onboarding. Ook zorgt een geïntegreerde documentatie-viewer dat de gebruiker direct toegang heeft tot meer diepgaande handleidingen waar nodig. 
+\\
+
+Een belangrijke beperking van deze oplossing is echter dat de Salesforce In-App Guidance niet wordt ondersteund binnen de systeeminstellingen (Setup). Hierdoor valt de actieve begeleiding weg bij een groot deel van de configuratie en is de gebruiker alsnog volledig afhankelijk van de documentatie voor deze delen. Desondanks toont dit onderzoek aan dat de algehele combinatie van een onboarding landingspagina en gerichte in-app guidance aan de hand van walkthroughs de drempel van een nieuwe gebruiker aanzienlijk verlaagt. Omdat het proof of concept momenteel werkt met testdata, wordt voor de toekomst aanbevolen een functionaliteit te implementeren om eigen bedrijfsdata te kunnen uploaden.

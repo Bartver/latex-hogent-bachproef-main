@@ -68,6 +68,27 @@ Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walk
 
 \section{Salesforce Analyse}%
 \label{sec:Salesforce analyse}
+Voordat er een technische oplossing voor de onboarding van 24flow kan worden uitgewerkt, is het essentieel om te begrijpen welke functionaliteiten Salesforce standaard aanbiedt. Eerst worden de kerncomponenten van de Salesforce In-App Guidance belicht, zoals prompts en walkthroughs en de configuratie hiervan. Vervolgens wordt besproken welke overzicht en analyse tools salesforce biedt om guidance te analyseren en beheren. 
+\\
+%todo
+Tot slot worden de technische restricties van deze tools kort toegelicht en wordt er gekeken naar de aanvullende 'Learning Paths' functionaliteit. 
+
+\subsection{Technologisch Kader en Begrippen}
+Om de technische context van dit onderzoek te verduidelijken, worden enkele belangrijke componenten en begrippen van het Salesforce-ecosysteem hieronder kort toegelicht.
+
+\begin{itemize}
+	\item \textbf{Lightning Experience (LEX):} De moderne, component-gebaseerde gebruikersinterface van Salesforce. LEX fungeert als een modulaire werkomgeving waarin componenten op flexibele pagina-layouts kunnen worden geplaatst.
+	
+	\item \textbf{Lightning Web Components (LWC):} Het moderne framework voor het bouwen van gebruikersinterfaces binnen Salesforce, gebaseerd op de huidige webstandaarden (HTML, moderne JavaScript en CSS).
+	
+	\item \textbf{Salesforce Lightning Design System (SLDS):} Een uitgebreid framework van CSS-richtlijnen en UI-componenten. SLDS zorgt voor een consistente visuele stijl en gebruikerservaring die naadloos aansluit op de standaard Salesforce-interface.
+	
+	\item \textbf{Apex:} Een objectgeoriënteerde, sterk getypeerde programmeertaal die op de servers van Salesforce wordt uitgevoerd. Het stelt ontwikkelaars in staat om complexe logica te implementeren.
+	
+	\item \textbf{Custom Metadata Types (MDT):} Een specifiek type record dat wordt gebruikt voor het opslaan van configuratiedata in plaats van transactionele bedrijfsdata. Metadata is uniek omdat de records zelf als onderdeel van de applicatiestructuur worden beschouwd.
+	
+\end{itemize}
+
 \subsection{In-App Guidance Tools}
 
 Volgens de officiële specificaties van Salesforce is deze functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden.
@@ -123,7 +144,7 @@ Waar een prompt beperkt is tot één enkele interactie op één scherm, biedt ee
 \end{itemize}
 
 \subsubsection*{3. Configuratie en Gedrag}
-De effectiviteit van in-app guidance wordt bepaald door de instellingen in de builder, die controleren waar, wanneer en voor wie de guidance verschijnt:
+De effectiviteit van in-app guidance wordt onder meer bepaald door de instellingen hiervan. De prompts en walkthroughs kunnen geconfigureerd worden in een guidance builder waar onder andere de inhoud, locatie en type gekozen kunnen worden.
 
 \begin{itemize}
 	\item \textbf{Locatie en Context:} Per prompt wordt de reikwijdte bepaald. Dit varieert van een specifieke pagina binnen één applicatie tot een globale weergave die overal in Salesforce verschijnt (Any Page, Any App). Dit maakt het mogelijk om de guidance precies af te stemmen op de specifieke omgeving waarin de gebruiker op dat moment werkt.
@@ -136,16 +157,17 @@ De effectiviteit van in-app guidance wordt bepaald door de instellingen in de bu
 \end{itemize}
 
 \subsection{Evaluatie}
-Naast de creatie en configuratie van in-app guidance biedt Salesforce de middelen om het gebruik ervan te analyseren en is er een overzichtscentrum van alle bestaande guidance voor de gebruiker:
+Naast de creatie en configuratie van in-app guidance biedt Salesforce enkele middelen om het gebruik ervan te analyseren en is er een overzichtscentrum van alle bestaande guidance voor de gebruiker:
 
 \begin{itemize}
 	\item \textbf{Gebruikersinzichten (Analytics):} Het systeem verzamelt automatisch data over de interactie met de guidance, zoals het aantal weergaven, het gebruik van actieknoppen (\textit{Click-through Rate}) en het aantal keer dat een prompt of stap voortijdig wordt gesloten. Deze inzichten stellen admins in staat om te beoordelen of de getoonde informatie relevant is en waar instructies eventueel geoptimaliseerd moeten worden.
 	
-	\item \textbf{Guidance Center:} Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen. Van hieruit kunnen ook learning paths gebruikt worden.
+	%todo Remove or alter guidance center, not useful for guidance
+	\item \textbf{Guidance Center:} Dit fungeert als een centrale leeromgeving voor de gebruiker, bereikbaar via het vraagteken-icoon in de interface. Walkthroughs en specifieke bronnen die aan de gebruiker zijn toegewezen, blijven hier opgeslagen. Van hieruit kunnen ook learning paths gebruikt worden. Dit zijn leerpaden die een gebruiker kan doorlopen om een bepaald onderwerp te leren kennen/uitproberen.
 \end{itemize}
 
 \subsection{Restricties en Limitaties}
-Hoewel in-app guidance een krachtige tool is, kent het enkele strikte limieten waarmee tijdens de implementatie rekening gehouden moet worden:
+Hoewel in-app guidance een krachtige tool kan zijn, kent het enkele strikte limieten waarmee tijdens de implementatie rekening gehouden moet worden:
 
 \begin{itemize}
 	\item \textbf{Desktop Exclusief:} In-App Guidance is exclusief ontworpen voor de desktopversie van Lightning Experience; de functionaliteit wordt momenteel niet ondersteund in de mobiele Salesforce-applicatie.
@@ -153,19 +175,95 @@ Hoewel in-app guidance een krachtige tool is, kent het enkele strikte limieten w
 	\item \textbf{Stappenlimiet:} Een enkele walkthrough is technisch gelimiteerd tot maximaal tien opeenvolgende stappen (prompts).
 \end{itemize}
 
-\subsection{Learning Paths}
-TODO
-
 \section{Requirements Analyse}%
 \label{sec:Requirements analyse}
 
-Voor de technische uitwerking, is het cruciaal om de vereisten van het systeem helder in kaart te brengen. In deze sectie worden de doelgroep, de niet-functionele requirements en de functionele requirements gedefinieerd en geprioritiseerd.
-
-\subsection{Doelgroep}
-Het onboarding-systeem is specifiek ontworpen met één primaire doelgroep in gedachten: de \textbf{Systeembeheerder (Admin)} van het bedrijf dat het 24flow pakket wil installeren en configureren.
+Uit de voorgaande Salesforce analyse lijkt de native In-App Guidance uitstekend geschikt om een gebruiker te begeleiden bij allerlei soorten processen. Voor de initiële setup van een complexe applicatie zoals 24flow moet deze guidance ook duidelijk georganiseerd worden. Daarom wordt er voor het proof of concept gewerkt met een op maat gemaakt 'Onboarding Dashboard' waar de gebruiker op landt bij het starten van de applicatie. Dit dashboard fungeert als een centrale hub die de gebruiker een duidelijk stappenplan en houvast biedt. Vanuit dit overzicht kan de gebruiker dan stap per stap de nodige configuraties opzetten met behulp van de in-app guidance zonder het overzicht te verliezen en met een duidelijke houvast.
 \\
 
-Wanneer deze persoon de 24flow-applicatie installeert in een nieuwe Salesforce-omgeving, is het doel om de applicatie zo snel en foutloos mogelijk operationeel te krijgen, zonder hiervoor externe hulp nodig te hebben. Hoewel deze persoon normaal al over algemene Salesforce kennis beschikt, ontbreekt de specifieke kennis over de unieke architectuur en vereiste configuraties van 24flow nog. Het onboarding systeem moet deze dan ook in staat stellen om de volledige initiële setup zelfstandig uit te voeren, zonder dat directe ondersteuning van een 24flow-expert noodzakelijk is.
+Voor de technische uitwerking van deze oplossing is het cruciaal om de vereisten van het systeem helder in kaart te brengen. In deze sectie worden de kerncomponenten van 24flow, de doelgroep, de niet-functionele requirements en de specifieke functionele requirements gedefinieerd en geprioritiseerd.
+\subsection{Kerncomponenten van 24flow}
+\label{subsec:kerncomponenten_24flow}
+
+Om de complexiteit van de onboarding te begrijpen, is inzicht in de modulaire opbouw van 24flow noodzakelijk. Het platform bestaat uit verschillende interactieve componenten die nauw met elkaar verbonden zijn via Salesforce-data:
+
+\begin{itemize}
+	\item \textbf{Order Pool:} Een centraal overzicht waar alle productieorders binnenkomen. Deze component fungeert als de ``ingang'' van de fabriek. De effectiviteit van de Order Pool hangt af van de juiste filtering en weergave van velden (zoals leverdatum en producttype). 
+	\item \textbf{Team Cockpit:} Een visueel bord waarop operatoren de status van bewerkingen (bijv. \textit{In Buffer, In Process, QA}) kunnen opvolgen. Dit is het hart van de werkvloer-aansturing.
+	\item \textbf{Production Orders \& Operations:} Dit zijn de achterliggende datastructuren. Een productieorder bestaat uit meerdere bewerkingen (operations) die door verschillende teams uitgevoerd moeten worden.
+\end{itemize}
+
+\subsubsection*{De afhankelijkheid van data}
+Een fundamenteel kenmerk van deze componenten is dat zij \textbf{visueel georiënteerd} zijn. Een Order Pool zonder records is een lege tabel, en een Team Cockpit zonder actieve bewerkingen toont enkel lege kolommen. Dit creëert een drempel tijdens de onboarding:
+
+\begin{enumerate}
+	\item \textbf{Visualisatie van de waarde:} Een beheerder kan de impact van een configuratiewijziging (bijv. een nieuwe sorteervolgorde) enkel beoordelen als er data aanwezig is om mee te testen.
+	\item \textbf{Complexiteit van handmatige invoer:} Omdat productiegegevens in 24flow bestaan uit complexe relaties tussen orders, bewerkingen en teams, is het handmatig aanmaken van test-records tijdrovend en foutgevoelig.
+\end{enumerate}
+
+Dit rechtvaardigt de opname van een \textbf{Demo Data Generator} en een \textbf{CSV-import functionaliteit} als kritieke onderdelen van de onboarding. Deze tools zorgen ervoor dat de gebruiker direct met een gevulde interface kan werken, wat essentieel is voor een succesvolle configuratie.
+
+\subsection{Doelgroep}
+\label{subsec:doelgroepanalyse}
+
+Het onboarding-systeem is ontworpen als een veelzijdige interface die inspeelt op de behoeften van verschillende gebruikersgroepen binnen het 24flow-ecosysteem. Hoewel de technische handelingen (het configureren van Salesforce) voor elke groep gelijkaardig zijn, verschillen hun doelstellingen en de gewenste snelheid van het proces aanzienlijk.
+
+We onderscheiden drie primaire persona's:
+
+\begin{description}
+	\item[1. De Salesforce beheerder van de klant] \hfill \\
+	Dit is de beheerder binnen het bedrijf die verantwoordelijk is voor de langetermijn-implementatie.
+	\begin{itemize}
+		\item \textbf{Doel:} De applicatie zelfstandig en foutloos operationeel krijgen en houden.
+		\item \textbf{Behoefte:} Diepgaand begrip van de instellingen. Voor deze gebruiker is de \textit{Guided Track} (de handmatige walkthroughs met documentatie) essentieel. De focus ligt hier op educatie en eigenaarschap van het systeem, zodat zij bij latere wijzigingen in het productieproces niet afhankelijk zijn van externe consultants.
+	\end{itemize}
+	
+	\item[2. De Solution Engineer (De interne expert)] \hfill \\
+	Consultants of technici van 24flow zelf die nieuwe klantomgevingen klaarmaken voor gebruik.
+	\begin{itemize}
+		\item \textbf{Doel:} Efficiëntie en standaardisatie.
+		\item \textbf{Behoefte:} Het proces van een nieuwe ``org-setup'' is voor hen herhalend werk. Voor deze gebruiker biedt de \textit{Auto-Configuration} via industrie-specifieke templates (bijv. Metaal of Hout) een enorme tijdsbesparing. Het dashboard fungeert voor hen als een checklist die garandeert dat er geen essentiële stappen worden overgeslagen, wat de kwaliteit van de oplevering verhoogt.
+	\end{itemize}
+	
+	\item[3. De Prospect (De potentiële klant in evaluatiefase)] \hfill \\
+	Bedrijven die 24flow overwegen en een ``proefversie'' (trial) aanvragen om de waarde van het platform te ontdekken.
+	\begin{itemize}
+		\item \textbf{Doel:} Snelle evaluatie en de ``Wow-factor''.
+		\item \textbf{Behoefte:} Een prospect heeft vaak weinig tijd en wil direct resultaat zien zonder eerst dikke handleidingen te lezen. Voor hen is de \textit{Fast Track} (Auto-configuratie gecombineerd met de Demo Data Generator) cruciaal. Het dashboard stelt hen in staat om binnen enkele minuten een volledig functionele omgeving te creëren die gevuld is met data, waardoor de drempel tot aankoop wordt verlaagd (\textit{Time-to-Value}).
+	\end{itemize}
+\end{description}
+
+\begin{table}[h]
+	\centering
+	\caption{Overzicht van persona's en hun interactie met het onboarding-systeem.}
+	\label{tab:doelgroep_vergelijking}
+	\small
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		\textbf{Persona} & \textbf{Primaire Motivatie} & \textbf{Sleutelfunctie Dashboard} \\ \midrule
+		Systeembeheerder & Zelfredzaamheid \& Begrip & Guided Walkthroughs \& Documentatie \\
+		Solution Engineer & Snelheid \& Standaardisatie & Master Auto-Configuration \\
+		Prospect & Evaluatie \& Verkenning & Demo Data Generator \& Templates \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Centralisatie: Het Dashboard als Controlekamer}
+\label{subsec:centralisatie_dashboard}
+
+De primaire reden voor de ontwikkeling van een dashboard is de centralisatie van verspreide configuratiestappen. In een standaard Salesforce-omgeving moet een beheerder navigeren door talloze menu's en objecten, wat leidt tot een gefragmenteerde gebruikerservaring. Het dashboard lost dit op door te fungeren als een centrale hub:
+
+\begin{itemize}
+	\item \textbf{Eén startpunt (Single Source of Truth):} In plaats van te zoeken naar de juiste instellingenpagina, vindt de gebruiker alle noodzakelijke acties op één scherm. Dit elimineert zoekwerk en navigatiefouten.
+	\item \textbf{Gecombineerde tools:} Het dashboard brengt functies samen die normaal gescheiden zijn:
+	\begin{itemize}
+		\item \textbf{Configuratie:} Directe links om walkthroughs en automatische setups te starten.
+		\item \textbf{Data-beheer:} Knoppen om direct testdata te genereren of te wissen.
+		\item \textbf{Documentatie:} Een constante link naar externe handleidingen zonder de applicatie te verlaten.
+	\end{itemize}
+	\item \textbf{Gecentraliseerde status:} Door handmatige taken, automatische checks en externe walkthroughs in één voortgangsbalk te gieten, krijgt de gebruiker een uniform overzicht van de volledige installatie.
+\end{itemize}
+
+Kortom, het dashboard transformeert de onboarding van een reeks losse acties naar een gestroomlijnd proces vanuit één centrale controlekamer.
 
 \subsection{Niet-Functionele Requirements}
 De oplossing moet voldoen aan de volgende technische randvoorwaarden binnen het Salesforce-platform:
@@ -344,7 +442,140 @@ Wanneer de gebruiker in het dashboard een taak start, navigeert het systeem dire
 	\label{fig:wireframe_walkthrough}
 \end{figure}
 
+\section{Realisatie en Implementatie}
 
+In dit hoofdstuk wordt de technische en functionele realisatie van het proof of concept besproken. Waar de voorgaande secties zich richtten op de vereisten en het conceptuele ontwerp, focust dit deel op de daadwerkelijke vertaalslag naar een werkende oplossing binnen het Salesforce-platform. 
+
+De architectuur van de oplossing is fundamenteel opgebouwd uit twee samenwerkende lagen. Enerzijds is er de native Salesforce In-App Guidance, die verantwoordelijk is voor de actieve schermbegeleiding. Anderzijds is er een maatwerk applicatie ontwikkeld: het Onboarding Dashboard. Dit dashboard, gebouwd als een moderne Lightning Web Component (LWC), fungeert als het controlecentrum. Het leest configuratiedata uit, stuurt de gebruiker naar de juiste applicatie-onderdelen, en valideert op de achtergrond (via Apex) of de benodigde datastructuren succesvol zijn aangemaakt.
+
+In de volgende paragrafen worden de belangrijkste pijlers van deze implementatie toegelicht: de dynamische opbouw van het dashboard, de integratie met de native guidance tools, en de robuuste logica achter de voortgangsdetectie.
+
+\subsection{Architectuur van de front-end}
+
+De visuele kern van het proof of concept wordt gevormd door het 'Onboarding Dashboard'. Omdat de nodige configuraties verspreid zijn over allerlei schermen, menu's en salesforce instellingen, is er gekozen om dit dashboard als centrum voor de onboarding te laten dienen. De gebruiker vertrekt steeds vanuit deze pagina om alles op te zetten en wordt ook steeds hiernaartoe terug geleid.
+
+\subsubsection*{Lightning Web Components (LWC)}
+De interface is volledig gebouwd met Lightning Web Components (LWC) en het Salesforce Lightning Design System (SLDS). Het benutten van deze standaard architectuur is om twee redenen cruciaal voor de effectiviteit van het dashboard:
+
+\begin{enumerate}
+	\item \textbf{Consistente User Experience:} Door SLDS toe te passen, is de component visueel niet te onderscheiden van de native Salesforce-omgeving. Dit vergroot het vertrouwen en de herkenbaarheid voor de gebruiker.
+	\item \textbf{Reactieve UI:} LWC leunt sterk op \textit{reactive data binding}. Wanneer de backend (Apex) registreert dat een configuratiestap is voltooid, of wanneer een proces loopt dat even moet laden (zichtbaar via de \texttt{lightning-spinner} component), worden de interface-elementen direct en asynchroon geüpdatet, zonder dat de gebruiker de pagina hoeft te herladen.
+\end{enumerate}
+
+\subsubsection*{Opbouw van de User Interface}
+Initieel in de wireframes was het dashboard zo opgebouwd dat aan de linkerkant de configuratiestappen stonden en rechts enkele extra tools.
+Om de gebruiker echter zoveel mogelijk op het centrale scherm te houden en de documentatie hier ook rechtstreeks te kunnen tonen, is het dashboard in de eigenlijke implementatie visueel opgedeeld in twee secties: een linkerkolom met de echte configuratiestappen en enkele tools daarboven en een rechterkolom puur om documentatie te tonen.
+
+\vspace{0.3cm}
+\noindent\textbf{A. De Setup-kolom (Configuratie \& Tools)}\\
+Aan de linkerkant bevindt zich de interactieve onboarding component (\textit{24flow Setup Assistant}). Deze is opgebouwd uit drie logische lagen:
+\begin{itemize}
+	\item \textbf{Voortgang, Data \&  Default configuratie:} Bovenaan bevindt zich een overkoepelende voortgangsbalk, waarop de gebruiker in percentages ziet hoeveel hij al geconfigureerd heeft. Deze balk is reactief: de logica combineert actuele database-controles uit de backend met lokale browser-opslag (\textit{localStorage}) voor handmatige taken, om zo het percentage te berekenen. Direct daaronder worden twee blokken getoond met algemene configuratie: 
+	\begin{itemize}
+		\item \textit{Demo Data Management:} Enerzijds een knop om via een Apex-proces automatisch demodata te genereren, zodat de gebruikersomgeving gevuld wordt met realistische productiedata. Anderzijds een placeholder knop om een eigen CSV-bestand in te laden met echte data van de klant, dit is een placeholder omdat het buiten de scope van deze proof of concept valt. Tijdens deze zware database-acties vergrendelt de component de interface met een laadscherm (\textit{spinner}) om dubbele acties te voorkomen. Onderaan de component is eveneens een reset-knop voorzien om deze data veilig te verwijderen en de gebruikersomgeving op te kuisen.
+		\item \textit{Master Auto-Configuration:} Een geavanceerde functionaliteit waarmee de gebruiker voor alle 24flow componenten een aantal default instellingen aanmaakt waar mogelijk. Dit is bedoeld voor de gebruiker die snel 24flow in werking wil zien en wil kunnen testen zonder hiervoor alle configuratie in detail te moeten doorlopen.
+	\end{itemize}
+	\item \textbf{Hiërarchische Takenlijst:} Daaronder volgt het stappenplan in een uitklapbare (accordion) structuur. Configuratietaken zijn gegroepeerd met duidelijke titels, beschrijvingen, een indicatie van de geschatte uitvoeringstijd en een aanduiding of deze stap wel of niet gedaan is.
+	\item \textbf{Substappen:} Binnen elke hoofdtaak bevinden zich enkele specifieke substappen met een geschatte uitvoeringstijd. Op dit niveau kan de gebruiker ervoor kiezen om een stap handmatig te configureren (wat de navigatie naar de juiste pagina triggert, waarbij het systeem op de achtergrond een signaal meegeeft om direct de juiste In-App Guidance walkthrough op te starten), direct gerelateerde documentatie te openen, of de taak handmatig als voltooid te markeren. Dit laatste is nodig omdat niet automatisch gecontroleerd kan worden of bepaalde salesforce setup instellingen en salesforce pagina's zijn aangemaakt.
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{B. Documentatie-viewer}\\
+Aan de rechterkant van het scherm bevindt zich de documentatie-viewer. Door deze direct naast de setup-kolom te plaatsen, kan de gebruiker de uitleg uit de 24flow documentatie raadplegen en tegelijkertijd links in het scherm de configuratie-knoppen bedienen. Technisch communiceren de twee kolommen via de \textit{Lightning Message Service} (LMS); zodra er links een help-actie plaatsvindt, ontvangt de viewer een bericht en laadt direct de juiste URL in het \texttt{iframe} Hiermee kan de gebruiker per configuratie stap direct de gelinkte documentatie openen in hetzelfde scherm. Dit elimineert de noodzaak om constant tussen verschillende browsertabbladen te wisselen en zelf op zoek te gaan naar de locatie van bepaalde documentatie, wat het vinden van de nodige info aanzienlijk versnelt.
+
+
+\subsection{Architectuur van de backend}
+
+De backend van het onboarding-systeem is opgedeeld in twee duidelijke verantwoordelijkheden: de opslag van de configuratiedata (de datastructuur) en de actieve uitvoeringslogica (de Apex controller).
+
+\subsubsection*{Datastructuur: Configuratie via Custom Metadata}
+\label{subsec:dynamische_datastructuur}
+
+De volledige configuratie van het onboarding-dashboard (bestaande uit de geneste stappen, titels, iconen, looptijden en documentatie-links) is bewust niet \textit{hardcoded} in het JavaScript-bestand van de Setup Assistant. De voornaamste reden hiervoor is het schoon en leesbaar houden van de codebase (\textit{Separation of Concerns}). 
+
+Wanneer een uitgebreide, hiërarchische datastructuur direct in de front-end code wordt gedefinieerd, resulteert dit in een onoverzichtelijk bestand waarin statische tekst en executielogica door elkaar lopen. Om de LWC puur te richten op functionaliteit, is de inhoudelijke data losgekoppeld en opgeslagen als een \textbf{JSON-geformatteerde string}. 
+
+Binnen het Salesforce-ecosysteem is het de \textit{best practice} om dergelijke applicatie-configuraties te bewaren in \textit{Custom Metadata Types} (MDT). Deze records reizen native mee met de applicatie-installatie. Bij het inladen van het dashboard haalt de applicatie dit MDT-record op en parset de JSON naar een bruikbaar object. De LWC fungeert vervolgens simpelweg als een renderer die deze structuur vertaalt naar de visuele stappenlijst. Dit voorkomt vervuiling van de logica-laag en resulteert in een robuuste, onderhoudbare architectuur.
+
+\subsubsection*{Controller-logica: De Apex Backend}
+\label{subsec:backend_controller}
+
+De actieve server-side logica wordt afgehandeld door één centrale Apex-klasse (\texttt{OnboardingController}). Deze fungeert als de brug tussen de interface en de Salesforce-database. De controller faciliteert vijf specifieke domeinen binnen het onboarding-proces:
+
+\begin{enumerate}
+	\item \textbf{Metadata \& Configuratie-injectie:} De basis van de applicatie wordt gevoed door de methode \texttt{getOnboardingConfig}. Deze haalt de eerder genoemde JSON-string op uit de Custom Metadata en levert deze veilig en asynchroon af aan de LWC frontend.
+	\item \textbf{Statusvalidatie \& Voortgangscontrole:} Om te garanderen dat het dashboard de werkelijke voortgang weerspiegelt, bevat de controller de methode \texttt{getTaskStatus}. In plaats van louter te vertrouwen op client-side 'vinkjes', voert deze methode actuele SOQL-queries uit in de database. Er wordt gecontroleerd of de vereiste records (zoals \textit{Teams} of \textit{Work Centers}) daadwerkelijk zijn aangemaakt en of specifieke velden correct zijn ingevuld. Deze gevalideerde status wordt teruggestuurd naar de UI.
+	\item \textbf{Geautomatiseerde Setup (Auto-Config):} De backend biedt methodes aan (zoals \texttt{autoConfigureOrderPool} en \texttt{autoConfigureTeamCockpit}) die zware handmatige configuraties automatiseren. Op basis van een gekozen industrie-template voert de Apex-logica complexe DML-operaties uit om in één keer de juiste instellingen, procesparameters en veldwaarden over meerdere tabellen heen te configureren.
+	\item \textbf{Data Lifecycle Management:} Om de gebruiker te voorzien van een veilige testomgeving, beheert de backend de demodata. De \texttt{runDemoDataSetup} genereert een coherente set testdata. Daartegenover staat de \texttt{clearAllData}-methode, welke een cascade-delete uitvoert om deze gegenereerde records en instellingen veilig te verwijderen, zodat de org kan worden gereset naar een 'clean slate'.
+	\item \textbf{Telemetrie:} Via de \texttt{logAction}-methode beschikt het systeem over een interne tracking-functionaliteit. Significante interacties—zoals het starten van een configuratie of het voltooien van een auto-setup—worden gelogd in een database-object. Dit is functioneel ingebouwd zodat het ontwikkelteam van 24flow kan analyseren hoe nieuwe gebruikers het onboarding-proces doorlopen.
+\end{enumerate}
+\section{Evaluatie}%
+\label{sec:Evaluatie}
+
+In dit hoofdstuk wordt het ontwikkelde proof of concept kritisch geëvalueerd. Het doel van deze evaluatie is om vast te stellen in hoeverre de hybride onboarding-oplossing beantwoordt aan de vooraf gestelde requirements, hoe het systeem presteert onder praktische scenario's (use cases), en waar zich nog technische of functionele beperkingen bevinden.
+
+\subsection{Toetsing aan de Requirements}
+Tijdens de requirements-analyse (zie Sectie \ref{sec:Requirements analyse}) zijn diverse eisen geprioriteerd via de MoSCoW-methode. De belangrijkste 'Must Haves' zijn succesvol gerealiseerd in het eindproduct:
+
+\begin{itemize}
+	\item \textbf{Centraal Dashboard \& Navigatie:} Het LWC-dashboard fungeert effectief als startpunt. Via de \textit{NavigationMixin} en de dynamische URL-parameter (\texttt{0.promptId}) wordt de gebruiker foutloos naar de juiste interface genavigeerd en start de bijbehorende In-App Guidance direct op.
+	\item \textbf{Geautomatiseerde Voortgangsdetectie:} De overstap van een basis record-check naar \textit{field-level validation} (waarde-status validatie) in de Apex-backend heeft het ontdekte probleem van 'valse voltooiing' verholpen. Het systeem detecteert nu accuraat of een configuratie daadwerkelijk door de gebruiker is uitgevoerd.
+	\item \textbf{Beheer van Testdata:} De integratie van de \textit{Generate} en \textit{Remove Demo Data} functionaliteiten stelt beheerders in staat om in een realistische omgeving de onboarding te doorlopen zonder de Salesforce-omgeving permanent te vervuilen.
+\end{itemize}
+Daarnaast zijn de voornaamste 'Should Haves', zoals het direct linken van context-specifieke documentatie via het \textit{Lightning Message Service} (LMS), eveneens operationeel in het proof of concept.
+
+\subsection{Validatie van de Use Cases}
+Om de praktische inzetbaarheid te toetsen, is de oplossing geëvalueerd aan de hand van de drie eerder gedefinieerde use cases:
+\begin{enumerate}
+	\item \textbf{Initiële configuratie (Order Pool):} Het systeem begeleidde de testgebruiker succesvol van het dashboard naar de instellingen. De \textit{targeted prompts} bleken effectief in het aanwijzen van de verplichte velden zonder dat er voorkennis vereist was.
+	\item \textbf{Data Management:} Het genereren van testdata verliep asynchroon en zonder foutmeldingen, waarna de gebruikersinterface automatisch herlaadde en direct de correcte voortgangsstatus weergaf.
+	\item \textbf{Hervatten na onderbreking:} Wanneer een walkthrough voortijdig werd afgebroken en de gebruiker terugkeerde naar het dashboard, identificeerde het systeem correct dat de taak onvolledig was. De actieknop wijzigde dynamisch naar 'Restart', waardoor de gebruiker het proces naadloos kon vervolgen zonder overzicht te verliezen.
+\end{enumerate}
+
+\subsection{Technische Evaluatie en Performantie}
+Evaluatie van de Requirements (MoSCoW)
+Om de effectiviteit van het ontwikkelde proof of concept te valideren, worden de resultaten direct getoetst aan de vooraf opgestelde vereisten.
+
+1. Must Haves (Kritieke vereisten)
+Alle als kritiek gemarkeerde vereisten zijn succesvol geïmplementeerd in het PoC:
+
+Centraal Dashboard & Directe Navigatie: De gebruiker heeft één duidelijk startpunt (de LWC). Vanaf hier zorgt de navigatielogica voor een naadloze overgang naar de juiste instellingenpagina, inclusief de automatische activatie van de bijbehorende Salesforce walkthrough.
+
+Geautomatiseerde Voortgangsdetectie: Door middel van Apex-validatie op veldniveau (in plaats van louter op recordniveau) is de valse voltooiing geëlimineerd. Het systeem registreert pas vooruitgang wanneer een gebruiker daadwerkelijk configuraties heeft opgeslagen.
+
+Demo Data Generator: De asynchrone Apex-generator functioneert correct, waardoor gebruikers de omgeving met één druk op de knop kunnen vullen met data om een realistische werkcontext te creëren.
+
+2. Should Haves (Belangrijke aanvullingen)
+Verschillende belangrijke aanvullingen die de gebruikerservaring aanzienlijk verbeteren, zijn eveneens gerealiseerd:
+
+Documentatie Linken: Via de geïntegreerde documentatie-viewer in de Utility Bar krijgt de gebruiker bij elke stap de exact juiste handleiding te zien, wat het zoekwerk (context switching) minimaliseert.
+
+Data Reset-functie: De gebruiker kan de gegenereerde demodata veilig wissen om terug te keren naar een schone omgeving.
+
+3. Could Haves & Won't Haves (Toekomstig werk en Beperkingen)
+Tijdens de evaluatie en implementatie kwamen de architecturale grenzen van het Salesforce-platform aan het licht, wat resulteerde in enkele expliciete beperkingen:
+
+Beperking in Setup & App Builder: Zoals aangegeven in de analyse, wordt native In-App Guidance niet ondersteund in administratieve interfaces zoals de Setup of de Lightning App Builder. Voor stappen die hier plaatsvinden, valt de actieve schermbegeleiding weg. Het PoC vangt dit deels op door de gebruiker sterk te laten leunen op de documentatie-viewer, maar het blijft een significante technische limitatie.
+
+Eigen Data Upload (Could Have): Deze feature is in het huidige PoC niet uitgewerkt. Het dashboard werkt momenteel uitsluitend met gestandaardiseerde demodata, wat als aanbeveling voor een volgende iteratie dient.
+Het systeem is ontworpen met strikt respect voor de technische limieten van het Salesforce-platform (governor limits). Omdat het dashboard regelmatig de backend raadpleegt (via \texttt{refreshApex}), zijn de SOQL-queries in de Apex-controller streng geoptimaliseerd. Door efficiënt gebruik te maken van \texttt{LIMIT 1} queries en uitsluitend specifieke veld-selecties op te halen, blijft de belasting op de database minimaal. Dit garandeert dat de laadtijd van het dashboard nagenoeg onmerkbaar blijft, wat resulteert in een vloeiende gebruikerservaring. Bovendien waarborgt de JSON-architectuur via \textit{Custom Metadata} dat de oplossing in de toekomst schaalbaar en onderhoudbaar blijft zonder benodigde code-aanpassingen.
+
+\subsection{Beperkingen en Toekomstige Ontwikkelingen}
+Hoewel het proof of concept de primaire doelstellingen ruimschoots behaalt, zijn er enkele academische en functionele beperkingen te benoemen die ruimte bieden voor toekomstige ontwikkeling:
+\begin{itemize}
+	\item \textbf{Diepgang van Validatie:} De huidige \textit{field-level validation} controleert succesvol óf vereiste velden zijn ingevuld (bijv. middels een null-check), maar het valideert op dit moment niet of de ingevoerde data bedrijfsmatig en logisch 100\% correct is.
+	\item \textbf{Analytische Inzichten:} Het systeem biedt de individuele gebruiker helder inzicht in de eigen voortgang, maar verzamelt momenteel geen overkoepelende telemetrie-data op een centraal niveau. Een analytische laag om te meten op welke stappen gebruikers het vaakst vastlopen of afhaken, zou zeer waardevol zijn voor de continue optimalisatie van het proces.
+\end{itemize}	
+\section{Algemene Conclusie}%
+\label{sec:Conclusie}
+
+Het initiële configuratieproces van een veelzijdige bedrijfsapplicatie zoals 24flow binnen een Salesforce-omgeving is een complexe taak. Voorheen vereiste dit proces vaak intensieve ondersteuning of liep een systeembeheerder het risico te verdwalen in de vele instellingen en afhankelijkheden. Het hoofddoel van dit onderzoek was om een oplossing te ontwerpen en te ontwikkelen die de zelfredzaamheid van nieuwe gebruikers maximaliseert en het onboarding-proces stroomlijnt.
+
+Uit de analyse bleek dat de native Salesforce In-App Guidance krachtige functionaliteiten biedt voor actieve schermbegeleiding, maar tekortschiet in het bieden van een helikopterview en geautomatiseerde voortgangsdetectie. Om dit hiaat te overbruggen, is er succesvol een hybride proof of concept ontwikkeld. Deze oplossing combineert de interactieve walkthroughs van Salesforce met een op maat gemaakt 'Onboarding Dashboard', gebouwd als een moderne Lightning Web Component (LWC). 
+
+Dit dashboard fungeert als een intelligent controlecentrum. De modulaire, datagedreven architectuur op basis van \textit{Custom Metadata} (JSON) garandeert dat 24flow de onboarding in de toekomst eenvoudig kan schalen of aanpassen. Daarnaast is de grootste technische uitdaging—het garanderen van data-integriteit—succesvol opgelost door de implementatie van \textit{field-level validation} in de backend (Apex). Hierdoor valideert het systeem accuraat of een gebruiker de vereiste acties daadwerkelijk heeft voltooid, waardoor 'valse voltooiing' door systeemstandaarden wordt geëlimineerd. 
+
+Concluderend kan gesteld worden dat deze hybride oplossing het onboarding-proces aanzienlijk verbetert. Door het bieden van gestructureerd overzicht, contextuele documentatie en gerichte navigatie naar de juiste instellingen, worden nieuwe beheerders in staat gesteld om 24flow sneller en met meer vertrouwen in te richten. Dit verlaagt niet alleen de drempel voor adoptie en de \textit{Time-to-Value} voor de klant, maar verlicht op de lange termijn ook de druk op de supportafdeling. Het ontwikkelde proof of concept toont daarmee succesvol aan dat zelfs de meest complexe applicatie-configuraties toegankelijk gemaakt kunnen worden, mits de juiste balans wordt gevonden tussen overzicht, sturing en geautomatiseerde validatie.
 %\begin{listing}
 %  \begin{minted}{python}
 %    import pandas as pd
