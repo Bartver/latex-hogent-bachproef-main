@@ -1,0 +1,160 @@
+\chapter{\IfLanguageName{dutch}{Evaluatie}{Evaluation}}%
+\label{ch:evaluatie}
+
+In dit hoofdstuk wordt het ontwikkelde proof of concept kritisch geëvalueerd. Het doel van deze evaluatie is om vast te stellen in hoeverre de onboarding-oplossing beantwoordt aan de vooraf gestelde requirements, hoe het systeem presteert in de praktijk, en waar zich de grenzen van de huidige implementatie bevinden.
+
+\section{Toetsing aan de Requirements (MoSCoW)}
+De rode draad van deze evaluatie is de toetsing aan de requirements-analyse. Onderstaande tabel geeft een volledig overzicht van alle geprioriteerde vereisten en hun status in het uiteindelijke PoC.
+
+\begin{table}[h!]
+	\centering
+	\caption{Volledig statusoverzicht van de MoSCoW-requirements}
+	\label{tab:moscow_volledig}
+	\small
+	\begin{tabular}{@{}llc@{}}
+		\toprule
+		\textbf{Prioriteit} & \textbf{Requirement} & \textbf{Status} \\ \midrule
+		\textbf{Must Have} & Zelfstandige Systeemconfiguratie  & Voltooid \\
+		& Centraal Dashboard  & Voltooid \\
+		& Directe Navigatie en Walkthrough Activatie & Voltooid \\
+		& Automatische Voortgangsdetectie  & Voltooid \\
+		& Demo Data Generator  & Voltooid \\
+		& Auto-Configuratie & Voltooid \\
+		& Hiërarchische Taakstructuur  & Voltooid \\
+		& Navigatie tussen objecten  & Voltooid \\
+		& Documentatie Link op Dashboard & Voltooid \\ \midrule
+		\textbf{Should Have} & Video-integratie  & Onvoltooid \\
+		& Data Reset-functie  & Voltooid \\
+		& Uploaden Eigen Data  & Placeholder \\
+		& Taakbevestiging  & Voltooid \\
+		& Custom Branding  & Deels Voltooid \\
+		& Documentatie Contextueel Linken  & Voltooid \\ \midrule
+		\textbf{Could Have} & Hervatten  & Onvoltooid \\
+		& Gebruikersstatistieken (Logging) & Onvoltooid \\
+		& Gebruikersfeedback (Duimpjes) & Onvoltooid \\
+		& Gamificatie (Animaties/Badges) & Onvoltooid\\
+		& Zoekfunctionaliteit / Directe Support-link & Onvoltooid \\ \midrule
+		
+	\end{tabular}
+\end{table}
+
+\subsection*{Analyse van de 'Must Haves'}
+Alle kritieke vereisten zijn succesvol geïmplementeerd en vormen de fundering van het systeem. De belangrijkste realisaties zijn:
+
+\begin{itemize}
+	\item \textbf{Zelfstandige Systeemconfiguratie \& Centraal Dashboard (Voltooid):} De LWC-hub fungeert als de centrale 'controlekamer'. Gebruikers kunnen de belangrijkste 24flow-componenten zelfstandig opzetten zonder externe hulp, waarbij zij hun configuratie-voortgang overzichtelijk kunnen monitoren.
+	\item \textbf{Walkthrough Activatie \& Navigatie tussen objecten (Voltooid):} De logica gaat verder dan simpele links door het injecteren van een parameter in de URL. Hierdoor start de juiste Salesforce Walkthrough automatisch op bij aankomst op het configuratiescherm, en wordt de gebruiker feilloos over de verschillende benodigde tabbladen en objecten heen geleid.
+	\item \textbf{Auto-Configuratie (Voltooid):} De integratie met de Metadata API is succesvol gebleken. De functionaliteit is in staat om complete UI-pagina's en instellingen aan te maken. Hierdoor is er heel snel een standaardomgeving van waaruit de gebruiker verder kan werken en deze naar zijn wensen kan configureren.
+	\item \textbf{Hiërarchische Taakstructuur (Voltooid):} Door de complexe onboarding op te delen in hoofdtaken en substappen, blijft het proces overzichtelijk. Dit voorkomt dat de gebruiker overweldigd raakt door de hoeveelheid configuraties.
+	\item \textbf{Automatische Voortgangsdetectie (Voltooid):} In plaats van een oppervlakkige controle, voert de Apex-backend validatie op een dieper niveau uit. Het dashboard toont pas een succesvolle status wanneer de vereiste records effectief zijn aangemaakt.
+	\item \textbf{Demo Data Generator (Voltooid):} Deze functionaliteit zorgt ervoor dat de gebruikersomgeving met één actie gevuld kan worden met realistische data.
+	\item \textbf{Documentatie Link op Dashboard (Voltooid):} Er is een permanente en prominente integratie van documentatie in de interface, zodat de gebruiker altijd de nodige extra achtergrondinformatie ter beschikking heeft.
+\end{itemize}
+
+\subsection*{Analyse van de 'Should Haves'}
+De 'Should Haves' zijn grotendeels afgewerkt. De implementatie hiervan ziet er als volgt uit:
+
+\begin{itemize}
+	\item \textbf{Documentatie Contextueel Linken (Voltooid):} De documentatie-viewer fungeert als een contextgevoelige assistent. Door de automatische synchronisatie met het dashboard toont het systeem direct de specifieke informatie die hoort bij de huidige taak/stap, wat de gebruiker zo veel mogelijk binnen de applicatie houdt.
+	\item \textbf{Taakbevestiging (Voltooid):} Voor stappen die buiten het bereik van automatische controles vallen—zoals instellingen in de Salesforce Setup-omgeving—biedt de handmatige taakbevestiging een oplossing, zodat de gebruiker toch zijn voortgang kan afvinken.
+	\item \textbf{Data Reset-functie (Voltooid):} Gebruikers kunnen vrij experimenteren met configuraties en testdata, wetende dat zij via de reset-knop de omgeving altijd veilig kunnen opschonen.
+	\item \textbf{Uploaden Eigen Data (Placeholder):} De interface (modal) voor het uploaden van een CSV met eigen bedrijfsdata is visueel aanwezig als placeholder. De complexe data-mapping naar Salesforce valt echter buiten de scope van dit project.
+	\item \textbf{Custom Branding (Deels Voltooid):} De applicatie maakt primair gebruik van het standaard Salesforce Lightning Design System. Het specifiek doorvoeren van de 24flow bedrijfskleuren in de prompts zelf was technisch mogelijk, maar kreeg in deze fase een lagere prioriteit.
+	\item \textbf{Video-integratie (Onvoltooid):} Momenteel is de in-app guidance opgebouwd uit tekst en afbeeldingen. Zodra er specifieke video's en tutorials gemaakt zijn, kunnen deze eenvoudig in de bestaande \textit{docked prompts} worden geïntegreerd.
+\end{itemize}
+
+\subsection*{Evaluatie van de 'Could Haves'}
+De functionaliteiten uit de 'Could Have'-categorie zijn volledig onvoltooid gelaten. Dit ofwel omwille van technische onmogelijkheid of tijdsgebrek. 
+\\
+
+Het hervatten van walkthroughs is technisch moeilijk en is omwille van de geringe meerwaarde hier niet geïmplementeerd. Ook de gamificatie-elementen, gebruikersfeedback en de Directe Support-link zijn volledig onvoltooid gelaten door gebrek aan tijd en de lage prioriteit hiervan. 
+\\
+
+Tot slot is er een initiële test uitgevoerd met het loggen van gebruikersacties (analytics). Deze ontwikkeling is echter stopgezet omdat al snel bleek dat dergelijke logging geen concrete meerwaarde opleverde.
+
+\section{Technische Performantie en Beperkingen}
+Tijdens de implementatie kwamen enkele technische grenzen van het Salesforce-platform en de In-App Guidance-functionaliteit aan het licht, die bepalend zijn voor de uiteindelijke werking van de applicatie:
+
+\begin{itemize}
+	\item \textbf{In-App Guidance op Setup-pagina's:} De voornaamste beperking blijft van technische aard: Salesforce staat niet toe dat In-App Guidance (prompts of walkthroughs) wordt weergegeven op 'Setup'-pagina's (de backend-instellingen van Salesforce). Hierdoor kunnen stappen die vereisen dat de gebruiker systeemconfiguraties aanpast, niet interactief begeleid worden en is de gebruiker aangewezen op de documentatie-viewer en de handmatige taakbevestiging.
+	
+	\item \textbf{Stappenlimiet per Walkthrough:} Een native Salesforce walkthrough is gelimiteerd tot maximaal tien opeenvolgende stappen. Deze beperking maakt het onmogelijk om de volledige applicatie-setup in één doorlopende flow te gieten en verklaart de architecturale noodzaak van het Onboarding Dashboard, dat als orkestrator fungeert om complexe processen op te delen in behapbare, gekoppelde subtaken.
+	
+	\item \textbf{Karakterlimiet per Prompt:} Een standaard floating/targeted prompt heeft een karakterlimiet van slechts 300 tekens, dit is vaak op de limiet om genoeg informatie te geven per prompt. Zeker omdat opmaak zoals enters of directe tekstopmaak nog eens extra meetellen voor deze limiet.
+	
+	\item \textbf{Onderbreking door Pagina-vernieuwing:} De voortgang binnen een actieve walkthrough is sterk afhankelijk van de huidige sessiestatus in de browser. Indien een gebruiker tijdens een walkthrough handmatig de pagina vernieuwt (refresh), gaat deze tijdelijke status verloren. Dit resulteert erin dat de walkthrough abrupt afbreekt of (indien gestuurd via URL-parameters) volledig herstart vanaf de eerste stap, wat de gebruikerservaring kan verstoren.
+	
+	\item \textbf{Onderhoudsgevoeligheid van Targeted Prompts:} In-App Guidance leunt sterk op de huidige lay-out van de gebruikersinterface. Wanneer specifieke velden of knoppen binnen 24flow in toekomstige releases van locatie veranderen, kunnen de gekoppelde \textit{targeted prompts} hun ankerpunt verliezen. Dit vereist een doorlopend beheer van de walkthroughs bij elke grote applicatie-update.
+	
+	\item \textbf{Desktop Exclusiviteit:} De huidige oplossing is uitsluitend bruikbaar op desktop. Omdat de standaard In-App Guidance van Salesforce momenteel niet wordt ondersteund op mobiele apparaten, is een mobiele responsieve variant van het onboarding dashboard vooralsnog niet zinvol.
+	
+	\item \textbf{Migratie-risico's en Hardcoded URL's:} Binnen het Salesforce-ecosysteem worden configuraties doorgaans gebouwd in een testomgeving (\textit{Sandbox}) en nadien gemigreerd naar de productie-omgeving. In-App Guidance is hierbij kwetsbaar. Prompts en actieknoppen slaan op de achtergrond vaak absolute URL's of specifieke record-ID's op. Bij een migratie naar een nieuwe omgeving (met een andere domeinnaam of ontbrekende test-records) breken deze referentiepunten. Dit vereist dat de In-App Guidance na elke deployment vaak handmatig gecontroleerd/hersteld moet worden.
+\end{itemize}
+
+\section{Beantwoording van de Onderzoeksvraag en Meerwaarde}
+\label{subsec:beantwoording_onderzoeksvraag}
+
+Om de effectiviteit van het ontwikkelde proof of concept te beoordelen, wordt er direct teruggegrepen naar de kernvraag die aan de basis lag van dit onderzoek: 
+\\
+
+\begin{quote}
+	\textit{"Hoe kan het onboardingproces en de in-app guidance van (nieuwe) gebruikers op het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?"}
+\end{quote}
+
+Omdat een grootschalig kwantitatief gebruikersonderzoek buiten de scope van dit werk valt, wordt het antwoord op deze onderzoeksvraag en de meerwaarde van het prototype enerzijds gemeten aan de hand van de kwantitatieve efficiëntiewinst (reductie van tijd en handelingen) en anderzijds door het resultaat kwalitatief te spiegelen aan de bevindingen uit de literatuurstudie.
+
+\subsection{De meerwaarde van de implementatie (Het positieve)}
+Uit de realisatie blijkt dat de architectuur naadloos aansluit bij de theorie over effectieve onboarding en fundamentele verbeteringen biedt ten opzichte van traditionele implementaties:
+
+\begin{itemize}
+	\item \textbf{Self-contained Setup als Primaire Meerwaarde:} In de literatuurstudie werd vastgesteld dat menselijke begeleiding weliswaar interactief is, maar sterk tekortschiet in schaalbaarheid. Deze theorie wordt in de praktijk gevalideerd door interne 24flow-medewerkers, die aangaven dat de creatie van een volledig onafhankelijke (\textit{self-contained}) setup veruit de grootste meerwaarde van dit prototype is. Een nieuwe gebruiker kan de applicatie nu zelfstandig configureren en evalueren zonder directe tussenkomst van een expert. Voordien kon dit enkel gebeuren door een 24flow medewerker die zelf een demo-omgeving opzette en deze handmatig moest uitleggen aan de klant.
+	
+	\item \textbf{Drastische verlaging van de Time-to-Value:} Waar een beheerder voorheen handmatig schermen moest configureren en datarecords moest aanmaken—een proces van vele tientallen clicks—reduceert de \textit{Master Auto-Configuration} dit tot een kwestie van seconden. Dit levert het harde, kwantitatieve bewijs voor de efficiëntiewinst van de oplossing. 
+	
+	\item \textbf{Contextuele Hulp in de Praktijk:} De theorie benadrukt sterk dat statische handleidingen buiten de applicatie demotiverend werken en dat moderne onboarding contextspecifiek moet zijn. Dit proof of concept brengt deze theorie succesvol in de praktijk. Door navigatie, in-app guidance en een dynamische documentatie-viewer met elkaar te laten communiceren, krijgt de gebruiker exact de juiste informatie op de plaats en het moment dat deze nodig is, zonder overbodig zoekwerk.
+	
+	\item \textbf{Optimalisatie van de FTUE:} Uit het onderzoek bleek dat stapsgewijze walkthroughs leiden tot beter begrip en kennisbehoud dan een eenmalige, overweldigende uitleg. Door het enorme opzetproces via het dashboard op te knippen in logische, verteerbare stappen, matcht de oplossing perfect met de vereisten voor een optimale \textit{First Time User Experience} (FTUE).
+	
+	\item \textbf{Interne Efficiëntiewinst (Solution Engineers):} Hoewel de focus van een onboardingproces primair op de nieuwe klant ligt, lost dit prototype ook een aanzienlijk intern knelpunt op voor 24flow-medewerkers. Zoals vastgesteld in de doelgroepanalyse, hebben Solution Engineers geen behoefte aan stapsgewijze walkthroughs, maar profiteren zij wel maximaal van de automatiseringstools. De \textit{Master Auto-Configuration} en de demodata-generator stellen hen in staat om in enkele seconden een visueel aantrekkelijke, volledig werkende demo-omgeving op te zetten voor potentiële klanten. Hierdoor fungeert het dashboard niet enkel als onboarding voor klanten, maar ook als een krachtige, tijdbesparende interne tool voor \textit{pre-sales} doeleinden.
+\end{itemize}
+
+\subsection{Kritische reflectie en mismatch met de theorie (Het negatieve)}
+Ondanks de sterke theoretische fundering is de huidige oplossing geen systeem dat alle complexiteit kan elimineren. Op enkele vlakken botst de implementatie met het theoretische ideaalbeeld:
+
+\begin{itemize}
+	\item \textbf{De limieten van In-App Guidance:} De theorie benadrukt het belang van een ononderbroken gebruikerservaring direct in de interface. De architectuur van Salesforce blokkeert In-App Guidance echter expliciet op backend Setup-pagina's. Hierdoor ontstaat er een onvermijdelijke breuk in de flow van de gebruiker: voor fundamentele systeemconfiguraties moet noodgedwongen worden teruggevallen op de (weliswaar geïntegreerde) statische documentatie, wat sowieso tegenstrijdig is met het principe van volledige, interactieve in-app ondersteuning. De auto-configuratie mogelijkheden verminderen dit probleem alvast deels door een deel van deze setup instellingen automatisch aan te maken. Echter is het onvermijdelijk dat bepaalde instellingen aangepast moeten worden door de gebruiker in deze Salesforce-backend.
+	
+	\item \textbf{Technische hulp vervangt geen bedrijfskennis:} Het dashboard neemt zoveel mogelijk het complexe technische zoek- en klikwerk over. Het toont de gebruiker precies wáár de instellingen staan en hoe ze werken. Echter, omdat elke fabriek uniek is, kan de tool niet bedenken wát er precies ingevuld moet worden. De beheerder moet zijn eigen bedrijfsprocessen nog steeds goed begrijpen om de applicatie inhoudelijk correct in te stellen. De technische drempel is weggenomen, maar het inhoudelijke denkwerk over de eigen fabriek blijft een taak voor de persoon zelf.
+\end{itemize}
+
+\subsection{Conclusie}
+Ondanks de restricties van het Salesforce-platform bewijst dit proof of concept dat de combinatie van een centraal dashboard, automatisering, documentatie en In-App Guidance een antwoord biedt op het onboarding-vraagstuk. Hoewel verdere ontwikkeling nodig zal zijn om alle complexiteit volledig weg te nemen, bevestigen zowel de theorie als de praktijk dat deze implementatie een succesvolle eerste stap in de juiste richting is. Het fungeert als een robuuste, \textit{self-contained} fundering die de kloof tussen een lege Salesforce-omgeving en een werkende digitale fabriek overbrugt. Door deels het handmatige configureren en onnodig zoekwerk weg te nemen, kunnen nieuwe gebruikers direct aan de slag. Hierdoor ervaren zij veel sneller de werkelijke waarde van het 24flow-platform.
+
+\section{Toekomstvisie en Verdere Ontwikkeling}
+\label{sec:toekomstvisie}
+
+Hoewel het huidige proof of concept een solide en werkende fundering legt voor de onboarding, is de volgende logische stap om het platform direct te laten werken met de echte data van de klant. De belangrijkste focus voor toekomstige ontwikkeling zou daarom liggen op de evolutie naar een volledig datagedreven automatische configuratie.
+
+\subsection{Datagedreven Auto-Configuratie (CSV-integratie)}
+\label{subsec:datagedreven_autoconfiguratie}
+
+In de huidige implementatie genereert de \textit{Master Auto-Configuration} een statisch aantal pagina's en configuraties op basis van hardcoded demodata in de backend. Het Onboarding Dashboard bevat reeds een functionele UI-placeholder voor het uploaden van een eigen CSV-bestand met klantdata, maar de effectieve verwerking en datamapping hiervan valt buiten de huidige scope.
+\\
+
+In de toekomst kan dit CSV-uploadmechanisme de kern vormen van een sterk gepersonaliseerde onboarding-ervaring:
+
+\begin{itemize}
+	\item \textbf{Dynamische Schermgeneratie:} Zodra een beheerder een CSV-bestand uploadt met de specifieke fabrieksindeling (bijvoorbeeld een lijst van alle actieve teams, machines of werkstations), verwerkt de Apex-backend deze data. De Metadata API gebruikt deze ingelezen gegevens vervolgens om dynamisch het exacte aantal benodigde schermen te genereren. Bevat de CSV van de klant bijvoorbeeld zeven unieke teams? Dan itereert het script op de achtergrond automatisch zeven keer om voor elk team een specifieke Team Cockpit pagina en een bijbehorend navigatietabblad te genereren.
+	
+	\item \textbf{Intelligente Configuratie:} Naast het aanmaken van schermen, kan de ingelezen data gebruikt worden om de achterliggende instellingen (Custom Metadata Records) dynamisch in te vullen. Specifieke kolomnamen, interne statussen en routing-regels uit het bestand van de klant worden direct gebruikt voor de configuratie van de 24flow-componenten. Het systeem hoeft hierdoor niet meer terug te vallen op algemene default-waarden.
+	
+	\item \textbf{Volledige Ervaring:} Door deze integratie evolueert het platform van een 'standaard demomodel' naar een volledige oplossing. De gebruiker levert zijn eigen bedrijfsdata aan, en kan met behulp van het onboarding-dashboard 24flow volledig opzetten en configureren voor zijn eigen fabriek.
+\end{itemize}
+
+\subsection{AI Ondersteuning via Agentforce}
+\label{subsec:ai_gedreven_ondersteuning}
+
+In de evaluatie werd vastgesteld dat de integratie van statische documentatie weliswaar nuttig is, maar dat het zelfstandig opzoeken van de juiste informatie nog steeds een drempel kan vormen. Zeker op locaties waar de native \textit{In-App Guidance} faalt (zoals de Salesforce Setup-pagina's), is de gebruiker alsnog aangewezen op eigen zoekwerk. Een mogelijke stap om deze ondersteuning te verbeteren, is de inzet van een AI-assistent zoals Agentforce(AI van Salesforce) die getraind is op de 24flow-documentatie.
+\\
+
+Door het dashboard uit te breiden met een slimme, documentatie-gedreven chat-interface, evolueert de statische documentatie-viewer naar een interactieve assistent. Gebruikers kunnen hierdoor specifieke vragen stellen en direct een contextueel antwoord ontvangen, in plaats van zelf in uitgebreide documentatie te moeten lezen en zoeken. 

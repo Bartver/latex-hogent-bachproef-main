@@ -5,45 +5,64 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-24flow is een bedrijf dat een modulair platform maakt voor werkvloerbeheer en productieplanning om onder andere traceerbaarheid en zichtbaarheid te verbeteren bij make-to-order fabrikanten. Bedrijven die focussen op maatwerk en lage volumes zijn hierbij de focus, het 24flow platform zorgt voor beter begrip en overzicht van de productieprocessen en biedt hiermee oplossingen aan om de doorlooptijd van deze processen te verminderen en de kosten te drukken.
+24flow is een bedrijf dat een modulair platform maakt voor werkvloerbeheer en productieplanning om onder andere de traceerbaarheid en zichtbaarheid te verbeteren bij make-to-order fabrikanten. Bedrijven die focussen op maatwerk en lage volumes vormen hierbij de doelgroep. Het 24flow-platform zorgt voor beter begrip en overzicht van de productieprocessen en biedt hiermee oplossingen aan om de doorlooptijd van deze processen te verminderen en de kosten te drukken.
 \\
-Dit platform is gebouwd binnen salesforce, een customer relationship management platform(CRM) gebruikt om bedrijven hun klantgegevens, operaties verkoop en andere processen te beheren. 
+Dit platform is volledig gebouwd binnen Salesforce, een Customer Relationship Management (CRM) platform dat gebruikt wordt om bedrijven hun klantgegevens, operaties, verkoop en andere processen te laten beheren. 
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken/begrijpen. Er moet vaak manueel uitgelegd/getoond worden hoe alles werkt en dit is bij elke vernieuwing ook nog eens extra het geval. Er zijn tooltips en tutorials beschikbaar binnen het platform, maar deze zijn beperkt of onduidelijk. Al deze zaken kosten veel tijd en geld en kunnen ook voor frustraties zorgen bij de klanten.
+Momenteel hebben (nieuwe) gebruikers op het platform moeite om alle functionaliteiten zelfstandig te gebruiken en te begrijpen. Er moet vaak handmatig uitgelegd of getoond worden hoe alles werkt, en dit is bij elke vernieuwing of update ook nog eens extra het geval. Er zijn tooltips en tutorials beschikbaar binnen het platform, maar deze zijn beperkt of onduidelijk. Al deze zaken kosten veel tijd en geld, en kunnen bovendien voor frustraties zorgen bij de klanten.
 \\
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Hoe kan het onboardingproces en de in-app guidance van (nieuwe)gebruikers op het 24flow platform, gebouwd binnen het salesforce ecosysteem, worden verbeterd, en hoe kunnen bestaande salesforce functionaliteiten hierbij helpen?
+Hoe kan het onboardingproces en de in-app guidance van (nieuwe) gebruikers op het 24flow-platform, gebouwd binnen het Salesforce-ecosysteem, worden verbeterd, en hoe kunnen bestaande Salesforce-functionaliteiten hierbij helpen?
 \\
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Om het probleem beter te begrijpen, moeten we ons afvragen hoe het huidige onboardingproces in elkaar zit en op welke manieren gebruikers begeleid worden binnen het platform, welke bestaande frustraties/gebreken huidige klanten, gebruikers en ontwikkelaars ondervinden en hoe andere vergelijkbare systemen omgaan met onboarding en in-app guidance.
+Om het probleem beter te begrijpen, moeten we enke ons afvragen hoe het huidige onboardingproces in elkaar zit en op welke manieren gebruikers begeleid worden binnen het platform, welke bestaande frustraties of gebreken huidige klanten, gebruikers en ontwikkelaars ondervinden en hoe andere vergelijkbare systemen omgaan met onboarding en in-app guidance.
 \\
 
-Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een eindresultaat te komen dat als proof of concept een in-app guidance systeem met walkthroughs ontwikkelt binnen het 24flow platform. Om hiertoe te komen kijken we welke salesforce(apex) mogelijkheden er bestaan voor onboarding/guidance, welke componenten en processen het meeste nood hebben aan user guidance, hoe andere vergelijkbare systemen omgaan met onboarding.
+Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een eindresultaat te komen dat als proof of concept een in-app guidance systeem met walkthroughs ontwikkelt binnen het 24flow-platform. Om hiertoe te komen kijken we welke Salesforce (Apex) mogelijkheden er bestaan voor onboarding en guidance, welke componenten en processen het meeste nood hebben aan user guidance, en hoe andere vergelijkbare systemen omgaan met onboarding.
 \\
 
+Om het probleem beter te begrijpen, is dit onderzoek opgebouwd rond een aantal gerichte deelvragen. Binnen het \textbf{probleemdomein} staan de volgende vragen centraal:
+
+\begin{enumerate}
+	\item Hoe zit het huidige onboardingproces in elkaar en op welke manieren worden gebruikers momenteel begeleid binnen het platform?
+	\item Welke bestaande frustraties of gebreken ondervinden gebruikers en ontwikkelaars bij de onboarding?
+	\item Hoe gaan andere, vergelijkbare systemen om met onboarding en in-app guidance?
+\end{enumerate}
+
+Door een antwoord te vinden op deze vragen, zal dit onderzoek pogen tot een eindresultaat te komen dat als proof of concept een in-app guidance systeem met walkthroughs ontwikkelt binnen het 24flow-platform. Om dit proof of concept succesvol te realiseren, worden de volgende deelvragen binnen het \textbf{oplossingsdomein} beantwoord:
+
+\begin{enumerate}
+	\item Welke Salesforce (Apex) mogelijkheden bestaan er voor het opzetten van onboarding en user guidance?
+	\item Welke componenten en processen binnen het 24flow platform hebben het meeste nood aan user guidance?
+\end{enumerate}
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
 
-De rest van deze bachelorproef is als volgt opgebouwd:
+De rest van deze bachelorproef is opgebouwd volgens de opeenvolgende fasen van het onderzoek:
 \\
 
-In Hoofdstuk~\ref{ch:stand-van-zaken} wordt het volledige traject van het onderzoek en de ontwikkeling van het proof of concept doorlopen. Hieronder staan de voornaamste hoofdstukken opgelijst:
-\begin{itemize}
-	\item \textbf{Literatuur en Analyse:} In Sectie~\ref{sec:literatuurstudie1} en Sectie~\ref{sec:Salesforce analyse} wordt een overzicht gegeven van de stand van zaken rondom onboarding, gevolgd door een diepgaande analyse van de Salesforce in-app guidance tools.
-	\item \textbf{Requirements en Ontwerp:} In Sectie~\ref{sec:Requirements analyse} en Sectie~\ref{sec:Ontwerp} worden de vereisten voor het proof of concept vastgelegd via de MoSCoW-methode en visueel uitgewerkt in use cases en wireframes.
-	\item \textbf{Realisatie en Evaluatie:} In Sectie~\ref{sec:realisatie} en Sectie~\ref{sec:Evaluatie} wordt de daadwerkelijke technische opbouw van de applicatie (front-end en back-end) toegelicht, afgesloten met een kritische evaluatie van het eindresultaat.
-\end{itemize}
-
-In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
+In Hoofdstuk~\ref{ch:stand-van-zaken} wordt de stand van zaken toegelicht. Dit hoofdstuk bevat een uitgebreide literatuurstudie naar software-onboarding en een diepgaande technologische analyse van de native Salesforce-functionaliteiten.
 \\
 
-In Hoofdstuk~\ref{ch:conclusie}, ten slotte, wordt de algemene conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek en verdere ontwikkeling binnen dit domein.
+In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie uiteengezet en worden de gebruikte onderzoekstechnieken besproken om een gestructureerd antwoord te kunnen formuleren op de onderzoeksvragen.
+\\
+
+In Hoofdstuk~\ref{ch:requirements-ontwerp} worden de functionele en niet-functionele vereisten voor het proof of concept vastgelegd via de MoSCoW-methode en visueel uitgewerkt in use cases en wireframes.
+\\
+
+In Hoofdstuk~\ref{ch:realisatie} wordt de daadwerkelijke technische realisatie en de architectuur van de applicatie (zowel de front-end als de backend-controller) gedetailleerd toegelicht.
+\\
+
+In Hoofdstuk~\ref{ch:evaluatie} wordt het ontwikkelde prototype kritisch geëvalueerd aan de hand van de requirements en de technische platformbeperkingen.
+\\
+
+In Hoofdstuk~\ref{ch:conclusie}, ten slotte, wordt het algemene besluit gevormd en een definitief antwoord geformuleerd op de onderzoeksvragen, inclusief een blik op toekomstige ontwikkelingen binnen dit domein.
