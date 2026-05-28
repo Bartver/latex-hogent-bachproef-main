@@ -6,7 +6,33 @@
 \label{ch:conclusie}
 \section{Algemene Conclusie}%
 \label{sec:Conclusie}
+%%=============================================================================
+%% Conclusie
+%%=============================================================================
 
+\section{Algemeen Besluit en Meerwaarde}
+De initiële opzet van een complexe, modulaire make-to-order applicatie zoals 24flow binnen het Salesforce-ecosysteem bracht een aanzienlijke uitdaging met zich mee. Door de gefragmenteerde systeeminstellingen en de afhankelijkheid van statische documentatie ervoeren nieuwe gebruikers een steile leercurve en een trage \textit{Time-to-Value}. Dit onderzoek had als doel een antwoord te formuleren op de vraag hoe dit onboardingproces verbeterd kon worden en hoe bestaande Salesforce-functionaliteiten hierbij konden helpen.
+\\
+
+Het ontwikkelde proof of concept toont onomstotelijk aan dat de integratie van gecentraliseerde automatisering (via een Lightning Web Component dashboard en de Metadata API) in combinatie met native Salesforce In-App Guidance, de instapdrempel drastisch verlaagt. De bijdrage van dit onderzoek aan het domein ligt in de creatie van een \textit{self-contained} setup assistant. Waar de implementatie van een testomgeving voorheen sterk afhankelijk was van actieve, menselijke begeleiding door 24flow-experts, stelt dit prototype nieuwe beheerders in staat om dit proces zelfstandig uit te voeren. 
+\\
+
+De meerwaarde voor de doelgroep is tweeledig: voor de klant betekent dit contextuele, stapsgewijze hulp op het moment dat het nodig is en een reductie van handmatige configuratietijd van uren naar enkele seconden. Voor de interne 24flow-organisatie (zoals Solution Engineers) biedt het een krachtige, schaalbare tool om in een handomdraai demonstratieklare omgevingen op te zetten.
+
+\section{Kritische Reflectie (Discussie)}
+Wanneer er kritisch op het eindresultaat wordt gereflecteerd, moet worden vastgesteld dat de uitkomst op bepaalde vlakken afwijkt van de initiële verwachtingen. Aan het begin van het onderzoek was de hypothese dat de native \textit{In-App Guidance} tools van Salesforce voldoende zouden zijn om de gebruiker naadloos door het volledige platform te loodsen. 
+\\
+
+Tijdens de implementatie bleek de technische realiteit echter complexer. De strikte platformbeperkingen van Salesforce, zoals het blokkeren van guidance op backend Setup-pagina's en de stappenlimiet per walkthrough, waren onverwachte obstakels. Deze restricties toonden aan dat uitsluitend leunen op de standaardtools onvoldoende was, wat leidde tot de architecturale noodzaak om een eigen, overkoepelend LWC-dashboard te ontwikkelen dat als orkestrator fungeert.
+\\
+
+Daarnaast is gebleken dat een geautomatiseerde onboarding repetitief werk uitstekend kan elimineren, maar dat de fundamentele complexiteit van de make-to-order bedrijfslogica blijft bestaan. Het systeem vertelt de gebruiker succesvol \textit{hoe} een functionaliteit werkt en \textit{waar} deze te vinden is, maar het denkproces over \textit{wat} de specifieke bedrijfsregels moeten zijn, blijft een menselijke taak die de nodige domeinkennis vereist.
+
+\section{Aanzet tot Verder Onderzoek}
+De resultaten en beperkingen van dit onderzoek leiden tot nieuwe vraagstukken die uitnodigen tot verdere exploratie. Een eerste belangrijke vraag voor toekomstig onderzoek is in hoeverre het configuratieproces nog verder gepersonaliseerd kan worden. Dit opent de deur naar onderzoek over datagedreven \textit{Auto-Configuratie}, waarbij verkend kan worden hoe het inlezen van klantspecifieke datasets (bijvoorbeeld via een CSV-upload) kan worden ingezet om de interface en bedrijfsregels tijdens de onboarding direct dynamisch te genereren.
+\\
+
+Een tweede onderzoeksvraag richt zich op het meten van het langdurige effect van in-app guidance. Hoewel dit kwalitatief gevalideerd is, nodigt het uit tot kwantitatief vervolgonderzoek: in welke mate kunnen ingebouwde analytics (zoals het loggen van voltooiingspercentages en drop-off momenten) proactief voorspellen waar een gebruiker vastloopt, en hoe kunnen deze data worden gebruikt om de guidance continu en automatisch te optimaliseren? Het huidige prototype biedt een robuuste fundering om deze verdiepende stappen in de toekomst te faciliteren.
 
 % TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de   test
 % onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en
