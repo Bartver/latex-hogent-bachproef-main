@@ -6,20 +6,32 @@
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
-In dit hoofdstuk wordt de theoretische en technologische fundering van deze bachelorproef gelegd. Om een gegrond antwoord te kunnen bieden op de centrale onderzoeksvraag, is bestaande academische literatuur en platformdocumentatie verzameld en geanalyseerd. Deze inzichten zijn direct gekoppeld aan de vooropgestelde deelvragen. In de eerste sectie wordt de context van het 24flow-platform geschetst en worden de knelpunten rondom software-onboarding en de First Time User Experience (FTUE) onderzocht om de uitdagingen in de huidige situatie te verklaren. Vervolgens wordt de brug geslagen naar de technologische mogelijkheden: de theorie rondom Digital Adoption Platforms (DAP) wordt vertaald naar de native In-App Guidance functionaliteiten van Salesforce. Deze tweedeling zorgt voor een helder overzicht van zowel de bestaande barrières als de praktische oplossingsrichtingen, wat de directe basis vormt voor het latere ontwerp van het proof of concept.
+In dit hoofdstuk wordt de theoretische en technologische fundering van deze bachelorproef gelegd. Om een gegrond antwoord te kunnen bieden op de centrale onderzoeksvraag, is bestaande academische literatuur en Salesforce platformdocumentatie verzameld en geanalyseerd.
+\\
+
+In het eerste deel wordt de literatuurstudie besproken. Na een schets van de bedrijfscontext wordt het proces van onboarding geanalyseerd. Vervolgens wordt de literatuur over in-app user guidance en Digital Adoption Platforms (DAP) verkend.
+\\
+
+In het tweede deel wordt de brug geslagen naar de technologische praktijk door middel van een uitgebreide Salesforce-analyse. Hierin worden de native In-App Guidance functionaliteiten van het platform belicht, inclusief de configuratiemogelijkheden en de strikte technische restricties.
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie1}
 
 
 \subsection{Context}
-Het 24flow-platform is gemaakt in het Salesforce-ecosysteem voor make-to-order bedrijven \autocite{Nelfiyanti2025}, waar workflows vaak complex zijn en variëren per order. Dit betekent dat een fabriek niet precies weet welk product hij zal maken, tot een gebruiker effectief iets koopt of een order plaatst. Een gewone fabriek maakt bijvoorbeeld 1000 dezelfde stoelen, een make-to-orderbedrijf zou dan tien gewone stoelen kunnen maken, één groene, één met extra poten enz. Er is met andere woorden geen standaard pad dat de productie neemt. Hierdoor is er dan ook een noodzaak voor digitale oplossingen die heel specifiek voor verschillende productieprocessen kunnen worden gebruikt en het mogelijk maken om elk uniek order efficiënt te beheren. 
+Het 24flow-platform is gemaakt in het Salesforce-ecosysteem voor make-to-order bedrijven \autocite{Nelfiyanti2025}, waar workflows vaak complex zijn en variëren per order. Dit betekent dat een fabriek niet precies weet welk product hij zal maken, tot een gebruiker effectief iets koopt of een order plaatst. Een gewone fabriek maakt bijvoorbeeld 1000 dezelfde stoelen, een make-to-orderbedrijf zou dan tien gewone stoelen kunnen maken, één groene, één met extra poten enz. Er is met andere woorden geen standaard pad dat de productie neemt. 
+\\
+
+Hierdoor is er dan ook een noodzaak voor digitale oplossingen die heel specifiek voor verschillende productieprocessen kunnen worden gebruikt en het mogelijk maken om elk uniek order efficiënt te beheren. 
 \\
 
 24flow is zo een oplossing, het maakt gebruik van de flexibiliteit van Salesforce om voor elk individueel order een dynamisch productiepad te berekenen. Het verbindt engineering, planning en de werkvloer in één visuele en traceerbare workflow. Het zorgt ervoor dat operatoren en teamleden over de juiste informatie en tools beschikken om efficiënter te werken. Hierdoor krijgt elk uniek order, ondanks de mogelijke variatie aan productiestappen telkens de juiste informatie en de meest efficiënte route doorheen de fabriek.
 \\
 
-Het platform is gebouwd binnen het Salesforce-ecosysteem met behulp van Apex, de programmeertaal van Salesforce zelf. Salesforce is een algemeen erkend customer relationship management system (CRM)-oplossing (\autocite{Pookandy2024}). Een CRM-systeem functioneert als een centraal platform voor het beheren van alle data tussen een bedrijf en zijn klanten. Salesforce voorziet daarnaast allerlei tools om op een flexibele manier data, workflows, gebruikers... te beheren en allerlei opties te geven aan bedrijven om heel specifieke oplossingen te kunnen implementeren die verder gaan dan enkel klantbeheer. 24flow benut deze flexibiliteit om complexe productiegegevens om te zetten in bruikbare informatie voor de werkvloer. Dit betekent bijvoorbeeld dat een operator of werknemer op de werkvloer enkel de instructies en data ziet die relevant zijn voor het specifieke product dat op dat moment bewerkt wordt, volledig afgestemd op de huidige status van het productieproces.
+Het platform is gebouwd binnen het Salesforce-ecosysteem met behulp van Apex, de programmeertaal van Salesforce zelf. Salesforce is een algemeen erkend customer relationship management system (CRM)-oplossing \autocite{Pookandy2024}. Een CRM-systeem functioneert als een centraal platform voor het beheren van alle data tussen een bedrijf en zijn klanten. Salesforce voorziet daarnaast allerlei tools om op een flexibele manier data, workflows, gebruikers... te beheren en allerlei opties te geven aan bedrijven om heel specifieke oplossingen te kunnen implementeren die verder gaan dan enkel klantbeheer. 
+\\
+
+24flow benut deze flexibiliteit om complexe productiegegevens om te zetten in bruikbare informatie voor de werkvloer. Dit betekent bijvoorbeeld dat een operator of werknemer op de werkvloer enkel de instructies en data ziet die relevant zijn voor het specifieke product dat op dat moment bewerkt wordt, volledig afgestemd op de huidige status van het productieproces.
 
 
 \subsection{Onboarding}
@@ -36,6 +48,8 @@ Hierbij zijn er telkens verschillende voor- en nadelen te vinden:
 
 Onboarding speelt een grote rol bij de first time user experience (FTUE), de eerste interactie die een gebruiker heeft met een bepaalde applicatie, en waar de mening van die gebruiker over de applicatie fundamenteel gevormd wordt. 
 \autocite{CascaesCardoso2017} Een goed ontworpen onboardingproces helpt gebruikers niet enkel om de basisfunctionaliteiten te begrijpen, maar verhoogt de kans dat zij de applicatie blijven gebruiken.
+\\
+
 Effectieve onboarding betekent immers beter begrip, minder frustraties en een goede gebruikerservaring van de applicatie op de lange termijn.
 Onderzoek van \textcite{ChukwunonsoNweke2025} over verschillende onboarding technieken toont dat walkthroughs die een gebruiker stap per stap begeleiden ervoor zorgen dat die gebruiker de nieuwe kennis beter begrijpt en onthoudt dan bij een eenmalige menselijke uitleg.
 \\
@@ -59,7 +73,10 @@ Deze methoden zijn effectief omdat ze een gebruiker minder overweldigen met alle
 \end{itemize}
 
 \subsection{In-App User Guidance}
-Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan vinden binnen de applicatie. Volgens \textcite{Acar2020} is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de juiste oplossing. Ze duiden erop dat gebruikers hulp zouden moeten krijgen op het exacte moment dat ze die nodig hebben en dat deze hulp dus contextspecifiek moet aangeboden worden. Bijvoorbeeld wanneer een gebruiker voor het eerst een nieuw onderdeel van de applicatie gebruikt, krijgt hij een korte tip of aanwijzing over dat specifieke onderdeel. Hierdoor krijgt de gebruiker dus relevante informatie precies op het juiste moment, zonder dat hij zelf overdreven ver moet zoeken.
+Het concept in-app user guidance, of letterlijk het sturen van gebruikers tijdens het gebruik van een applicatie, betekent dat een gebruiker alle nodige info en hulp kan vinden binnen de applicatie. Volgens \textcite{Acar2020} is het voor gebruikers moeilijk en demotiverend indien hulp enkel beschikbaar is in bijvoorbeeld handleidingen, tutorials... en gebruikers zelf actief op zoek moeten gaan naar de juiste oplossing.
+\\
+
+ Ze duiden erop dat gebruikers hulp zouden moeten krijgen op het exacte moment dat ze die nodig hebben en dat deze hulp dus contextspecifiek moet aangeboden worden. Bijvoorbeeld wanneer een gebruiker voor het eerst een nieuw onderdeel van de applicatie gebruikt, krijgt hij een korte tip of aanwijzing over dat specifieke onderdeel. Hierdoor krijgt de gebruiker dus relevante informatie precies op het juiste moment, zonder dat hij zelf overdreven ver moet zoeken.
 \\
 
 \textcite{Akiki2019} dan heeft het over de praktische implementatie van zo'n user guidance, de studie toont aan dat hulp voor gebruikers direct kan ingebouwd worden in de gebruikersinterface via contextgebonden prompts en interactieve elementen. Dit onderzoek laat eveneens zien dat gebruikers die op deze manier geholpen worden, efficiënter kunnen werken en minder vastlopen dan wanneer ze zelf op zoek moeten naar alle juiste oplossingen.
@@ -75,20 +92,20 @@ Immers kunnen de bestaande tools van Salesforce voor in-app guidance, zoals walk
 
 \subsection{Synthese}
 
-Deze literatuurstudie biedt de theoretische basis om de onderzoeksvragen te beantwoorden. Wat betreft het probleemdomein toont de theorie rondom First Time User Experience (FTUE) aan waarom complexe systemen zoals 24flow vaak een steile leercurve hebben en hoe slechte onboarding leidt tot frustratie. Dit biedt het wetenschappelijke kader om de specifieke knelpunten binnen het huidige 24flow-platform te kunnen plaatsen.
+Deze literatuurstudie biedt de theoretische basis om de onderzoeksvragen te beantwoorden. Wat betreft het probleemdomein toont de theorie rondom First Time User Experience (FTUE) aan waarom complexe systemen zoals 24flow vaak een steile leercurve hebben en hoe slechte onboarding leidt tot frustratie. 
 \\
 
-Daarnaast biedt de theorie over in-app guidance en Digital Adoption Platforms (DAP) binnen het oplossingsdomein een direct antwoord op de vraag hoe vergelijkbare software-applicaties omgaan met onboarding. Technieken zoals interactieve walkthroughs en contextgevoelige prompts blijken significant effectiever dan statische handleidingen. Deze theoretische inzichten vormen de directe verantwoording voor de hoofdonderzoeksvraag: ze verklaren waarom er in de rest van dit onderzoek gezocht wordt naar een manier om deze principes toe te passen via de native functionaliteiten van Salesforce.
+Daarnaast biedt de theorie over in-app guidance en Digital Adoption Platforms (DAP) binnen het oplossingsdomein een direct antwoord op de vraag hoe vergelijkbare software-applicaties omgaan met onboarding. Technieken zoals interactieve walkthroughs en contextgevoelige prompts blijken significant effectiever dan statische handleidingen. Met deze inzichten als basis, richt de rest van dit onderzoek zich op de praktische toepassing ervan. Om deze in-app begeleiding succesvol te realiseren, is een technische verkenning nodig van de functionaliteiten die het Salesforce-platform hiervoor biedt.
 \\
 
 
 \section{Salesforce Analyse}%
 \label{sec:Salesforce analyse}
-Voordat er een technische oplossing voor de onboarding van 24flow kan worden uitgewerkt, is het essentieel om te begrijpen welke functionaliteiten Salesforce standaard aanbiedt. Eerst worden de kerncomponenten van de Salesforce In-App Guidance belicht, zoals prompts en walkthroughs en de configuratie hiervan. Vervolgens wordt besproken welke overzicht en analyse tools Salesforce biedt om guidance te analyseren en beheren. 
+Voordat er een technische oplossing voor de onboarding van 24flow kan worden uitgewerkt, is het essentieel om te begrijpen welke functionaliteiten Salesforce standaard aanbiedt. Eerst worden enkele specifieke begrippen uitgelegd, dan worden de kerncomponenten van de Salesforce In-App Guidance belicht, zoals prompts en walkthroughs en de configuratie hiervan. Vervolgens wordt besproken welke limitaties deze componenten hebben. 
 \\
 
 \subsection{Technologisch Kader en Begrippen}
-Om de technische context van dit onderzoek te verduidelijken, worden enkele belangrijke componenten en begrippen van het Salesforce-ecosysteem hieronder kort toegelicht.
+Om de technische context van dit onderzoek te verduidelijken, worden enkele belangrijke componenten en begrippen van het Salesforce-ecosysteem hieronder kort toegelicht. Deze fundamentele definities steunen op de officiële platformdocumentatie \autocite{SalesforceDevDocs}.
 
 \begin{itemize}
 	\item \textbf{Lightning Experience (LEX):} De moderne, component-gebaseerde gebruikersinterface van Salesforce. LEX fungeert als een modulaire werkomgeving waarin componenten op flexibele pagina-layouts kunnen worden geplaatst.
@@ -105,16 +122,16 @@ Om de technische context van dit onderzoek te verduidelijken, worden enkele bela
 
 \subsection{In-App Guidance Tools}
 
-Volgens de officiële specificaties van Salesforce is de In-App Guidance-functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden.
+Volgens de officiële specificaties van Salesforce is de In-App Guidance-functionaliteit opgebouwd uit twee fundamentele hoofdelementen: \textit{Prompts} en \textit{Walkthroughs}, die ondersteund worden door uitgebreide configuratiemogelijkheden. Deze componenten worden in de volgende delen besproken aan de hand van de officiële In-App Guidance documentatie \autocite{SalesforceIAG}.
 
 \subsubsection{Prompts}
 Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de gebruiker te vestigen op specifieke elementen, acties of updates binnen het systeem. Salesforce onderscheidt drie specifieke prompts, elk met een eigen functioneel doel:
 
 \begin{itemize}
-	\item \textbf{Targeted Prompts:} Dit zijn vensters die visueel verankerd zijn aan een specifiek UI-element, zoals een invulveld, knop of tabblad. De prompt wijst met een pijl direct naar het bijpassende element en maakt de rest van de pagina grijs, hierbij zijn er twaalf verschillende posities die de prompt kan innemen ten opzichte van het element. 
+	\item \textbf{Targeted Prompts:} Dit zijn vensters die visueel verankerd zijn aan een specifiek UI-element, zoals een invulveld, knop of tabblad. De prompt wijst met een pijl direct naar het bijpassende element en maakt de rest van de pagina grijs, hierbij zijn er twaalf verschillende posities die de prompt kan innemen ten opzichte van het element. 
 	\\
 	
-	\textit{Toepassing:} Dit is uiterst effectief om een gebruiker heel gericht te sturen naar bepaalde knoppen of velden die op dat moment essentieel zijn. (bijv. een prompt die naar een nieuw toegevoegde knop wijst, waardoor de gebruiker direct op de hoogte is van de nieuwe functionaliteit.  )
+	\textit{Toepassing:} Dit is uiterst effectief om een gebruiker heel gericht te sturen naar bepaalde knoppen of velden die op dat moment essentieel zijn. (bijv. een prompt die naar een nieuw toegevoegde knop wijst, waardoor de gebruiker direct op de hoogte is van de nieuwe functionaliteit.)
 	
 	\item \textbf{Floating Prompts:} Dit zijn pop-upvensters die niet aan een specifieke knop zijn gekoppeld, maar los over de interface zweven. Deze prompt kan op negen verschillende voorgedefinieerde locaties op een pagina worden weergegeven. Dit soort venster neemt weinig ruimte in en verdwijnt onmiddellijk wanneer een gebruiker naar een andere pagina navigeert of de prompt weg klikt.
 	\\
@@ -134,14 +151,14 @@ Een prompt is een losstaande aanwijzing die is ontworpen om de aandacht van de g
 	\begin{tabular}{@{}lccc@{}}
 		\toprule
 		\textbf{Kenmerk } & \textbf{Floating Prompt} & \textbf{Targeted Prompt} & \textbf{Docked Prompt} \\ \midrule
-		Rich Text Support            & Basis     & Basis     & Uitgebreid* \\
-		Afbeeldingen ondersteund     & Ja        & Ja        & Ja           \\
-		Embedded Video               & Nee       & Nee       & Ja           \\
-		Action / Dismiss Button      & Ja        & Ja        & Ja           \\
-		Snooze-icoon                 & Ja        & Ja        & Ja           \\ 
-		Gedrag bij navigatie         & Verdwijnt & Verdwijnt & Blijft staan \\
-		Grootte op pagina            & Klein     & Klein     & Groot        \\
-		Focus-effect                 & Geen      & Scherm dimt & Geen        \\ \midrule
+		Rich Text Support            & Basis     & Basis     & Uitgebreid* \\
+		Afbeeldingen ondersteund     & Ja        & Ja        & Ja           \\
+		Embedded Video               & Nee       & Nee       & Ja           \\
+		Action / Dismiss Button      & Ja        & Ja        & Ja           \\
+		Snooze-icoon                 & Ja        & Ja        & Ja           \\ 
+		Gedrag bij navigatie         & Verdwijnt & Verdwijnt & Blijft staan \\
+		Grootte op pagina            & Klein     & Klein     & Groot        \\
+		Focus-effect                 & Geen      & Scherm dimt & Geen        \\ \midrule
 	\end{tabular}
 	\begin{flushleft}
 		\footnotesize *Ondersteunt extra opties zoals tekstkleur, hyperlinks en lijst-opmaak.
@@ -185,10 +202,9 @@ Zowel Salesforce zelf als de native In-App Guidance-functionaliteit kent enkele 
 	\item \textbf{Desktop Exclusief:} In-App Guidance is exclusief ontworpen voor de desktopversie van Lightning Experience; de functionaliteit wordt momenteel niet ondersteund in de mobiele Salesforce-applicatie.
 	\item \textbf{Systeeminstellingen en Custom Schermen:} Prompts kunnen niet worden geplaatst op systeeminstellingen (Setup-pagina's) of op specifieke onderdelen van de interface die buiten het standaard Lightning-framework vallen.
 	\item \textbf{Stappenlimiet:} Een enkele walkthrough is technisch gelimiteerd tot maximaal tien opeenvolgende stappen (prompts).
-	\item \textbf{Governor Limits:} Omdat Salesforce een \textit{multi-tenant} platform is (waarbij servercapaciteit wordt gedeeld tussen klanten), gelden er harde limieten voor server-side processen. Apex-logica is strikt beperkt in het aantal SOQL-queries en DML-operaties per transactie.
-	\item \textbf{UI-Gedrag (Lightning Web Security):} Salesforce hanteert een strikte beveiligingsarchitectuur (\textit{Lightning Web Security} ) die voorkomt dat componenten buiten hun eigen grenzen treden. Hierdoor is het voor een custom component technisch onmogelijk om standaard Salesforce UI-gedrag programmatisch te overschrijven.
+	\item \textbf{Governor Limits:} Omdat Salesforce een \textit{multi-tenant} platform is (waarbij servercapaciteit wordt gedeeld tussen klanten), gelden er harde limieten voor server-side processen. Apex-logica is strikt beperkt in het aantal SOQL-queries en DML-operaties per transactie \autocite{SalesforceGovLimits}.
+	\item \textbf{UI-Gedrag (Lightning Web Security):} Salesforce hanteert een strikte beveiligingsarchitectuur (\textit{Lightning Web Security}) die voorkomt dat componenten buiten hun eigen grenzen treden \autocite{SalesforceLWS}. Hierdoor is het voor een custom component technisch onmogelijk om standaard Salesforce UI-gedrag programmatisch te overschrijven.
 \end{itemize}
-
 
 
 

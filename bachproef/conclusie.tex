@@ -1,38 +1,64 @@
 %%=============================================================================
-%% Conclusie
+%% Discussie en Conclusie
 %%=============================================================================
 
-\chapter{Conclusie}%
-\label{ch:conclusie}
-\section{Algemene Conclusie}%
-\label{sec:Conclusie}
-%%=============================================================================
-%% Conclusie
-%%=============================================================================
+\chapter{Discussie en Conclusie}%
+\label{ch:discussie-conclusie}
 
-\section{Algemeen Besluit en Meerwaarde}
-De initiële opzet van een complexe, modulaire make-to-order applicatie zoals 24flow binnen het Salesforce-ecosysteem bracht een aanzienlijke uitdaging met zich mee. Door de gefragmenteerde systeeminstellingen en de afhankelijkheid van statische documentatie ervoeren nieuwe gebruikers een steile leercurve en een trage \textit{Time-to-Value}. Dit onderzoek had als doel een antwoord te formuleren op de vraag hoe dit onboardingproces verbeterd kon worden en hoe bestaande Salesforce-functionaliteiten hierbij konden helpen.
+In dit afsluitende hoofdstuk wordt teruggeblikt op het gehele onderzoek. Eerst wordt in de discussie kritisch gereflecteerd over de behaalde resultaten, de technische platformlimieten en de implicaties hiervan voor de praktijk, gevolgd door een aanzet tot vervolgonderzoek. Tot slot worden de deelvragen systematisch beantwoord en wordt een definitief antwoord geformuleerd op de centrale onderzoeksvraag.
+
+\section{Kritische Reflectie en Discussie}%
+\label{sec:discussie}
+Bij een kritische evaluatie van het eindresultaat vallen zowel duidelijke successen als enkele specifieke platformbeperkingen op. Door backend-automatisering te combineren met in-app guidance is de technische drempel om 24flow op te zetten voor een groot deel verdwenen. 
 \\
 
-Het ontwikkelde proof of concept toont onomstotelijk aan dat de integratie van gecentraliseerde automatisering (via een Lightning Web Component dashboard en de Metadata API) in combinatie met native Salesforce In-App Guidance, de instapdrempel drastisch verlaagt. De bijdrage van dit onderzoek aan het domein ligt in de creatie van een \textit{self-contained} setup assistant. Waar de implementatie van een testomgeving voorheen sterk afhankelijk was van actieve, menselijke begeleiding door 24flow-experts, stelt dit prototype nieuwe beheerders in staat om dit proces zelfstandig uit te voeren. 
+De grootste functionele beperking van het project ligt bij het Salesforce-platform zelf. Salesforce blokkeert In-App Guidance volledig op de backend 'Setup'-pagina's. Dit zorgt voor een onvermijdelijke breuk in de gebruikerservaring. Zodra een beheerder systeeminstellingen moet aanpassen, stopt de actieve visuele begeleiding en moet er noodgedwongen worden teruggevallen op de statische documentatie-viewer. 
 \\
 
-De meerwaarde voor de doelgroep is tweeledig: voor de klant betekent dit contextuele, stapsgewijze hulp op het moment dat het nodig is en een reductie van handmatige configuratietijd van uren naar enkele seconden. Voor de interne 24flow-organisatie (zoals Solution Engineers) biedt het een krachtige, schaalbare tool om in een handomdraai demonstratieklare omgevingen op te zetten.
-
-\section{Kritische Reflectie (Discussie)}
-Wanneer er kritisch op het eindresultaat wordt gereflecteerd, moet worden vastgesteld dat de uitkomst op bepaalde vlakken afwijkt van de initiële verwachtingen. Aan het begin van het onderzoek was de hypothese dat de native \textit{In-App Guidance} tools van Salesforce voldoende zouden zijn om de gebruiker naadloos door het volledige platform te loodsen. 
-\\
-
-Tijdens de implementatie bleek de technische realiteit echter complexer. De strikte platformbeperkingen van Salesforce, zoals het blokkeren van guidance op backend Setup-pagina's en de stappenlimiet per walkthrough, waren onverwachte obstakels. Deze restricties toonden aan dat uitsluitend leunen op de standaardtools onvoldoende was, wat leidde tot de architecturale noodzaak om een eigen, overkoepelend LWC-dashboard te ontwikkelen dat als orkestrator fungeert.
+Daarnaast lieten andere platformrestricties hun sporen na in het uiteindelijke ontwerp. De harde limiet van maximaal tien stappen per walkthrough en de krappe limiet van 300 tekens per prompt dwongen tot creativiteit. Deze beperkingen onderstrepen waarom uitsluitend vertrouwen op de standaardtools van Salesforce tekortschiet voor een complex onboardingproces. Het rechtvaardigt de keuze voor het centrale LWC-dashboard, dat simpelweg onmisbaar bleek om het totale opzetproces op te knippen en te orkestreren in behapbare deeltaken.
 \\
 
 Daarnaast is gebleken dat een geautomatiseerde onboarding repetitief werk uitstekend kan elimineren, maar dat de fundamentele complexiteit van de make-to-order bedrijfslogica blijft bestaan. Het systeem vertelt de gebruiker succesvol \textit{hoe} een functionaliteit werkt en \textit{waar} deze te vinden is, maar het denkproces over \textit{wat} de specifieke bedrijfsregels moeten zijn, blijft een menselijke taak die de nodige domeinkennis vereist.
 
-\section{Aanzet tot Verder Onderzoek}
+\subsection{Aanzet tot Verder Onderzoek}
 De resultaten en beperkingen van dit onderzoek leiden tot nieuwe vraagstukken die uitnodigen tot verdere exploratie. Een eerste belangrijke vraag voor toekomstig onderzoek is in hoeverre het configuratieproces nog verder gepersonaliseerd kan worden. Dit opent de deur naar onderzoek over datagedreven \textit{Auto-Configuratie}, waarbij verkend kan worden hoe het inlezen van klantspecifieke datasets (bijvoorbeeld via een CSV-upload) kan worden ingezet om de interface en bedrijfsregels tijdens de onboarding direct dynamisch te genereren.
 \\
 
 Een tweede onderzoeksvraag richt zich op het meten van het langdurige effect van in-app guidance. Hoewel dit kwalitatief gevalideerd is, nodigt het uit tot kwantitatief vervolgonderzoek: in welke mate kunnen ingebouwde analytics (zoals het loggen van voltooiingspercentages en drop-off momenten) proactief voorspellen waar een gebruiker vastloopt, en hoe kunnen deze data worden gebruikt om de guidance continu en automatisch te optimaliseren? Het huidige prototype biedt een robuuste fundering om deze verdiepende stappen in de toekomst te faciliteren.
+
+
+\section{Algemene Conclusie}%
+\label{sec:conclusie}
+
+Het hoofddoel van dit onderzoek was het verbeteren van het onboardingproces voor nieuwe gebruikers op het 24flow platform binnen het Salesforce-ecosysteem. Om tot een gedegen eindoordeel te komen, worden eerst de afzonderlijke deelvragen beantwoord die de rode draad van dit traject vormden.
+
+\subsection*{Beantwoording van de deelvragen}
+
+\begin{enumerate}
+	\item \textit{Hoe zit het huidige onboardingproces in elkaar en op welke manieren worden gebruikers momenteel begeleid binnen het platform?} \\
+	Het oorspronkelijke onboardingproces was sterk afhankelijk van intensieve, menselijke begeleiding. Interne 24flow-experts (Solution Engineers) moesten voor elke potentiële klant handmatig een demo-omgeving opzetten en deze via live sessies toelichten. De zelfstandige ondersteuning voor de eindgebruiker was beperkt tot externe, statische documentatie.
+	
+	\item \textit{Welke bestaande frustraties of gebreken ondervinden gebruikers en ontwikkelaars bij de onboarding?} \\
+	Gebruikers botsten op een steile leercurve en een trage \textit{Time-to-Value} doordat de benodigde configuratie-instellingen gefragmenteerd verspreid lagen over talloze Salesforce Setup-menu's. Het gebrek aan realistische testdata bij de start zorgde bovendien voor een abstracte, lege interface. Voor ontwikkelaars en experts vormde het repetitieve, handmatige klikwerk om demo-omgevingen klaar te zetten een aanzienlijke operationele bottleneck.
+	
+	\item \textit{Hoe gaan andere, vergelijkbare systemen om met onboarding en in-app guidance?} \\
+	Uit de literatuurstudie blijkt dat moderne software-applicaties massaal overstappen op in-app basissystemen en Digital Adoption Platforms (DAP). Technieken zoals contextgevoelige prompts en interactieve walkthroughs presteren significant beter dan statische handleidingen. Ze verlagen de cognitieve belasting en optimaliseren de \textit{First Time User Experience} (FTUE) door hulp te bieden op de plaats en het moment dat het relevant is.
+	
+	\item \textit{Welke Salesforce (Apex) mogelijkheden bestaan er voor het opzetten van onboarding en user guidance?} \\
+	Salesforce biedt krachtige, native \textit{In-App Guidance} tools in de vorm van targeted, floating en docked prompts, en gekoppelde walkthroughs. Aan de backend-zijde biedt Apex, in combinatie met de Salesforce Metadata API, de unieke mogelijkheid om programmatisch gebruikersinterfaces (FlexiPages), menu-tabbladen en datarecords autonoom te genereren, wat de basis vormt voor verregaande automatisering.
+	
+	\item \textit{Welke componenten en processen binnen het 24flow platform hebben het meeste nood aan user guidance?} \\
+	De grootste nood lag bij de visueel georiënteerde kerncomponenten van de 24factory-module: de \textit{Order Pool} en de \textit{Team Cockpit}. Omdat deze schermen functioneel volledig afhankelijk zijn van onderliggende Salesforce-data (een lege tabel biedt geen waarde) en de initiële inrichting complex is, lag hier de primaire behoefte aan centralisatie, datageneratie en gestuurde navigatie.
+\end{enumerate}
+
+\subsection*{Beantwoording van de hoofdonderzoeksvraag}
+Gewapend met deze inzichten kan een sluitend antwoord worden geformuleerd op de centrale onderzoeksvraag. Het onboardingproces kan fundamenteel worden verbeterd door de verschuiving te maken van een mensafhankelijke setup naar een \textbf{self-contained, geautomatiseerde setup assistant}. 
+\\
+
+Bestaande Salesforce-functionaliteiten helpen hierbij door de krachtige synergie tussen front-end begeleiding en backend-automatisering. Het ontwikkelde proof of concept bewijst dat de native In-App Guidance (prompts en walkthroughs) de gebruiker effectief \textit{contextueel} door de schermen loodst, mits deze wordt aangestuurd door een op maat gemaakte Lightning Web Component die als gecentraliseerd dashboard fungeert. De integratie met de Metadata API en Apex lost hierbij het gefragmenteerde karakter op door de volledige basisconfiguratie en realistische testdata met één druk op de knop autonoom te genereren. 
+\\
+
+De uiteindelijke bijdrage van dit onderzoek is de drastische reductie van de opzettijd van uren naar enkele seconden. Voor de klant wordt hiermee de \textit{Time-to-Value} geminimaliseerd en de FTUE geoptimaliseerd, terwijl de interne 24flow-organisatie beschikt over een schaalbare, efficiënte pre-sales tool. De combinatie van native platformfunctionaliteiten en custom automatisering vormt zodoende een robuuste blauwprint voor digitale adoptie binnen complexe enterprise-software.
 
 % TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de   test
 % onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en

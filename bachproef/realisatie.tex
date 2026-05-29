@@ -4,7 +4,7 @@
 In dit hoofdstuk wordt de technische en functionele realisatie van het proof of concept besproken. Waar de voorgaande secties zich richtten op de vereisten en het conceptuele ontwerp, focust dit deel op de implementatie aan de hand van de vooropgestelde requirements en wireframes. 
 \\
 
-De architectuur van de oplossing is fundamenteel opgebouwd uit drie samenwerkende lagen. Enerzijds is er de Salesforce In-App Guidance, die verantwoordelijk is voor de actieve begeleiding van de gebruiker over verschillende schermen en stappen heen. Anderzijds is er een setup assistant applicatie ontwikkeld: het Onboarding Dashboard. Dit dashboard, gebouwd als een moderne Lightning Web Component (LWC), fungeert als het controlecentrum. Het verdeelt de onboarding over kleinere stappen, stuurt de gebruiker naar de juiste onderdelen, en valideert op de achtergrond (via Apex) of de nodige data en configuraties succesvol zijn aangemaakt. Als laatste is er dan een documentatie-viewer, waarbij de gebruiker constant gelinkt is met de juiste documentatie voor de component waarin hij aan het werken is.
+De architectuur van de oplossing is fundamenteel opgebouwd uit drie samenwerkende lagen. Enerzijds is er de Salesforce In-App Guidance, die verantwoordelijk is voor de actieve begeleiding van de gebruiker over verschillende schermen en stappen heen. Anderzijds is er een setup assistant applicatie ontwikkeld: het Onboarding Dashboard. Dit dashboard, gebouwd als een moderne Lightning Web Component (LWC), fungeert als het controlecentrum. Het verdeelt de onboarding over kleinere stappen, stuurt de gebruiker naar de juiste onderdelen, en valideert op de achtergrond (via Apex) of de nodige data en configuraties succesvol zijn aangemaakt. Als laatste is er dan een documentatie-viewer, waarbij de gebruiker overal gelinkt is met de juiste documentatie voor de component waarin hij aan het werken is.
 \\
 
 Een belangrijk concept binnen deze setup assistant is de \textit{Auto-configuratie} functionaliteit. Om de tijd tot een werkende omgeving te verminderen, biedt het dashboard de mogelijkheid om met één druk op de knop al een aantal complexe configuraties en zelfs volledige Lightning Pages op de achtergrond te genereren. Hierdoor kan een gebruiker heel snel van start gaan met een echte omgeving en dan via de In-App Guidance verder gestuurd worden bij het zich eigen maken van het 24flow-platform.
@@ -21,11 +21,11 @@ De interface is volledig gebouwd met Lightning Web Components (LWC) en het Sales
 
 \begin{enumerate}
 	\item \textbf{Consistente User Experience:} Door SLDS toe te passen, is de component visueel niet te onderscheiden van de standaard Salesforce-omgeving. Dit vergroot het vertrouwen en de herkenbaarheid voor de gebruiker.
-	\item \textbf{Reactieve UI:} LWC leunt sterk op \textit{reactive data binding}. Wanneer de backend (Apex) registreert dat een configuratiestap is voltooid, of wanneer een proces loopt dat even moet laden (zichtbaar via de \texttt{lightning-spinner} component), worden de interface-elementen direct en asynchroon geüpdatet, zonder dat de gebruiker de pagina hoeft te herladen.
+	\item \textbf{Reactieve UI:} Wanneer de backend (Apex) registreert dat een configuratiestap is voltooid, of wanneer een proces loopt dat even moet laden (zichtbaar via de \texttt{lightning-spinner} component), worden de interface-elementen direct en asynchroon geüpdatet, zonder dat de gebruiker de pagina hoeft te herladen.
 \end{enumerate}
 
 Initieel in de wireframes was het dashboard zo opgebouwd dat aan de linkerkant de configuratiestappen stonden en rechts enkele extra tools.
-Om de gebruiker echter zoveel mogelijk op het centrale scherm te houden en de documentatie hier ook rechtstreeks te kunnen tonen, is het dashboard in de uiteindelijke implementatie visueel opgedeeld in twee secties: een linkerkolom met de echte configuratiestappen en enkele tools daarboven en een rechterkolom puur om documentatie te tonen.
+Om de gebruiker echter zoveel mogelijk op het centrale scherm te houden en de documentatie hier ook rechtstreeks te kunnen tonen, is het dashboard in de uiteindelijke implementatie visueel opgedeeld in twee secties: een linkerkolom met de echte configuratiestappen en enkele tools daarboven en een rechterkolom puur om documentatie te tonen die steeds zoveel mogelijk met elke stap gelinkt is.
 
 \begin{figure}[hbt!]
 	\centering
@@ -38,7 +38,7 @@ Om de gebruiker echter zoveel mogelijk op het centrale scherm te houden en de do
 Aan de linkerkant bevindt zich de interactieve onboarding component (\textit{24flow Setup Assistant}). Deze is opgebouwd uit de volgende logische lagen:
 
 \begin{itemize}
-	\item \textbf{Voortgang, Data \& Default configuratie:} Bovenaan bevindt zich een overkoepelende voortgangsbalk, waarop de gebruiker in percentages ziet hoeveel hij al geconfigureerd heeft. Deze balk is reactief: de logica combineert actuele database-controles uit de backend met lokale browser-opslag (\textit{localStorage}) voor handmatige taken, om zo het percentage te bereken. Direct daaronder worden twee blokken getoond met algemene configuratie: 
+	\item \textbf{Voortgang, Data \& Default configuratie:} Bovenaan bevindt zich een overkoepelende voortgangsbalk, waarop de gebruiker in percentages ziet hoeveel hij al geconfigureerd heeft. Deze balk is reactief: de logica combineert actuele database-controles uit de backend met lokale browser-opslag (\textit{localStorage}) voor handmatige taken, om zo het percentage te berekenen. Direct daaronder worden twee blokken getoond met algemene configuratie: 
 	\begin{itemize}
 		\item \textit{Demo Data Management:} Enerzijds een knop om via een Apex-proces automatisch demodata te genereren, zodat de gebruikersomgeving gevuld wordt met realistische productiedata. Anderzijds een placeholder knop om een eigen CSV-bestand in te laden met echte data van de klant, dit is een placeholder omdat het omvormen van deze data naar de Salesforce-omgeving buiten de scope van deze proof of concept valt. Zolang er geen data in de omgeving beschikbaar is worden de auto-generatie knoppen geblokkeerd. Onderaan de component is eveneens een reset-knop voorzien om deze data veilig te verwijderen en de gebruikersomgeving op te kuisen.
 		\item \textit{Master Auto-Configuration:} Een geavanceerde functionaliteit waarmee de gebruiker voor alle 24flow-componenten een aantal default instellingen aanmaakt waar mogelijk en deze direct op automatisch gegenereerde pagina's plaatst. Hiermee kan een gebruiker heel snel een basisconfiguratie van 24flow in werking zien en testen.
@@ -99,7 +99,7 @@ Zodra de gebruiker een taak start vanuit het dashboard, wordt de gebruiker verpl
 	\caption{Start van een walkthrough met een targeted prompt (stap 1).}
 	\label{fig:walkthrough_1}
 \end{figure}
-
+\pagebreak
 \begin{figure}[hbt!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{WalktroughStepImpl2.png}
@@ -107,9 +107,9 @@ Zodra de gebruiker een taak start vanuit het dashboard, wordt de gebruiker verpl
 	\label{fig:walkthrough_2}
 \end{figure}
 
-\clearpage
+
 \section{Architectuur van de Backend}
-De backend van het proof of concept heeft drie duidelijke kerntaken: het aanleveren van de inhoud voor het dashboard, het uitvoeren van de verschillende configuratie-acties in de achtergrond en het implementeren van de documentatie-viewer.
+De backend van het proof of concept heeft drie duidelijke kerntaken: het aanleveren van de inhoud voor het dashboard, het uitvoeren van de verschillende configuratie acties in de achtergrond en het implementeren van de documentatie-viewer.
 
 \subsection{Custom Metadata Type}
 \label{subsec:dynamische_datastructuur}
@@ -129,7 +129,7 @@ Terwijl de front-end zorgt voor de visuele weergave, regelt een centrale Apex-kl
 	\item \textbf{Demodata Beheren:} Het genereren van realistische testdata om een lege applicatie te vermijden, inclusief de logica om de omgeving (zowel data als gegenereerde schermen) weer veilig op te kuisen.
 \end{itemize}
 
-\subsection{Diepgaande Integratie: De Salesforce Metadata API}
+\subsection{De Salesforce Metadata API}
 Om de ware kracht van de \textit{Automatische Configuratie} te begrijpen, is het cruciaal om het onderscheid te maken tussen standaard Salesforce-data en 'metadata'. Waar standaard Apex-code moeiteloos datarecords (zoals productieorders of teams) kan aanmaken, is het van nature niet in staat om de gebruikersinterface zelf aan te passen. Om daadwerkelijk schermen te kunnen opbouwen, maakt het proof of concept op de achtergrond gebruik van een integratie met de \textbf{Salesforce Metadata API}.
 
 \subsubsection*{De Meerwaarde van Dynamische Generatie}

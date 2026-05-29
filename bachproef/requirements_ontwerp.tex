@@ -1,11 +1,25 @@
 \chapter{\IfLanguageName{dutch}{Requirements en Ontwerp}{Requirements and Design}}%
 \label{ch:requirements-ontwerp}
 
-Uit de voorgaande Salesforce analyse lijkt de native In-App Guidance uitstekend geschikt om een gebruiker te begeleiden bij allerlei soorten processen. Voor de initiële setup van een complexe applicatie zoals 24flow moet deze guidance ook duidelijk georganiseerd worden. Daarom wordt er voor het proof of concept gewerkt met een op maat gemaakt 'Onboarding Dashboard' waar de gebruiker op landt bij het starten van de applicatie. Dit dashboard fungeert als een centrale hub die de gebruiker een duidelijk stappenplan en houvast biedt. Vanuit dit overzicht kan de gebruiker dan stap per stap de nodige configuraties opzetten met behulp van de in-app guidance zonder het overzicht te verliezen en met een duidelijke houvast.
+In dit hoofdstuk wordt de abstracte theorie uit de voorgaande analyses vertaald naar een concreet ontwerp voor het proof of concept. Waar in Hoofdstuk~\ref{ch:stand-van-zaken} werd vastgesteld dat de In-App Guidance van Salesforce uitstekend geschikt is om gebruikers te begeleiden en sturen, vereist een succesvolle toepassing hiervan binnen de complexe 24flow-applicatie een gestructureerde aanpak. 
+\\
+
+Om deze structuur te garanderen, wordt in het eerste deel van dit hoofdstuk een uitgebreide requirements analyse uitgevoerd. Hierin worden de functionele en niet-functionele vereisten voor het systeem vastgelegd en geprioriteerd via de MoSCoW methode. Vervolgens wordt in het tweede deel het ontwerp van de oplossing opgebouwd. Dit gebeurt aan de hand van \textit{use cases} en \textit{wireframes}, met als kernconcept een op maat gemaakt 'Onboarding Dashboard'. Dit centrale dashboard zal fungeren als de hub van waaruit de gebruiker gestuurd wordt.
 
 \section{Requirements Analyse}%
 \label{sec:Requirements analyse}
 Voor de technische uitwerking van deze oplossing is het cruciaal om de vereisten van het systeem helder in kaart te brengen. In deze sectie worden de kerncomponenten van 24flow, de doelgroep, de niet-functionele requirements en de specifieke functionele requirements gedefinieerd en geprioritiseerd.
+
+\subsection{Doelgroep}
+\label{subsec:doelgroepanalyse}
+Voor de uitwerking van een effectieve onboarding-oplossing is het belangrijk om te bepalen voor wie het systeem wordt ontworpen. Binnen het 24flow-ecosysteem zijn er twee specifieke gebruikersrollen geïdentificeerd. Hoewel de uiteindelijke applicatie voor beide rollen hetzelfde is, verschillen hun doelen en vereisten:
+\\
+
+\begin{itemize}
+	\item \textbf{De Salesforce-beheerder van de klant:} Dit is een beheerder bij een (potentieel) nieuw klantbedrijf die het 24flow pakket wil evalueren of implementeren. Deze gebruiker kent de applicatie nog niet en wil het systeem zelfstandig leren gebruiken en testen. Voor deze groep is er een sterke behoefte aan stapsgewijze, interactieve begeleiding en direct toegankelijke en duidelijke documentatie. Daarnaast is het voor hen belangrijk om over realistische testdata te beschikken, zodat zij de applicatie direct visueel kunnen evalueren zonder eerst uren aan handmatige data-invoer te spenderen. Het uiteindelijke doel van deze gebruiker is 24flow in werking zien en indien ze nog geen klant zijn evalueren of ze wel of niet klant willen worden.
+	
+	\item \textbf{De Solution Engineer (24flow-expert):} Dit is een interne medewerker van 24flow. Hoewel het onboarding-systeem primair bedoeld is voor (nieuwe) klanten, bieden specifieke onderdelen ervan ook een grote meerwaarde voor deze interne experts. Zij kennen de applicatie al door en door en hebben geen behoefte aan stapsgewijze handleidingen. Echter, de functionaliteiten die nodig zijn om een omgeving op te zetten en van testdata te voorzien, kunnen door hen uitstekend worden ingezet om in zeer korte tijd bijvoorbeeld een demo-omgeving klaar te zetten.
+\end{itemize}
 
 \subsection{Kerncomponenten van 24flow}
 \label{subsec:kerncomponenten_24flow}
@@ -13,25 +27,33 @@ Om de complexiteit van de onboarding te begrijpen, is inzicht in de modulaire op
 
 \begin{itemize}
 	\item \textbf{Order Pool:} Een centraal overzicht waar alle productieorders binnenkomen. Deze component fungeert als de ``ingang'' van de fabriek. De effectiviteit van de Order Pool hangt af van de juiste filtering en weergave van velden (zoals leverdatum en producttype). 
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.95\textwidth]{OrderPool}
+		\caption{Visueel overzicht van de Order Pool binnen 24flow.}
+		\label{fig:order_pool}
+	\end{figure}
+	
 	\item \textbf{Team Cockpit:} Een visueel bord waarop operatoren de status van Productie Orders (bijv. \textit{In Buffer, In Process, Expected}) kunnen opvolgen. Dit is het hart van de werkvloer planning, en hiermee kan de hoeveelheid work in progress op de vloer georganiseerd worden.
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.95\textwidth]{Cockpit}
+		\caption{Visuele weergave van de Team Cockpit.}
+		\label{fig:team_cockpit}
+	\end{figure}
+	
 	\item \textbf{Production Orders, Teams \& Operations:} Dit zijn enkele van de belangrijkste achterliggende datastructuren. Een productieorder bestaat uit meerdere bewerkingen (operations) die door verschillende teams uitgevoerd moeten worden.
 \end{itemize}
 
 \subsubsection*{De afhankelijkheid van data}
-Een fundamenteel kenmerk van deze componenten is dat zij \textbf{visueel georiënteerd} zijn. Een Order Pool zonder records is een lege tabel, en een Team Cockpit zonder actieve bewerkingen toont enkel lege kolommen.
+Een fundamenteel kenmerk van deze componenten is dat zij \textbf{visueel georiënteerd} zijn. Een Order Pool zonder records is een lege tabel, en een Team Cockpit zonder actieve operations toont enkel lege kolommen.
 \\
 
 Daarom is er de noodzaak om een gebruiker over realistische data te laten beschikken tijdens de onboarding. Ofwel zou er demo-omgeving gebruikt kunnen worden of een klant zou zijn eigen data kunnen uploaden en gebruiken of een combinatie van beide indien mogelijk. Dit zou ervoor zorgen dat de gebruiker direct met een gevulde interface kan werken, wat essentieel is voor een succesvolle configuratie.
 
-\subsection{Doelgroep}
-\label{subsec:doelgroepanalyse}
-Voor de uitwerking van een effectieve onboarding-oplossing is het cruciaal om te bepalen voor wie het systeem wordt ontworpen. Binnen het 24flow-ecosysteem zijn er twee specifieke gebruikersrollen geïdentificeerd. Hoewel de uiteindelijke applicatie voor beide rollen hetzelfde is, verschillen hun doelen en vereisten:
 
-\begin{itemize}
-	\item \textbf{De Salesforce-beheerder van de klant:} Dit is een beheerder bij een (potentieel) nieuw klantbedrijf die 24flow wil evalueren of implementeren. Deze gebruiker kent de applicatie nog niet en wil het systeem zelfstandig leren gebruiken en testen. Voor deze groep is er een sterke behoefte aan stapsgewijze, interactieve begeleiding en direct toegankelijke en duidelijke documentatie. Daarnaast is het voor hen belangrijk om over realistische testdata te beschikken, zodat zij de applicatie direct visueel kunnen evalueren zonder eerst uren aan handmatige data-invoer te spenderen. Het uiteindelijke doel van deze gebruiker is 24flow in werking zien en indien ze nog geen klant zijn evalueren of ze wel of niet klant willen worden.
-	
-	\item \textbf{De Solution Engineer (24flow-expert):} Dit is een interne medewerker van 24flow. Hoewel het onboarding-systeem primair bedoeld is voor (nieuwe) klanten, bieden specifieke onderdelen ervan ook een grote meerwaarde voor deze interne experts. Zij kennen de applicatie al door en door en hebben geen behoefte aan stapsgewijze handleidingen. Echter, de functionaliteiten die nodig zijn om een omgeving geautomatiseerd op te zetten en van testdata te voorzien, kunnen door hen uitstekend worden ingezet om in zeer korte tijd bijvoorbeeld een demo-omgeving klaar te zetten.
-\end{itemize}
 
 \subsection{Centralisatie}
 \label{subsec:centralisatie_dashboard}
@@ -50,7 +72,10 @@ De oplossing moet voldoen aan de volgende technische randvoorwaarden binnen het 
 \end{itemize}
 
 \subsection{Prioritering van de requirements}
-Om de scope van het proof of concept onder controle te houden en te garanderen dat de meest kritische onderdelen als eerste worden gebouwd, zijn de verzamelde requirements geprioriteerd volgens de MoSCoW-methode.
+Zoals vastgelegd in de methodologie, zijn de daadwerkelijke functionele vereisten voor het Proof of Concept tot stand gekomen door middel van overleg met enkele 24flow werknemers. Hieruit is dan, gecombineerd met de Salesforce analyse, een uitgebreide lijst met gewenste functionaliteiten opgesteld. 
+\\
+
+Om de scope van het proof of concept onder controle te houden en te garanderen dat de meest kritische onderdelen als eerste worden gebouwd, zijn deze verzamelde requirements vervolgens geprioriteerd volgens de MoSCoW-methode.
 
 \subsubsection*{Must haves}
 De "Must haves" vormen de minimale set aan functionaliteiten die aanwezig moeten zijn om een werkbare oplossing te bieden die beantwoordt aan de onderzoeksvraag:
@@ -76,7 +101,7 @@ De "Should haves" zijn belangrijke functionele aanvullingen die de kwaliteit van
 	\item \textbf{Uploaden Eigen Data:} Een methode om eigen data te uploaden die gebruikt kan worden voor de onboarding. Dit kan in eerste instantie een placeholder zijn die later kan worden geïmplementeerd.
 	\item \textbf{Taakbevestiging:} Voor stappen die niet automatisch door het systeem gemeten kunnen worden, moet de gebruiker zelf een taak als voltooid kunnen markeren.
 	\item \textbf{Custom Branding:} Het aanpassen van de kleuren van de prompts aan de huisstijl van 24flow. Dit draagt bij aan de uniformiteit en herkenbaarheid binnen het platform.
-	\item \textbf{Documentatie Linken} Getoonde documentatie moet specifiek gekoppeld zijn aan de respectievelijke component. Een gebruiker mag niet op zoek moeten gaan in alle documentatie voor een specifiek onderdeel.
+	\item \textbf{Documentatie Linken:} Getoonde documentatie moet specifiek gekoppeld zijn aan de respectievelijke component. Een gebruiker mag niet op zoek moeten gaan in alle documentatie voor een specifiek onderdeel.
 \end{itemize}
 
 \subsubsection*{Could haves}

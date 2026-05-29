@@ -107,7 +107,7 @@ Omdat een grootschalig kwantitatief gebruikersonderzoek buiten de scope van dit 
 Uit de realisatie blijkt dat de architectuur naadloos aansluit bij de theorie over effectieve onboarding en fundamentele verbeteringen biedt ten opzichte van traditionele implementaties:
 
 \begin{itemize}
-	\item \textbf{Self-contained Setup als Primaire Meerwaarde:} In de literatuurstudie werd vastgesteld dat menselijke begeleiding weliswaar interactief is, maar sterk tekortschiet in schaalbaarheid. Deze theorie wordt in de praktijk gevalideerd door interne 24flow-medewerkers, die aangaven dat de creatie van een volledig onafhankelijke (\textit{self-contained}) setup veruit de grootste meerwaarde van dit prototype is. Een nieuwe gebruiker kan de applicatie nu zelfstandig configureren en evalueren zonder directe tussenkomst van een expert. Voordien kon dit enkel gebeuren door een 24flow medewerker die zelf een demo-omgeving opzette en deze handmatig moest uitleggen aan de klant.
+	\item \textbf{Zelfsturende Setup als Primaire Meerwaarde:} In de literatuurstudie werd vastgesteld dat menselijke begeleiding weliswaar interactief is, maar sterk tekortschiet in schaalbaarheid. Deze theorie wordt in de praktijk gevalideerd door interne 24flow-medewerkers, die aangaven dat de creatie van een volledig onafhankelijke (\textit{zelfsturende}) setup veruit de grootste meerwaarde van dit prototype is. Een nieuwe gebruiker kan de applicatie nu zelfstandig configureren en evalueren zonder directe tussenkomst van een expert. Voordien kon dit bijna enkel gebeuren door een 24flow medewerker die zelf een demo-omgeving opzette en deze handmatig moest uitleggen aan de klant.
 	
 	\item \textbf{Drastische verlaging van de Time-to-Value:} Waar een beheerder voorheen handmatig schermen moest configureren en datarecords moest aanmaken—een proces van vele tientallen clicks—reduceert de \textit{Master Auto-Configuration} dit tot een kwestie van seconden. Dit levert het harde, kwantitatieve bewijs voor de efficiëntiewinst van de oplossing. 
 	
@@ -158,3 +158,14 @@ In de evaluatie werd vastgesteld dat de integratie van statische documentatie we
 \\
 
 Door het dashboard uit te breiden met een slimme, documentatie-gedreven chat-interface, evolueert de statische documentatie-viewer naar een interactieve assistent. Gebruikers kunnen hierdoor specifieke vragen stellen en direct een contextueel antwoord ontvangen, in plaats van zelf in uitgebreide documentatie te moeten lezen en zoeken. 
+
+\subsection{Integratie van Video Tutorials}
+\label{subsec:video_tutorials}
+
+Zoals vastgesteld in de literatuurstudie, zijn video-tutorials een sterke methode om zaken aan gebruikers uit te leggen. Hoewel dit in de requirements-analyse al als een 'Should Have' werd gedefinieerd, is de effectieve integratie hiervan in het huidige proof of concept nog onvoltooid gebleven wegens het ontbreken van specifiek op maat gemaakt videomateriaal.
+\\
+
+Een zeer waardevolle en direct toepasbare toekomstige ontwikkeling is dan ook het creëren en gebruiken van zulke video tutorials. Omdat de bestaande \textit{docked prompts} van Salesforce In-App Guidance native ondersteuning bieden voor het tonen van video, is de technische fundering hier al volledig voor gelegd. 
+\\
+
+Vooral bij systeemconfiguraties op de Salesforce Setup-pagina's, waar interactieve prompts niet zijn toegestaan en de gebruiker nu terugvalt op tekstdocumentatie, of bij stappen waar een standaard prompt tekortschiet, zal een korte video-tutorial een grote meerwaarde bieden. Dit verlaagt de cognitieve belasting van de eindgebruiker verder en zorgt voor een nog betere First Time User Experience (FTUE).
